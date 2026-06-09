@@ -1,0 +1,726 @@
+/* ========================================================
+   ✨ 【サウンド機能搭載・独立オブジェクト構造】 CSS
+   ======================================================== */
+
+body {
+    margin: 0;
+    background-color: #1a1a1a;
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100svh;
+    height: 100svh;
+    user-select: none;
+    overflow: hidden;
+    padding: 5px;
+    box-sizing: border-box;
+    touch-action: manipulation;
+}
+
+/* 🖥️ ① PC・大画面環境（画面幅 960px 以上） */
+@media (min-width: 960px) {
+    #game-body-box {
+        width: 800px !important;
+        height: 450px !important;
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+    #ui-panel {
+        height: 240px !important;
+    }
+}
+
+/* 📱 ② スマホ環境（画面幅 960px 未満） */
+@media (max-width: 959px) {
+    #game-body-box {
+        width: 97vmax !important;
+        height: calc(97vmax * 9 / 16) !important;
+        max-height: 97vmin !important;
+        max-width: calc(97vmin * 16 / 9) !important;
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+    #ui-panel {
+        height: 220px !important;
+    }
+}
+
+/* 🔄 ③ スマホの向き判定（外枠の回転制御） */
+@media (max-width: 959px) and (orientation: portrait) {
+    #game-screen-wrapper {
+        transform: rotate(90deg) !important;
+        transform-origin: center center;
+    }
+}
+
+#game-body-box {
+    container-type: size;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #111;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+#game-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+/* 🧱 操作パネル */
+#ui-panel {
+    width: 18cqw;
+    background: #222;
+    padding: 0.8cqw 1.0cqw;
+    box-sizing: border-box;
+    border-radius: 12px;
+    border: 1px solid #333;
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-shrink: 0;
+
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    letter-spacing: -0.02em;
+}
+
+/* SCORE周り */
+.score-area {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.1cqw;
+    margin: 0 !important;
+    white-space: nowrap;
+}
+
+#ui-panel h2 {
+    margin: 0;
+    font-size: 1.45cqw;
+    color: #4CAF50;
+    line-height: 1.1;
+}
+
+#score-display {
+    font-size: 1.5cqw;
+    font-weight: bold;
+    color: #4CAF50;
+    line-height: 1.1;
+}
+
+#best-display {
+    font-size: 1.05cqw;
+    color: #ffb703;
+    font-weight: bold;
+    margin-top: 0.1cqw;
+    line-height: 1.1;
+}
+
+/* ステータス */
+#status-box {
+    background: #151515;
+    padding: 0.5cqw;
+    border-radius: 6px;
+    border: 1px solid #2a2a2a;
+}
+
+#status {
+    font-weight: bold;
+    color: #ffeb3b;
+    min-height: 3.4cqw;
+    font-size: 1.1cqw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    letter-spacing: -0.04em;
+}
+
+/* 残りブロック */
+#ui-panel > div:not([id]):not(.score-area) {
+    font-size: 1.0cqw;
+    font-weight: bold;
+    white-space: nowrap;
+    letter-spacing: -0.04em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4cqw;
+    margin: 0.1cqw 0;
+}
+
+#count {
+    color: #00b4d8;
+    font-size: 1.1cqw;
+}
+
+/* タイマー */
+#timer-text {
+    font-size: 1.6cqw;
+    font-weight: bold;
+    color: #ff4444;
+    margin-bottom: 0.1cqw;
+}
+
+#timer-container {
+    width: 100%;
+    background-color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #555;
+}
+
+#timer-bar {
+    width: 100%;
+    height: 0.8cqw;
+    background-color: #e63946;
+    transition: width 0.2s linear;
+}
+
+/* ボタンレイアウト */
+#control-panel {
+    display: flex;
+    gap: 0.4cqw;
+    justify-content: center;
+    width: 100%;
+}
+
+.rot-btn {
+    background: #0077b6;
+    font-size: 1.1cqw;
+    padding: 0.8cqw 0.4cqw;
+    flex: 1;
+    white-space: nowrap;
+}
+
+#action-panel {
+    display: flex;
+    gap: 0.4cqw;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#pause-btn {
+    background: #ff9f1c;
+    font-size: 1.05cqw;
+    padding: 0.65cqw 0.2cqw;
+    flex: 1;
+}
+
+#reset-btn {
+    background: #e63946;
+    font-size: 1.05cqw;
+    padding: 0.65cqw 0.2cqw;
+    flex: 1;
+}
+
+button {
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 右側3Dエリア */
+#stage-area {
+    width: 100% !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+#viewport {
+    width: 100% !important;
+    height: 100% !important;
+    perspective: 1400px;
+    perspective-origin: center center !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1.0) !important;
+}
+
+#stage {
+    position: relative;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.5s ease-out;
+    will-change: transform;
+}
+
+/* 立方体・面 */
+.cube {
+    position: absolute;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    cursor: pointer;
+    left: 0;
+    top: 0;
+    will-change: transform;
+}
+
+.face {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: bold;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-sizing: border-box;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+
+    backface-visibility: visible;
+    transform-style: preserve-3d;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.selected .face {
+    border: 2px solid #ffeb3b !important;
+    outline: 1px solid #ffffff;
+    opacity: 0.6 !important;
+    box-shadow: 0 0 10px #ffeb3b;
+    filter: brightness(1.2) !important;
+}
+
+.face.top { filter: brightness(1.0); }
+.face.bottom { filter: brightness(0.4); }
+.face.front { filter: brightness(0.85); }
+.face.back { filter: brightness(0.55); }
+.face.right { filter: brightness(0.7); }
+.face.left { filter: brightness(0.7); }
+
+/* オーバーレイ共通 */
+#start-overlay,
+#pause-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: opacity 0.4s ease;
+}
+
+#start-overlay {
+    background: radial-gradient(circle, #2a2a2a 0%, #111111 100%);
+}
+
+#pause-overlay {
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
+    opacity: 0;
+}
+
+.start-card,
+.pause-card {
+    text-align: center;
+    background: rgba(40, 40, 40, 0.95);
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    max-width: 400px;
+    width: 80%;
+    box-sizing: border-box;
+}
+
+.start-card {
+    border: 2px solid #4CAF50;
+}
+
+.pause-card {
+    border: 2px solid #ff9f1c;
+}
+
+.start-card h1 {
+    margin: 0 0 10px 0;
+    font-size: 32px;
+    color: #4CAF50;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.pause-card h2 {
+    margin: 0 0 10px 0;
+    font-size: 36px;
+    color: #ff9f1c;
+    text-shadow: 0 0 15px rgba(255, 159, 28, 0.5);
+    letter-spacing: 0.1em;
+}
+
+.start-card p,
+.pause-card p {
+    color: #aaa;
+    margin: 0 0 20px 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.difficulty-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.diff-label {
+    font-weight: bold;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.diff-switch {
+    display: flex;
+    background: #222;
+    padding: 3px;
+    border-radius: 30px;
+    border: 1px solid #444;
+}
+
+.diff-btn {
+    background: transparent !important;
+    color: #888 !important;
+    font-size: 13px !important;
+    padding: 6px 15px !important;
+    border-radius: 20px !important;
+    width: auto !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.diff-btn.active {
+    background: #4CAF50 !important;
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
+}
+
+#actual-start-btn {
+    background: #4CAF50 !important;
+    color: white !important;
+    font-size: 20px !important;
+    padding: 12px 25px !important;
+    border-radius: 50px !important;
+    box-shadow: 0 0 15px #4CAF50 !important;
+    animation: pulse 1.5s infinite;
+    cursor: pointer;
+    width: auto !important;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+/* ポーズ画面内ボタン */
+#resume-btn,
+#to-title-btn {
+    width: 44% !important;
+    margin: 5px 2% !important;
+    display: inline-block !important;
+    border-radius: 50px !important;
+    padding: 12px 0 !important;
+}
+
+#to-title-btn {
+    background: #ef4444 !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4) !important;
+}
+
+#resume-btn {
+    background: #ff9f1c !important;
+    box-shadow: 0 0 15px rgba(255, 159, 28, 0.4) !important;
+}
+
+/* ユーティリティボタン */
+#utility-buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    display: flex;
+    gap: 8px;
+
+    z-index: 500;
+}
+
+.utility-btn {
+    width: 42px !important;
+    height: 42px !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 !important;
+    border-radius: 50% !important;
+
+    background: rgba(34, 34, 34, 0.92);
+    border: 1px solid #444;
+
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease;
+}
+
+.utility-btn:hover {
+    background: rgba(60, 60, 60, 0.95);
+    transform: scale(1.05);
+}
+
+.utility-btn:active {
+    transform: scale(0.95);
+}
+
+#sound-toggle-btn {
+    color: #4CAF50;
+}
+
+#share-btn {
+    color: #38bdf8;
+}
+
+#timeup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+
+    z-index: 9000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.72);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.timeup-card {
+    text-align: center;
+    background: rgba(30, 30, 30, 0.96);
+    padding: 24px;
+    border-radius: 20px;
+    border: 2px solid #ff4444;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    width: 320px;
+    max-width: 80%;
+}
+
+.timeup-card h2 {
+    margin: 0 0 8px;
+    color: #ff4444;
+    font-size: 36px;
+    letter-spacing: 0.08em;
+}
+
+.timeup-card p {
+    margin: 0 0 16px;
+    color: #aaa;
+}
+
+.result-score {
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+#timeup-score {
+    font-size: 32px;
+    color: #ffb703;
+}
+
+.timeup-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#timeup-retry-btn {
+    background: #4CAF50;
+    padding: 12px 0;
+}
+
+#timeup-title-btn {
+    background: #ef4444;
+    padding: 12px 0;
+}
+
+
+
+#timeup-retry-btn,
+#timeup-title-btn {
+    font-size: 1.2cqw !important;
+    font-weight: bold;
+}
+
+
+
+#screen-fade {
+    position: absolute !important;
+    inset: 0 !important;
+
+    background: #000 !important;
+    opacity: 0;
+
+    z-index: 999999 !important;
+    pointer-events: none !important;
+
+    transition: opacity 0.35s ease;
+}
+
+/* ========================================
+   TIME UP ボタン
+======================================== */
+
+#timeup-retry-btn,
+#timeup-title-btn {
+
+    width: 44% !important;
+
+    margin: 5px 2% !important;
+
+    display: inline-block !important;
+
+    border-radius: 50px !important;
+
+    padding: 12px 0 !important;
+
+    font-size: 18px !important;
+
+    font-weight: bold !important;
+}
+
+#timeup-retry-btn {
+    background: #4CAF50 !important;
+}
+
+#timeup-title-btn {
+    background: #ef4444 !important;
+}
+
+#button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.45cqw;
+    width: 100%;
+}
+
+#button-grid button {
+    width: 100% !important;
+}
+
+#debug-text {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    z-index: 999999;
+    color: #00ff99;
+    background: rgba(0,0,0,0.7);
+    font-size: 11px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    pointer-events: none;
+}
+
+#clear-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 9000;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.72);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.clear-card {
+    text-align: center;
+    background: rgba(28, 36, 30, 0.96);
+    padding: 24px;
+    border-radius: 20px;
+    border: 2px solid #4CAF50;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    width: 320px;
+    max-width: 80%;
+}
+
+.clear-card h2 {
+    margin: 0 0 8px;
+    color: #4CAF50;
+    font-size: 38px;
+    letter-spacing: 0.08em;
+}
+
+.clear-card p {
+    margin: 0 0 16px;
+    color: #aaa;
+}
+
+.clear-bonus {
+    color: #ffb703;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.6;
+    margin-bottom: 18px;
+}
+
+.clear-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+#clear-retry-btn,
+#clear-title-btn {
+    width: 44% !important;
+    margin: 5px 2% !important;
+    display: inline-block !important;
+    border-radius: 50px !important;
+    padding: 12px 0 !important;
+    font-size: 18px !important;
+    font-weight: bold !important;
+}
+
+#clear-retry-btn {
+    background: #4CAF50 !important;
+}
+
+#clear-title-btn {
+    background: #ef4444 !important;
+}
