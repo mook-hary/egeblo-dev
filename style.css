@@ -599,34 +599,8 @@ button {
 }
 
 /* ========================================
-   TIME UP ボタン
+   ボタングリッド
 ======================================== */
-
-#timeup-retry-btn,
-#timeup-title-btn {
-
-    width: 44% !important;
-
-    margin: 5px 2% !important;
-
-    display: inline-block !important;
-
-    border-radius: 50px !important;
-
-    padding: 12px 0 !important;
-
-    font-size: 18px !important;
-
-    font-weight: bold !important;
-}
-
-#timeup-retry-btn {
-    background: #4CAF50 !important;
-}
-
-#timeup-title-btn {
-    background: #ef4444 !important;
-}
 
 #button-grid {
     display: grid;
@@ -638,6 +612,10 @@ button {
 #button-grid button {
     width: 100% !important;
 }
+
+/* ========================================
+   デバッグ表示
+======================================== */
 
 #debug-text {
     position: absolute;
@@ -652,6 +630,10 @@ button {
     pointer-events: none;
 }
 
+/* ========================================
+   CLEAR overlay
+======================================== */
+
 #clear-overlay {
     position: absolute;
     inset: 0;
@@ -664,22 +646,6 @@ button {
     background: rgba(0, 0, 0, 0.72);
     opacity: 0;
     transition: opacity 0.35s ease;
-}
-
-   .clear-rank {
-    font-size: 24px;
-    color: #ffb703;
-    font-weight: bold;
-    margin-bottom: 6px;
-    letter-spacing: 0.15em;
-}
-
-.clear-new-record {
-    color: #ff4444;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 6px;
-    min-height: 18px;
 }
 
 .clear-card {
@@ -716,29 +682,9 @@ button {
     margin-bottom: 10px;
 }
 
-.clear-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-#clear-retry-btn,
-#clear-title-btn {
-    width: 44% !important;
-    margin: 5px 2% !important;
-    display: inline-block !important;
-    border-radius: 50px !important;
-    padding: 12px 0 !important;
-    font-size: 18px !important;
-    font-weight: bold !important;
-}
-
-#clear-retry-btn {
-    background: #4CAF50 !important;
-}
-
-#clear-title-btn {
-    background: #ef4444 !important;
-}
+/* ========================================
+   結果画面ボタン共通
+======================================== */
 
 .clear-buttons,
 .timeup-buttons {
@@ -754,7 +700,20 @@ button {
     width: auto !important;
     margin: 0 !important;
     padding: 7px 0 !important;
+    border-radius: 50px !important;
     font-size: 12px !important;
+    font-weight: bold !important;
+}
+
+/* ボタン色 */
+#clear-retry-btn,
+#timeup-retry-btn {
+    background: #4CAF50 !important;
+}
+
+#clear-title-btn,
+#timeup-title-btn {
+    background: #ef4444 !important;
 }
 
 #clear-share-btn,
