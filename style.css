@@ -740,17 +740,6 @@ button {
     background: #ef4444 !important;
 }
 
-.result-share-btn {
-    margin-top: 8px !important;
-    width: 92% !important;
-    padding: 10px 0 !important;
-    border-radius: 50px !important;
-    background: #38bdf8 !important;
-    color: white !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-}
-
 .clear-buttons,
 .timeup-buttons {
     display: flex;
@@ -768,7 +757,3 @@ button {
     font-size: 12px !important;
 }
 
-.result-share-btn {
-    width: auto !important;
-    margin-top: 0 !important;
-}
