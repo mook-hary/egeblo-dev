@@ -587,6 +587,7 @@ button {
 
 .clear-card h2 {
     color: #4CAF50;
+    margin: 0 0 4px;
 }
 
 .timeup-card p,
@@ -595,11 +596,15 @@ button {
     color: #aaa;
 }
 
+.clear-card p {
+    margin: 0 0 10px;
+}
+
 .result-score {
     color: #4CAF50;
     font-weight: bold;
     font-size: 18px;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
 }
 
 #timeup-score,
@@ -612,8 +617,8 @@ button {
     color: #ffb703;
     font-size: 13px;
     font-weight: bold;
-    line-height: 1.4;
-    margin-bottom: 10px;
+    line-height: 1.2;
+    margin-bottom: 6px;
 }
 
 /* ========================================================
