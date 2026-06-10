@@ -601,10 +601,30 @@ button {
 }
 
 .result-score {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.score-label {
     color: #4CAF50;
+    font-size: 24px;
     font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 4px;
+}
+
+.score-value {
+    color: #ffb703;
+    font-size: 64px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.score-unit {
+    color: #4CAF50;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 #timeup-score,
