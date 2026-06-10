@@ -649,7 +649,7 @@ button {
 .clear-buttons button,
 .timeup-buttons button {
     flex: 1;
-    height: 56px;
+    height: 52px;
 
     width: auto !important;
     margin: 0 !important;
