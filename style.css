@@ -607,6 +607,11 @@ button {
     margin-bottom: 10px;
 }
 
+/* TIME UP専用 */
+.timeup-card .result-score {
+    margin-bottom: 32px;
+}
+
 .score-label {
     color: #4CAF50;
     font-size: 24px;
