@@ -607,6 +607,23 @@ async function shareResult(resultType) {
 }
 
 function setupEvents() {
+    const timeupShareBtn = document.getElementById("timeup-share-btn");
+
+if (timeupShareBtn) {
+    timeupShareBtn.addEventListener("click", () => {
+        shareResult("timeup");
+    });
+}
+
+const clearShareBtn = document.getElementById("clear-share-btn");
+
+if (clearShareBtn) {
+    clearShareBtn.addEventListener("click", () => {
+        shareResult("clear");
+    });
+}
+
+    
     const clearTestBtn = document.getElementById("clear-test-btn");
 
     if (clearTestBtn) {
