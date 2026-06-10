@@ -757,3 +757,7 @@ button {
     font-size: 12px !important;
 }
 
+#clear-share-btn,
+#timeup-share-btn {
+    background: #38bdf8 !important;
+}
