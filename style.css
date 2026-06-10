@@ -469,7 +469,7 @@ button {
     display: flex;
     gap: 8px;
 
-    z-index: 500;
+    z-index: 11000;
 }
 
 .utility-btn {
@@ -506,10 +506,6 @@ button {
 
 #sound-toggle-btn {
     color: #4CAF50;
-}
-
-#share-btn {
-    color: #38bdf8;
 }
 
 #timeup-overlay {
