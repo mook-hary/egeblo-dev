@@ -469,6 +469,8 @@ function showClearOverlay(finalScore, timeBonus, clearBonus) {
     const scoreEl = document.getElementById("clear-score");
     const timeBonusEl = document.getElementById("clear-time-bonus");
     const clearBonusEl = document.getElementById("clear-clear-bonus");
+    const rankEl = document.getElementById("clear-rank");
+const recordEl = document.getElementById("clear-new-record");
 
     if (scoreEl) scoreEl.innerText = finalScore;
     if (timeBonusEl) timeBonusEl.innerText = timeBonus;
