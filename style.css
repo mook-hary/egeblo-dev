@@ -664,7 +664,23 @@ button {
     background: rgba(0, 0, 0, 0.72);
     opacity: 0;
     transition: opacity 0.35s ease;
+
+   .clear-rank {
+    font-size: 32px;
+    color: #ffb703;
+    font-weight: bold;
+    margin-bottom: 10px;
+    letter-spacing: 0.15em;
 }
+
+.clear-new-record {
+    color: #ff4444;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    min-height: 24px;
+}}
+
 
 .clear-card {
     text-align: center;
