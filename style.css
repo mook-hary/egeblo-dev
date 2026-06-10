@@ -754,14 +754,14 @@ button {
 .clear-buttons,
 .timeup-buttons {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    gap: 5px;
+    justify-content: center;
     width: 100%;
 }
 
 .clear-buttons button,
 .timeup-buttons button {
-    width: 100% !important;
+    flex: 1;
     margin: 0 !important;
 }
 
