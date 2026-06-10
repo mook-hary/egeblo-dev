@@ -750,3 +750,25 @@ button {
     font-size: 16px !important;
     font-weight: bold !important;
 }
+
+.clear-buttons,
+.timeup-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    width: 100%;
+}
+
+.clear-buttons button,
+.timeup-buttons button {
+    flex: 1;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 10px 0 !important;
+    font-size: 14px !important;
+}
+
+.result-share-btn {
+    margin-top: 0 !important;
+    width: auto !important;
+}
