@@ -41,7 +41,8 @@ const soundBank = {
 // 🎵 【BGMシステム】
 const bgmList = ["sounds/bgm_1.mp3", "sounds/bgm_2.mp3", "sounds/bgm_3.mp3"];
 let currentActiveBGM = null; 
-let isSoundEnabled = true;
+let isSoundEnabled =
+    localStorage.getItem("cube_sound_enabled") !== "false";
 function playRandomBGM() {
     if (!isSoundEnabled) return;
     
