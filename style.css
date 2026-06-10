@@ -1,6 +1,6 @@
 /* ========================================================
-   ✨ 【サウンド機能搭載・独立オブジェクト構造】 CSS
-   ======================================================== */
+   CUBE dev CSS
+======================================================== */
 
 body {
     margin: 0;
@@ -20,7 +20,10 @@ body {
     touch-action: manipulation;
 }
 
-/* 🖥️ ① PC・大画面環境（画面幅 960px 以上） */
+/* ========================================================
+   画面サイズ
+======================================================== */
+
 @media (min-width: 960px) {
     #game-body-box {
         width: 800px !important;
@@ -35,7 +38,6 @@ body {
     }
 }
 
-/* 📱 ② スマホ環境（画面幅 960px 未満） */
 @media (max-width: 959px) {
     #game-body-box {
         width: 97vmax !important;
@@ -52,13 +54,16 @@ body {
     }
 }
 
-/* 🔄 ③ スマホの向き判定（外枠の回転制御） */
 @media (max-width: 959px) and (orientation: portrait) {
     #game-screen-wrapper {
         transform: rotate(90deg) !important;
         transform-origin: center center;
     }
 }
+
+/* ========================================================
+   基本構造
+======================================================== */
 
 #game-body-box {
     container-type: size;
@@ -76,7 +81,20 @@ body {
     box-sizing: border-box;
 }
 
-/* 🧱 操作パネル */
+button {
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ========================================================
+   UIパネル
+======================================================== */
+
 #ui-panel {
     width: 18cqw;
     background: #222;
@@ -99,7 +117,6 @@ body {
     letter-spacing: -0.02em;
 }
 
-/* SCORE周り */
 .score-area {
     display: flex !important;
     flex-direction: column !important;
@@ -132,7 +149,6 @@ body {
     line-height: 1.1;
 }
 
-/* ステータス */
 #status-box {
     background: #151515;
     padding: 0.5cqw;
@@ -152,7 +168,6 @@ body {
     letter-spacing: -0.04em;
 }
 
-/* 残りブロック */
 #ui-panel > div:not([id]):not(.score-area) {
     font-size: 1.0cqw;
     font-weight: bold;
@@ -170,7 +185,10 @@ body {
     font-size: 1.1cqw;
 }
 
-/* タイマー */
+/* ========================================================
+   タイマー
+======================================================== */
+
 #timer-text {
     font-size: 1.6cqw;
     font-weight: bold;
@@ -193,12 +211,19 @@ body {
     transition: width 0.2s linear;
 }
 
-/* ボタンレイアウト */
-#control-panel {
-    display: flex;
-    gap: 0.4cqw;
-    justify-content: center;
+/* ========================================================
+   ゲーム中ボタン
+======================================================== */
+
+#button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.45cqw;
     width: 100%;
+}
+
+#button-grid button {
+    width: 100% !important;
 }
 
 .rot-btn {
@@ -207,14 +232,6 @@ body {
     padding: 0.8cqw 0.4cqw;
     flex: 1;
     white-space: nowrap;
-}
-
-#action-panel {
-    display: flex;
-    gap: 0.4cqw;
-    justify-content: center;
-    width: 100%;
-    margin-top: 10px;
 }
 
 #pause-btn {
@@ -231,17 +248,10 @@ body {
     flex: 1;
 }
 
-button {
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 100%;
-    box-sizing: border-box;
-}
+/* ========================================================
+   3Dエリア
+======================================================== */
 
-/* 右側3Dエリア */
 #stage-area {
     width: 100% !important;
     height: 100%;
@@ -274,7 +284,6 @@ button {
     will-change: transform;
 }
 
-/* 立方体・面 */
 .cube {
     position: absolute;
     transform-style: preserve-3d;
@@ -317,7 +326,10 @@ button {
 .face.right { filter: brightness(0.7); }
 .face.left { filter: brightness(0.7); }
 
-/* オーバーレイ共通 */
+/* ========================================================
+   オーバーレイ共通
+======================================================== */
+
 #start-overlay,
 #pause-overlay {
     position: absolute;
@@ -387,6 +399,10 @@ button {
     line-height: 1.6;
 }
 
+/* ========================================================
+   難易度選択
+======================================================== */
+
 .difficulty-container {
     display: flex;
     align-items: center;
@@ -426,6 +442,10 @@ button {
     box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
 }
 
+/* ========================================================
+   START / PAUSE画面ボタン
+======================================================== */
+
 #actual-start-btn {
     background: #4CAF50 !important;
     color: white !important;
@@ -440,7 +460,6 @@ button {
     margin-top: 5px;
 }
 
-/* ポーズ画面内ボタン */
 #resume-btn,
 #to-title-btn {
     width: 44% !important;
@@ -448,11 +467,8 @@ button {
     display: inline-block !important;
     border-radius: 50px !important;
     padding: 12px 0 !important;
-}
-
-#to-title-btn {
-    background: #ef4444 !important;
-    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4) !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
 }
 
 #resume-btn {
@@ -460,7 +476,15 @@ button {
     box-shadow: 0 0 15px rgba(255, 159, 28, 0.4) !important;
 }
 
-/* ユーティリティボタン */
+#to-title-btn {
+    background: #ef4444 !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4) !important;
+}
+
+/* ========================================================
+   ユーティリティボタン
+======================================================== */
+
 #utility-buttons {
     position: absolute;
     top: 10px;
@@ -508,132 +532,11 @@ button {
     color: #4CAF50;
 }
 
-#timeup-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100% !important;
-    height: 100% !important;
+/* ========================================================
+   TIME UP / CLEAR overlay
+======================================================== */
 
-    z-index: 9000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-    background: rgba(0, 0, 0, 0.72);
-    opacity: 0;
-    transition: opacity 0.35s ease;
-}
-
-.timeup-card {
-    text-align: center;
-    background: rgba(30, 30, 30, 0.96);
-    padding: 24px;
-    border-radius: 20px;
-    border: 2px solid #ff4444;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-    width: 320px;
-    max-width: 80%;
-}
-
-.timeup-card h2 {
-    margin: 0 0 8px;
-    color: #ff4444;
-    font-size: 36px;
-    letter-spacing: 0.08em;
-}
-
-.timeup-card p {
-    margin: 0 0 16px;
-    color: #aaa;
-}
-
-.result-score {
-    color: #4CAF50;
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 18px;
-}
-
-#timeup-score {
-    font-size: 32px;
-    color: #ffb703;
-}
-
-.timeup-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-#timeup-retry-btn {
-    background: #4CAF50;
-    padding: 12px 0;
-}
-
-#timeup-title-btn {
-    background: #ef4444;
-    padding: 12px 0;
-}
-
-
-
-#timeup-retry-btn,
-#timeup-title-btn {
-    font-size: 1.2cqw !important;
-    font-weight: bold;
-}
-
-
-
-#screen-fade {
-    position: absolute !important;
-    inset: 0 !important;
-
-    background: #000 !important;
-    opacity: 0;
-
-    z-index: 999999 !important;
-    pointer-events: none !important;
-
-    transition: opacity 0.35s ease;
-}
-
-/* ========================================
-   ボタングリッド
-======================================== */
-
-#button-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.45cqw;
-    width: 100%;
-}
-
-#button-grid button {
-    width: 100% !important;
-}
-
-/* ========================================
-   デバッグ表示
-======================================== */
-
-#debug-text {
-    position: absolute;
-    left: 8px;
-    bottom: 8px;
-    z-index: 999999;
-    color: #00ff99;
-    background: rgba(0,0,0,0.7);
-    font-size: 11px;
-    padding: 4px 6px;
-    border-radius: 4px;
-    pointer-events: none;
-}
-
-/* ========================================
-   CLEAR overlay
-======================================== */
-
+#timeup-overlay,
 #clear-overlay {
     position: absolute;
     inset: 0;
@@ -648,12 +551,11 @@ button {
     transition: opacity 0.35s ease;
 }
 
+.timeup-card,
 .clear-card {
     text-align: center;
-    background: rgba(28, 36, 30, 0.96);
     padding: 14px;
     border-radius: 20px;
-    border: 2px solid #4CAF50;
     box-shadow: 0 20px 50px rgba(0,0,0,0.8);
 
     width: 72%;
@@ -662,16 +564,48 @@ button {
     box-sizing: border-box;
 }
 
+.timeup-card {
+    background: rgba(30, 30, 30, 0.96);
+    border: 2px solid #ff4444;
+}
+
+.clear-card {
+    background: rgba(28, 36, 30, 0.96);
+    border: 2px solid #4CAF50;
+}
+
+.timeup-card h2,
 .clear-card h2 {
     margin: 0 0 6px;
-    color: #4CAF50;
     font-size: 32px;
     letter-spacing: 0.06em;
 }
 
+.timeup-card h2 {
+    color: #ff4444;
+}
+
+.clear-card h2 {
+    color: #4CAF50;
+}
+
+.timeup-card p,
 .clear-card p {
     margin: 0 0 16px;
     color: #aaa;
+}
+
+.result-score {
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 18px;
+}
+
+#timeup-score,
+#clear-score {
+    font-size: 32px;
+    color: #ffb703;
 }
 
 .clear-bonus {
@@ -682,9 +616,9 @@ button {
     margin-bottom: 10px;
 }
 
-/* ========================================
-   結果画面ボタン共通
-======================================== */
+/* ========================================================
+   結果画面ボタン
+======================================================== */
 
 .clear-buttons,
 .timeup-buttons {
@@ -699,13 +633,16 @@ button {
     flex: 1;
     width: auto !important;
     margin: 0 !important;
-    padding: 7px 0 !important;
+
+    padding: 12px 0 !important;
     border-radius: 50px !important;
-    font-size: 12px !important;
+
+    font-size: 20px !important;
     font-weight: bold !important;
+    white-space: nowrap;
+    letter-spacing: -0.05em;
 }
 
-/* ボタン色 */
 #clear-retry-btn,
 #timeup-retry-btn {
     background: #4CAF50 !important;
@@ -719,4 +656,34 @@ button {
 #clear-share-btn,
 #timeup-share-btn {
     background: #38bdf8 !important;
+}
+
+/* ========================================================
+   フェード / デバッグ
+======================================================== */
+
+#screen-fade {
+    position: absolute !important;
+    inset: 0 !important;
+
+    background: #000 !important;
+    opacity: 0;
+
+    z-index: 999999 !important;
+    pointer-events: none !important;
+
+    transition: opacity 0.35s ease;
+}
+
+#debug-text {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    z-index: 999999;
+    color: #00ff99;
+    background: rgba(0,0,0,0.7);
+    font-size: 11px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    pointer-events: none;
 }
