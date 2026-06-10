@@ -678,41 +678,6 @@ function setupEvents() {
         });
     }
 
-    const shareBtn = document.getElementById("share-btn");
-    
-    if (shareBtn) {
-        shareBtn.addEventListener("click", async () => {
-            playWebAudio("select");
-    
-            const shareText =
-                `CUBE devで ${currentScore} pt 獲得！\n` +
-                `BEST: ${highScore} pt\n` +
-                `#CUBEdev`;
-    
-            const shareData = {
-                title: "CUBE dev",
-                text: shareText,
-                url: location.href
-            };
-    
-            if (navigator.share) {
-                try {
-                    await navigator.share(shareData);
-                } catch (e) {
-                    console.log("共有キャンセル:", e);
-                }
-            } else {
-                const xUrl =
-                    "https://twitter.com/intent/tweet?text=" +
-                    encodeURIComponent(shareText) +
-                    "&url=" +
-                    encodeURIComponent(location.href);
-    
-                window.open(xUrl, "_blank");
-            }
-        });
-    }
-
     const timeupRetryBtn = document.getElementById("timeup-retry-btn");
 
     if (timeupRetryBtn) {
