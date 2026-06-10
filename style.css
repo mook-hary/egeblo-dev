@@ -766,6 +766,6 @@ button {
 }
 
 .result-share-btn {
-    margin-top: 0 !important;
-    width: auto !important;
+    width: 100% !important;
+    margin-top: 8px !important;
 }
