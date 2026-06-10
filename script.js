@@ -572,6 +572,40 @@ function returnToTitle() {
     }, 200);
 }
 
+async function shareResult(resultType) {
+    playWebAudio("select");
+
+    const label = resultType === "clear" ? "CLEAR!" : "TIME UP";
+
+    const shareText =
+        `CUBE dev ${label}\n` +
+        `SCORE: ${currentScore} pt\n` +
+        `BEST: ${highScore} pt\n` +
+        `#CUBEdev`;
+
+    const shareData = {
+        title: "CUBE dev",
+        text: shareText,
+        url: location.href
+    };
+
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+        } catch (e) {
+            console.log("共有キャンセル:", e);
+        }
+    } else {
+        const xUrl =
+            "https://twitter.com/intent/tweet?text=" +
+            encodeURIComponent(shareText) +
+            "&url=" +
+            encodeURIComponent(location.href);
+
+        window.open(xUrl, "_blank");
+    }
+}
+
 function setupEvents() {
     const clearTestBtn = document.getElementById("clear-test-btn");
 
