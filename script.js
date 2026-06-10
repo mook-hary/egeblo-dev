@@ -475,6 +475,10 @@ const recordEl = document.getElementById("clear-new-record");
     if (scoreEl) scoreEl.innerText = finalScore;
     if (timeBonusEl) timeBonusEl.innerText = timeBonus;
     if (clearBonusEl) clearBonusEl.innerText = clearBonus;
+    
+    if (rankEl) rankEl.innerText = "★★★";
+if (recordEl) recordEl.innerText = "";
+    
 
     if (overlay) {
         overlay.style.display = "flex";
