@@ -234,6 +234,25 @@ function updateScoreDisplay(scoreValue) {
     }
 }
 
+function createTilePool(totalRequired) {
+    const pool = [];
+
+    for (let i = 0; i < totalRequired; i++) {
+        const t = tileTypes[i % tileTypes.length];
+        pool.push({ ...t });
+    }
+
+    // Fisher-Yates shuffle
+    for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = pool[i];
+        pool[i] = pool[j];
+        pool[j] = temp;
+    }
+
+    return pool;
+}
+
 function initGame() {
     const stage = document.getElementById("stage");
     if(!stage) return;
@@ -265,24 +284,7 @@ function initGame() {
     const totalRequired = SIZE * SIZE * SIZE;
 const pool = createTilePool(totalRequired);
     
-    function createTilePool(totalRequired) {
-    const pool = [];
-
-    for (let i = 0; i < totalRequired; i++) {
-        const t = tileTypes[i % tileTypes.length];
-        pool.push({ ...t });
-    }
-
-    // Fisher-Yates shuffle
-    for (let i = pool.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        const temp = pool[i];
-        pool[i] = pool[j];
-        pool[j] = temp;
-    }
-
-    return pool;
-}
+    
 
     let index = 0;
     const { dynamicCubeSize, offset, halfSize } = getDynamicSizes();
