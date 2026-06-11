@@ -385,8 +385,8 @@ button {
     box-sizing: border-box;
 }
 
-.pause-card button:first-of-type {
-    margin-top: auto;
+.pause-card p {
+    margin-bottom: auto;
 }
 
 .start-card h1 {
