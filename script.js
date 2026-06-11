@@ -1327,6 +1327,16 @@ function revealExposedBlocks() {
     });
 }
 
+function selectDifferentBlock(block, status) {
+    selected.element.classList.remove("selected");
+
+    selected = block;
+    block.element.classList.add("selected");
+
+    status.innerText = "数字が違います！";
+    status.style.color = "#ff5722";
+}
+
 function handleClick(b) {
     if (isGameOver || isPaused || !b.active) return;
     
@@ -1352,10 +1362,7 @@ function handleClick(b) {
 } else if (selected.txt === b.txt) {
             clearMatchedBlocks(selected, b, status);
         } else {
-            selected.element.classList.remove("selected");
-            selected = b; b.element.classList.add("selected");
-            status.innerText = "数字が違います！";
-            status.style.color = "#ff5722";
+            selectDifferentBlock(b, status);
         }
     }
 }
