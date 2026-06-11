@@ -1105,7 +1105,9 @@ function countdown() {
         // BGMは止めない
         playWebAudio("timeup");
 
-        showTimeUpOverlay();
+        fadeToBlack(() => {
+            showTimeUpOverlay();
+        });
     }
 }
 
