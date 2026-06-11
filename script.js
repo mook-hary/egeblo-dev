@@ -966,11 +966,7 @@ function rotateCubeAroundY() {
 
     const visibleBlocks = getVisibleBlocks();
 
-    blocks.forEach(b => {
-        const oldY = b.y;
-        b.y = b.z;
-        b.z = (SIZE - 1) - oldY;
-    });
+    rotateBlockCoordinatesY();
 
     visibleBlocks.forEach(b => {
         updateCubePosition(
@@ -981,6 +977,14 @@ function rotateCubeAroundY() {
             offset,
             dynamicCubeSize
         );
+    });
+}
+
+function rotateBlockCoordinatesY() {
+    blocks.forEach(b => {
+        const oldY = b.y;
+        b.y = b.z;
+        b.z = (SIZE - 1) - oldY;
     });
 }
 
