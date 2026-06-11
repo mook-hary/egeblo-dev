@@ -745,19 +745,18 @@ function setupTimeupButtons() {
     }
 }
 
-function setupEvents() {
-    setupShareButtons();
-    setupSoundButtons();
-    setupTimeupButtons();
+function setupClearButtons() {
 
-    const clearTestBtn = document.getElementById("clear-test-btn");
+    const clearTestBtn =
+        document.getElementById("clear-test-btn");
 
     if (clearTestBtn) {
         clearTestBtn.addEventListener("click", () => {
             const timeBonus = timeLeft * 2000;
             const clearBonus = SIZE === 5 ? 43750 : 75600;
-            const finalScore = currentScore + clearBonus + timeBonus;
-    
+            const finalScore =
+                currentScore + clearBonus + timeBonus;
+
             fadeToBlack(() => {
                 showClearOverlay(
                     finalScore,
@@ -767,55 +766,70 @@ function setupEvents() {
             });
         });
     }
-    
-    const clearRetryBtn = document.getElementById("clear-retry-btn");
+
+    const clearRetryBtn =
+        document.getElementById("clear-retry-btn");
 
     if (clearRetryBtn) {
         clearRetryBtn.addEventListener("click", () => {
             playWebAudio("select");
-    
+
             fadeToBlack(() => {
-                const overlay = document.getElementById("clear-overlay");
-    
+                const overlay =
+                    document.getElementById("clear-overlay");
+
                 if (overlay) {
                     overlay.style.opacity = "0";
                     overlay.style.display = "none";
                 }
-    
+
                 rotX = 0;
                 rotZ = 0;
-    
+
                 initGame();
-    
+
                 const stage = document.getElementById("stage");
-    
+
                 if (stage) {
                     stage.style.transition = "none";
-                    stage.style.transform = "rotateX(0deg) rotateZ(0deg)";
+                    stage.style.transform =
+                        "rotateX(0deg) rotateZ(0deg)";
                     stage.offsetWidth;
                 }
-    
+
                 fadeFromBlack();
-    
+
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
                         if (stage) {
                             rotX = 60;
                             rotZ = -45;
-                            stage.style.transition = "transform 0.5s ease-out";
-                            stage.style.transform = `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
+                            stage.style.transition =
+                                "transform 0.5s ease-out";
+                            stage.style.transform =
+                                `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
                         }
                     });
                 });
             });
         });
     }
-    
-    const clearTitleBtn = document.getElementById("clear-title-btn");
-    
+
+    const clearTitleBtn =
+        document.getElementById("clear-title-btn");
+
     if (clearTitleBtn) {
         clearTitleBtn.addEventListener("click", returnToTitle);
     }
+}
+
+function setupEvents() {
+    setupShareButtons();
+    setupSoundButtons();
+    setupTimeupButtons();
+    setupClearButtons();
+
+    
     
 
     // 左右回転ボタン
