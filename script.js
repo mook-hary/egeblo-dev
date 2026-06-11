@@ -422,16 +422,20 @@ function createInitialBlocksFragment() {
     return fragment;
 }
 
+function finalizeGameSetup(stage, fragment) {
+    stage.appendChild(fragment);
+
+    updateCount();
+    applyInitialStageRotation();
+}
+
 function initGame() {
     const stage = setupNewGameStage();
     if (!stage) return;
 
     const fragment = createInitialBlocksFragment();
 
-    stage.appendChild(fragment);
-
-    updateCount();
-    applyInitialStageRotation();
+    finalizeGameSetup(stage, fragment);
 }
     
 function createFacesForCube(b, halfSize, dynamicCubeSize) {
