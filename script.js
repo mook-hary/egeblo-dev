@@ -386,16 +386,22 @@ function applyInitialStageRotation() {
     skipStageRotationOnce = false;
 }
 
-function initGame() {
-
+function setupNewGameStage() {
     const stage = document.getElementById("stage");
-    if (!stage) return;
+    if (!stage) return null;
 
     clearStage(stage);
     resetGameState();
     hidePauseOverlay();
     resetGameUI();
     startGameTimer();
+
+    return stage;
+}
+
+function initGame() {
+    const stage = setupNewGameStage();
+    if (!stage) return;
 
     const totalRequired = SIZE * SIZE * SIZE;
     const pool = createTilePool(totalRequired);
