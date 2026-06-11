@@ -477,7 +477,7 @@ button {
 }
 
 .pause-buttons button {
-    flex: 1;
+    flex: 0 0 180px;
     height: 52px;
 
     width: auto !important;
