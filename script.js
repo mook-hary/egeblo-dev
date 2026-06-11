@@ -1005,100 +1005,102 @@ function selectDifficulty(size) {
     loadHighScore();
 }
 
+async function startFromTitle() {
+    initAudioSystem();
+    playWebAudio("start");
+    playRandomBGM();
+
+    const stage = document.getElementById("stage");
+    const overlay = document.getElementById("start-overlay");
+
+    const isIOS =
+        /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    const isMobileSize = window.innerWidth < 960;
+
+    document.body.classList.add("game-started");
+    overlay.style.opacity = "0";
+
+    if (!isIOS && isMobileSize) {
+        const docEl = document.documentElement;
+
+        try {
+            if (docEl.requestFullscreen) {
+                await docEl.requestFullscreen();
+            } else if (docEl.webkitRequestFullscreen) {
+                await docEl.webkitRequestFullscreen();
+            }
+        } catch (err) {
+            console.log("フルスクリーン拒否");
+        }
+
+        try {
+            if (screen.orientation && screen.orientation.lock) {
+                await screen.orientation.lock("landscape");
+            }
+        } catch (err) {
+            console.log("向きロック拒否");
+        }
+    }
+
+    rotX = 0;
+    rotZ = 0;
+
+    if (stage) {
+        stage.style.transition = "none";
+        stage.style.transform =
+            "rotateX(0deg) rotateZ(0deg)";
+    }
+
+    setTimeout(() => {
+        overlay.style.display = "none";
+
+        rotX = 0;
+        rotZ = 0;
+
+        skipStageRotationOnce = true;
+        initGame();
+
+        const newStage = document.getElementById("stage");
+
+        if (newStage) {
+            newStage.style.transition = "none";
+            newStage.style.transform =
+                "rotateX(0deg) rotateZ(0deg)";
+
+            newStage.offsetWidth;
+
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    rotX = 60;
+                    rotZ = -45;
+
+                    newStage.style.transition =
+                        "transform 0.5s ease-out";
+
+                    newStage.style.transform =
+                        `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
+                });
+            });
+        }
+
+    }, 500);
+}
+
 function setupTitleButtons() {
 
     document.getElementById("diff-easy-btn")
-    .addEventListener("click", () => {
-        selectDifficulty(5);
-    });
+        .addEventListener("click", () => {
+            selectDifficulty(5);
+        });
 
     document.getElementById("diff-normal-btn")
-    .addEventListener("click", () => {
-        selectDifficulty(6);
-    });
+        .addEventListener("click", () => {
+            selectDifficulty(6);
+        });
 
     document.getElementById("actual-start-btn")
-        .addEventListener("click", async () => {
-            initAudioSystem();
-            playWebAudio("start");
-            playRandomBGM();
-
-            const stage = document.getElementById("stage");
-            const overlay = document.getElementById("start-overlay");
-
-            const isIOS =
-                /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-            const isMobileSize = window.innerWidth < 960;
-
-            document.body.classList.add("game-started");
-            overlay.style.opacity = "0";
-
-            if (!isIOS && isMobileSize) {
-                const docEl = document.documentElement;
-
-                try {
-                    if (docEl.requestFullscreen) {
-                        await docEl.requestFullscreen();
-                    } else if (docEl.webkitRequestFullscreen) {
-                        await docEl.webkitRequestFullscreen();
-                    }
-                } catch (err) {
-                    console.log("フルスクリーン拒否");
-                }
-
-                try {
-                    if (screen.orientation && screen.orientation.lock) {
-                        await screen.orientation.lock("landscape");
-                    }
-                } catch (err) {
-                    console.log("向きロック拒否");
-                }
-            }
-
-            rotX = 0;
-            rotZ = 0;
-
-            if (stage) {
-                stage.style.transition = "none";
-                stage.style.transform =
-                    "rotateX(0deg) rotateZ(0deg)";
-            }
-
-            setTimeout(() => {
-                overlay.style.display = "none";
-
-                rotX = 0;
-                rotZ = 0;
-
-                skipStageRotationOnce = true;
-                initGame();
-
-                const newStage = document.getElementById("stage");
-
-                if (newStage) {
-                    newStage.style.transition = "none";
-                    newStage.style.transform =
-                        "rotateX(0deg) rotateZ(0deg)";
-
-                    newStage.offsetWidth;
-
-                    requestAnimationFrame(() => {
-                        requestAnimationFrame(() => {
-                            rotX = 60;
-                            rotZ = -45;
-
-                            newStage.style.transition =
-                                "transform 0.5s ease-out";
-
-                            newStage.style.transform =
-                                `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
-                        });
-                    });
-                }
-
-            }, 500);
-        });
+        .addEventListener("click", startFromTitle);
 }
 
 function setupEvents() {
