@@ -955,18 +955,6 @@ function setupGameButtons() {
         });
     });
 
-    document.getElementById("pause-btn").addEventListener("click", () => {
-        initAudioSystem();
-        playWebAudio("select");
-        togglePause();
-    });
-
-    document.getElementById("resume-btn").addEventListener("click", () => {
-        initAudioSystem();
-        playWebAudio("select");
-        togglePause();
-    });
-
     document.getElementById("to-title-btn").addEventListener(
         "click",
         returnToTitle
@@ -981,6 +969,20 @@ function setupGameButtons() {
         requestAnimationFrame(() => {
             playRandomBGM();
         });
+    });
+}
+
+function setupPauseButtons() {
+    document.getElementById("pause-btn").addEventListener("click", () => {
+        initAudioSystem();
+        playWebAudio("select");
+        togglePause();
+    });
+
+    document.getElementById("resume-btn").addEventListener("click", () => {
+        initAudioSystem();
+        playWebAudio("select");
+        togglePause();
     });
 }
 
@@ -1145,6 +1147,7 @@ function setupEvents() {
     setupTimeupButtons();
     setupClearButtons();
     setupGameButtons();
+    setupPauseButtons();
     setupTitleButtons();
 }
 
