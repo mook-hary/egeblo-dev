@@ -399,10 +399,7 @@ function setupNewGameStage() {
     return stage;
 }
 
-function initGame() {
-    const stage = setupNewGameStage();
-    if (!stage) return;
-
+function createInitialBlocksFragment() {
     const totalRequired = SIZE * SIZE * SIZE;
     const pool = createTilePool(totalRequired);
 
@@ -421,6 +418,15 @@ function initGame() {
         offset,
         halfSize
     );
+
+    return fragment;
+}
+
+function initGame() {
+    const stage = setupNewGameStage();
+    if (!stage) return;
+
+    const fragment = createInitialBlocksFragment();
 
     stage.appendChild(fragment);
 
