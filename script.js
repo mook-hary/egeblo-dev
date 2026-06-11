@@ -687,11 +687,69 @@ function setupSoundButtons() {
     }
 }
 
+function setupTimeupButtons() {
+
+    const timeupRetryBtn =
+        document.getElementById("timeup-retry-btn");
+
+    if (timeupRetryBtn) {
+        timeupRetryBtn.addEventListener("click", () => {
+            playWebAudio("select");
+
+            fadeToBlack(() => {
+                const overlay =
+                    document.getElementById("timeup-overlay");
+
+                if (overlay) {
+                    overlay.style.opacity = "0";
+                    overlay.style.display = "none";
+                }
+
+                rotX = 0;
+                rotZ = 0;
+
+                initGame();
+
+                const stage = document.getElementById("stage");
+
+                if (stage) {
+                    stage.style.transition = "none";
+                    stage.style.transform =
+                        "rotateX(0deg) rotateZ(0deg)";
+                    stage.offsetWidth;
+                }
+
+                fadeFromBlack();
+
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        if (stage) {
+                            rotX = 60;
+                            rotZ = -45;
+                            stage.style.transition =
+                                "transform 0.5s ease-out";
+                            stage.style.transform =
+                                `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
+                        }
+                    });
+                });
+            });
+        });
+    }
+
+    const timeupTitleBtn =
+        document.getElementById("timeup-title-btn");
+
+    if (timeupTitleBtn) {
+        timeupTitleBtn.addEventListener("click", returnToTitle);
+    }
+}
+
 function setupEvents() {
     setupShareButtons();
     setupSoundButtons();
+    setupTimeupButtons();
 
-    
     const clearTestBtn = document.getElementById("clear-test-btn");
 
     if (clearTestBtn) {
@@ -760,97 +818,6 @@ function setupEvents() {
     }
     
 
-    const timeupRetryBtn = document.getElementById("timeup-retry-btn");
-
-    if (timeupRetryBtn) {
-        timeupRetryBtn.addEventListener("click", () => {
-            playWebAudio("select");
-    
-            fadeToBlack(() => {
-                const overlay = document.getElementById("timeup-overlay");
-    
-                if (overlay) {
-                    overlay.style.opacity = "0";
-                    overlay.style.display = "none";
-                }
-    
-                rotX = 0;
-                rotZ = 0;
-    
-                initGame();
-    
-                const stage = document.getElementById("stage");
-    
-                if (stage) {
-                    stage.style.transition = "none";
-                    stage.style.transform = "rotateX(0deg) rotateZ(0deg)";
-                    stage.offsetWidth;
-                }
-    
-                fadeFromBlack();
-    
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        if (stage) {
-                            rotX = 60;
-                            rotZ = -45;
-                            stage.style.transition = "transform 0.5s ease-out";
-                            stage.style.transform = `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
-                        }
-                    });
-                });
-            });
-        });
-    }
-
-/*const timeupTitleBtn = document.getElementById("timeup-title-btn");
-
-if (timeupTitleBtn) {
-    timeupTitleBtn.addEventListener("click", () => {
-        playWebAudio("select");
-
-        fadeToBlack(() => {
-            const overlay = document.getElementById("timeup-overlay");
-            const stage = document.getElementById("stage");
-            const startOverlay = document.getElementById("start-overlay");
-
-            clearInterval(timerId);
-            isGameOver = true;
-            isPaused = false;
-
-            if (overlay) {
-                overlay.style.opacity = "0";
-                overlay.style.display = "none";
-            }
-
-            if (stage) {
-                stage.innerHTML = "";
-                stage.style.transition = "none";
-                stage.style.transform = "rotateX(0deg) rotateZ(0deg)";
-            }
-
-            blocks = [];
-            selected = null;
-
-            document.body.classList.remove("game-started");
-
-            if (startOverlay) {
-                startOverlay.style.display = "flex";
-                startOverlay.style.opacity = "1";
-            }
-
-            requestAnimationFrame(() => {
-                fadeFromBlack();
-            });
-        });
-    });
-}*/
-
-    const timeupTitleBtn = document.getElementById("timeup-title-btn");
-    
-    if (timeupTitleBtn) {
-        timeupTitleBtn.addEventListener("click", returnToTitle);
-    }    
     // 左右回転ボタン
     document.getElementById("rot-z-btn").addEventListener("click", () => {
         initAudioSystem(); 
