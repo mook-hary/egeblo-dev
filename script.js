@@ -1007,46 +1007,14 @@ function selectDifficulty(size) {
 
 function setupTitleButtons() {
 
-    document.getElementById("diff-easy-btn").addEventListener("click", () => {
-        initAudioSystem();
-
-        debugLog(
-            "select=" + !!soundBank.select +
-            " / audio=" + (audioCtx ? audioCtx.state : "none")
-        );
-
-        playWebAudio("select");
-
-        SIZE = 5;
-
-        document.getElementById("diff-easy-btn")
-            .classList.add("active");
-
-        document.getElementById("diff-normal-btn")
-            .classList.remove("active");
-
-        loadHighScore();
+    document.getElementById("diff-easy-btn")
+    .addEventListener("click", () => {
+        selectDifficulty(5);
     });
 
-    document.getElementById("diff-normal-btn").addEventListener("click", () => {
-        initAudioSystem();
-
-        debugLog(
-            "select=" + !!soundBank.select +
-            " / audio=" + (audioCtx ? audioCtx.state : "none")
-        );
-
-        playWebAudio("select");
-
-        SIZE = 6;
-
-        document.getElementById("diff-normal-btn")
-            .classList.add("active");
-
-        document.getElementById("diff-easy-btn")
-            .classList.remove("active");
-
-        loadHighScore();
+    document.getElementById("diff-normal-btn")
+    .addEventListener("click", () => {
+        selectDifficulty(6);
     });
 
     document.getElementById("actual-start-btn")
