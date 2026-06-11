@@ -373,6 +373,9 @@ button {
 }
 
 .pause-card {
+    display: flex;
+    flex-direction: column;
+   
     border: 2px solid #ff9f1c;
 
     width: 540px;
@@ -380,6 +383,10 @@ button {
 
     padding: 25px;
     box-sizing: border-box;
+}
+
+.pause-card button:first-of-type {
+    margin-top: auto;
 }
 
 .start-card h1 {
