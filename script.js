@@ -913,7 +913,24 @@ function setupClearButtons() {
 }
 
 function setupGameButtons() {
+    document.getElementById("to-title-btn").addEventListener(
+        "click",
+        returnToTitle
+    );
 
+    document.getElementById("reset-btn").addEventListener("click", () => {
+        initAudioSystem();
+        playWebAudio("select");
+
+        initGame();
+
+        requestAnimationFrame(() => {
+            playRandomBGM();
+        });
+    });
+}
+
+function setupRotationButtons() {
     document.getElementById("rot-z-btn").addEventListener("click", () => {
         initAudioSystem();
 
@@ -952,22 +969,6 @@ function setupGameButtons() {
                 offset,
                 dynamicCubeSize
             );
-        });
-    });
-
-    document.getElementById("to-title-btn").addEventListener(
-        "click",
-        returnToTitle
-    );
-
-    document.getElementById("reset-btn").addEventListener("click", () => {
-        initAudioSystem();
-        playWebAudio("select");
-
-        initGame();
-
-        requestAnimationFrame(() => {
-            playRandomBGM();
         });
     });
 }
@@ -1146,8 +1147,11 @@ function setupEvents() {
     setupSoundButtons();
     setupTimeupButtons();
     setupClearButtons();
+
+    setupRotationButtons();
     setupGameButtons();
     setupPauseButtons();
+
     setupTitleButtons();
 }
 
