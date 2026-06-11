@@ -1084,14 +1084,21 @@ function playStartSequence() {
     playRandomBGM();
 }
 
+function hideTitleOverlay(overlay) {
+    document.body.classList.add("game-started");
+
+    if (!overlay) return;
+
+    overlay.style.opacity = "0";
+}
+
 async function startFromTitle() {
     playStartSequence();
 
     const stage = document.getElementById("stage");
     const overlay = document.getElementById("start-overlay");
 
-    document.body.classList.add("game-started");
-    overlay.style.opacity = "0";
+    hideTitleOverlay(overlay);
 
     await enterMobileFullscreenIfNeeded();
 
