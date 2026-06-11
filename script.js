@@ -1273,6 +1273,60 @@ function selectFirstBlock(block, status) {
     status.style.color = "#ffeb3b";
 }
 
+function clearMatchedBlocks(firstBlock, secondBlock, status) {
+    firstBlock.active = false;
+    secondBlock.active = false;
+
+    firstBlock.element.style.display = "none";
+    secondBlock.element.style.display = "none";
+
+    selected = null;
+
+    updateScoreDisplay(currentScore + 700);
+
+    status.innerText = "消去成功！(+700pt)";
+    status.style.color = "#4caf50";
+
+    playWebAudio("clear");
+
+    revealExposedBlocks();
+
+    updateCount();
+}
+
+function revealExposedBlocks() {
+    const {
+        halfSize,
+        dynamicCubeSize,
+        offset
+    } = getDynamicSizes();
+
+    blocks.forEach(o => {
+        if (
+            o.active &&
+            o.element.style.display === "none" &&
+            isExposed(o)
+        ) {
+            updateCubePosition(
+                o.element,
+                o.x,
+                o.y,
+                o.z,
+                offset,
+                dynamicCubeSize
+            );
+
+            createFacesForCube(
+                o,
+                halfSize,
+                dynamicCubeSize
+            );
+
+            o.element.style.display = "block";
+        }
+    });
+}
+
 function handleClick(b) {
     if (isGameOver || isPaused || !b.active) return;
     
@@ -1296,25 +1350,7 @@ function handleClick(b) {
         if (selected === b) {
     clearSelection(b, status);
 } else if (selected.txt === b.txt) {
-            selected.active = false; b.active = false;
-            selected.element.style.display = "none"; b.element.style.display = "none";
-            selected = null;
-            
-            updateScoreDisplay(currentScore + 700);
-            status.innerText = "消去成功！(+700pt)";
-            status.style.color = "#4caf50";
-            
-            playWebAudio("clear");
-            
-            const { halfSize, dynamicCubeSize, offset } = getDynamicSizes();
-            blocks.forEach(o => {
-                if (o.active && o.element.style.display === "none" && isExposed(o)) {
-                    updateCubePosition(o.element, o.x, o.y, o.z, offset, dynamicCubeSize);
-                    createFacesForCube(o, halfSize, dynamicCubeSize); 
-                    o.element.style.display = "block"; 
-                }
-            });
-            updateCount();
+            clearMatchedBlocks(selected, b, status);
         } else {
             selected.element.classList.remove("selected");
             selected = b; b.element.classList.add("selected");
