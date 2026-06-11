@@ -1045,6 +1045,23 @@ function resetStageRotation(stage) {
         "rotateX(0deg) rotateZ(0deg)";
 }
 
+function animateStageToDefaultAngle(stage) {
+    if (!stage) return;
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            rotX = 60;
+            rotZ = -45;
+
+            stage.style.transition =
+                "transform 0.5s ease-out";
+
+            stage.style.transform =
+                `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
+        });
+    });
+}
+
 function startGameAfterTitleOverlay(overlay) {
     overlay.style.display = "none";
 
@@ -1057,19 +1074,7 @@ function startGameAfterTitleOverlay(overlay) {
 
     if (newStage) {
         newStage.offsetWidth;
-
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                rotX = 60;
-                rotZ = -45;
-
-                newStage.style.transition =
-                    "transform 0.5s ease-out";
-
-                newStage.style.transform =
-                    `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
-            });
-        });
+        animateStageToDefaultAngle(newStage);
     }
 }
 
