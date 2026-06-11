@@ -334,6 +334,13 @@ function isInnerCube(x, y, z) {
     );
 }
 
+function setupCubeClick(cube, blockData) {
+    cube.addEventListener("click", (e) => {
+        e.stopPropagation();
+        handleClick(blockData);
+    });
+}
+
 function createBlocks(pool, fragment, dynamicCubeSize, offset, halfSize) {
     let index = 0;
 
@@ -356,10 +363,7 @@ function createBlocks(pool, fragment, dynamicCubeSize, offset, halfSize) {
                 const blockData =
                     createBlockData(tile, cube, x, y, z);
 
-                cube.addEventListener("click", (e) => {
-                    e.stopPropagation();
-                    handleClick(blockData);
-                });
+                setupCubeClick(cube, blockData);
 
                 if (isInnerCube(x, y, z)) {
                     cube.style.display = "none";
