@@ -327,6 +327,49 @@ button {
 .face.left { filter: brightness(0.7); }
 
 /* ========================================================
+   難易度選択
+======================================================== */
+
+.difficulty-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.diff-label {
+    font-weight: bold;
+    color: #ccc;
+    font-size: 14px;
+}
+
+.diff-switch {
+    display: flex;
+    background: #222;
+    padding: 3px;
+    border-radius: 30px;
+    border: 1px solid #444;
+}
+
+.diff-btn {
+    background: transparent !important;
+    color: #888 !important;
+    font-size: 13px !important;
+    padding: 6px 15px !important;
+    border-radius: 20px !important;
+    width: auto !important;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.diff-btn.active {
+    background: #4CAF50 !important;
+    color: white !important;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
+}
+
+/* ========================================================
    オーバーレイ共通
 ======================================================== */
 
@@ -410,49 +453,6 @@ button {
     margin: 0 0 20px 0;
     font-size: 14px;
     line-height: 1.6;
-}
-
-/* ========================================================
-   難易度選択
-======================================================== */
-
-.difficulty-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 25px;
-}
-
-.diff-label {
-    font-weight: bold;
-    color: #ccc;
-    font-size: 14px;
-}
-
-.diff-switch {
-    display: flex;
-    background: #222;
-    padding: 3px;
-    border-radius: 30px;
-    border: 1px solid #444;
-}
-
-.diff-btn {
-    background: transparent !important;
-    color: #888 !important;
-    font-size: 13px !important;
-    padding: 6px 15px !important;
-    border-radius: 20px !important;
-    width: auto !important;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.diff-btn.active {
-    background: #4CAF50 !important;
-    color: white !important;
-    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.4);
 }
 
 /* ========================================================
