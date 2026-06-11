@@ -378,6 +378,14 @@ function createBlocks(pool, fragment, dynamicCubeSize, offset, halfSize) {
     }
 }
 
+function applyInitialStageRotation() {
+    if (!skipStageRotationOnce) {
+        updateStageRotation();
+    }
+
+    skipStageRotationOnce = false;
+}
+
 function initGame() {
 
     const stage = document.getElementById("stage");
@@ -411,15 +419,10 @@ function initGame() {
     stage.appendChild(fragment);
 
     updateCount();
-
-    if (!skipStageRotationOnce) {
-        updateStageRotation();
-    }
-
-    skipStageRotationOnce = false;
+    applyInitialStageRotation();
 }
     
-    function createFacesForCube(b, halfSize, dynamicCubeSize) {
+function createFacesForCube(b, halfSize, dynamicCubeSize) {
         if (b.hasFaces) return; 
         
         const faces = [
