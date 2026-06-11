@@ -494,6 +494,16 @@ button {
     box-shadow: 0 0 15px rgba(239, 68, 68, 0.4) !important;
 }
 
+.pause-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.pause-buttons button {
+    flex: 1;
+}
+
 /* ========================================================
    ユーティリティボタン
 ======================================================== */
