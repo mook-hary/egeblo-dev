@@ -931,45 +931,55 @@ function setupGameButtons() {
 }
 
 function setupRotationButtons() {
-    document.getElementById("rot-z-btn").addEventListener("click", () => {
-        initAudioSystem();
+    document.getElementById("rot-z-btn").addEventListener(
+        "click",
+        handleRotateZButtonClick
+    );
 
-        if (isGameOver || isPaused) return;
+    document.getElementById("rot-y-btn").addEventListener(
+        "click",
+        handleRotateYButtonClick
+    );
+}
 
-        playWebAudio("select");
-        triggerResizeAndRefresh();
+function handleRotateZButtonClick() {
+    initAudioSystem();
+
+    if (isGameOver || isPaused) return;
+
+    playWebAudio("select");
+    triggerResizeAndRefresh();
+}
+
+function handleRotateYButtonClick() {
+    initAudioSystem();
+
+    if (isGameOver || isPaused) return;
+
+    playWebAudio("select");
+
+    const { dynamicCubeSize, offset } = getDynamicSizes();
+
+    const visibleBlocks = blocks.filter(b =>
+        b.active &&
+        b.element.style.display !== "none"
+    );
+
+    blocks.forEach(b => {
+        const oldY = b.y;
+        b.y = b.z;
+        b.z = (SIZE - 1) - oldY;
     });
 
-    document.getElementById("rot-y-btn").addEventListener("click", () => {
-        initAudioSystem();
-
-        if (isGameOver || isPaused) return;
-
-        playWebAudio("select");
-
-        const { dynamicCubeSize, offset } = getDynamicSizes();
-
-        const visibleBlocks = blocks.filter(b =>
-            b.active &&
-            b.element.style.display !== "none"
+    visibleBlocks.forEach(b => {
+        updateCubePosition(
+            b.element,
+            b.x,
+            b.y,
+            b.z,
+            offset,
+            dynamicCubeSize
         );
-
-        blocks.forEach(b => {
-            const oldY = b.y;
-            b.y = b.z;
-            b.z = (SIZE - 1) - oldY;
-        });
-
-        visibleBlocks.forEach(b => {
-            updateCubePosition(
-                b.element,
-                b.x,
-                b.y,
-                b.z,
-                offset,
-                dynamicCubeSize
-            );
-        });
     });
 }
 
