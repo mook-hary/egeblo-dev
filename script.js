@@ -1353,24 +1353,26 @@ function validateBlockSelection(block, status) {
 }
 
 function handleClick(b) {
+
     if (isGameOver || isPaused || !b.active) return;
-    
+
     const status = document.getElementById("status");
 
-if (!validateBlockSelection(b, status)) {
-    return;
-}
-    
+    if (!validateBlockSelection(b, status)) {
+        return;
+    }
+
     if (selected === null) {
-    selectFirstBlock(b, status);
-} else {
-        if (selected === b) {
-    clearSelection(b, status);
-} else if (selected.txt === b.txt) {
-            clearMatchedBlocks(selected, b, status);
-        } else {
-            selectDifferentBlock(b, status);
-        }
+        selectFirstBlock(b, status);
+
+    } else if (selected === b) {
+        clearSelection(b, status);
+
+    } else if (selected.txt === b.txt) {
+        clearMatchedBlocks(selected, b, status);
+
+    } else {
+        selectDifferentBlock(b, status);
     }
 }
 
