@@ -1102,8 +1102,7 @@ async function startFromTitle() {
     }, 500);
 }
 
-function setupTitleButtons() {
-
+function setupDifficultyButtons() {
     document.getElementById("diff-easy-btn")
         .addEventListener("click", () => {
             selectDifficulty(5);
@@ -1113,9 +1112,16 @@ function setupTitleButtons() {
         .addEventListener("click", () => {
             selectDifficulty(6);
         });
+}
 
+function setupStartButton() {
     document.getElementById("actual-start-btn")
         .addEventListener("click", startFromTitle);
+}
+
+function setupTitleButtons() {
+    setupDifficultyButtons();
+    setupStartButton();
 }
 
 function setupEvents() {
