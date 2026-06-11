@@ -1092,6 +1092,12 @@ function hideTitleOverlay(overlay) {
     overlay.style.opacity = "0";
 }
 
+function startGameAfterTitleFade(overlay) {
+    setTimeout(() => {
+        startGameAfterTitleOverlay(overlay);
+    }, 500);
+}
+
 async function startFromTitle() {
     playStartSequence();
 
@@ -1104,9 +1110,7 @@ async function startFromTitle() {
 
     resetStageRotation(stage);
 
-    setTimeout(() => {
-        startGameAfterTitleOverlay(overlay);
-    }, 500);
+    startGameAfterTitleFade(overlay);
 }
 
 function setupDifficultyButtons() {
