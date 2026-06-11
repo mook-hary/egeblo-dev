@@ -823,45 +823,37 @@ function setupClearButtons() {
     }
 }
 
-function setupEvents() {
-    setupShareButtons();
-    setupSoundButtons();
-    setupTimeupButtons();
-    setupClearButtons();
+function setupGameButtons() {
 
-    
-    
-
-    // 左右回転ボタン
     document.getElementById("rot-z-btn").addEventListener("click", () => {
-        initAudioSystem(); 
-        if (isGameOver || isPaused) return; 
-        playWebAudio("select"); 
+        initAudioSystem();
+
+        if (isGameOver || isPaused) return;
+
+        playWebAudio("select");
         triggerResizeAndRefresh();
     });
 
-    // 上下回転ボタン
     document.getElementById("rot-y-btn").addEventListener("click", () => {
-
         initAudioSystem();
-    
+
         if (isGameOver || isPaused) return;
-    
-            playWebAudio("select");
-        
-            const { dynamicCubeSize, offset } = getDynamicSizes();
-        
-            const visibleBlocks = blocks.filter(b =>
-                b.active &&
-                b.element.style.display !== "none"
-            );
-    
+
+        playWebAudio("select");
+
+        const { dynamicCubeSize, offset } = getDynamicSizes();
+
+        const visibleBlocks = blocks.filter(b =>
+            b.active &&
+            b.element.style.display !== "none"
+        );
+
         blocks.forEach(b => {
             const oldY = b.y;
             b.y = b.z;
             b.z = (SIZE - 1) - oldY;
         });
-    
+
         visibleBlocks.forEach(b => {
             updateCubePosition(
                 b.element,
@@ -872,36 +864,48 @@ function setupEvents() {
                 dynamicCubeSize
             );
         });
-
     });
 
-    // ポーズボタン
-    document.getElementById("pause-btn").addEventListener("click", () => { 
+    document.getElementById("pause-btn").addEventListener("click", () => {
         initAudioSystem();
         playWebAudio("select");
-        togglePause(); });
-    
-    // ポーズ画面の再開ボタン
-    document.getElementById("resume-btn").addEventListener("click", () => { 
-        initAudioSystem(); 
-        playWebAudio("select"); 
-        togglePause(); 
+        togglePause();
     });
 
-    // ポーズ画面内の「タイトルへ」ボタンの処理
-    document.getElementById("to-title-btn").addEventListener("click", returnToTitle);
-    
-    // リセットボタン
-    document.getElementById("reset-btn").addEventListener("click", () => { 
-        initAudioSystem(); 
-        playWebAudio("select"); 
-    
+    document.getElementById("resume-btn").addEventListener("click", () => {
+        initAudioSystem();
+        playWebAudio("select");
+        togglePause();
+    });
+
+    document.getElementById("to-title-btn").addEventListener(
+        "click",
+        returnToTitle
+    );
+
+    document.getElementById("reset-btn").addEventListener("click", () => {
+        initAudioSystem();
+        playWebAudio("select");
+
         initGame();
-    
+
         requestAnimationFrame(() => {
             playRandomBGM();
         });
     });
+}
+
+function setupEvents() {
+    setupShareButtons();
+    setupSoundButtons();
+    setupTimeupButtons();
+    setupClearButtons();
+    setupGameButtons();
+
+    
+    
+
+    
 
     // タイトル画面の難易度 Easy ボタン
     document.getElementById("diff-easy-btn").addEventListener("click", () => {
