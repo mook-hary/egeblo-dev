@@ -1005,6 +1005,35 @@ function selectDifficulty(size) {
     loadHighScore();
 }
 
+async function enterMobileFullscreenIfNeeded() {
+    const isIOS =
+        /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    const isMobileSize = window.innerWidth < 960;
+
+    if (isIOS || !isMobileSize) return;
+
+    const docEl = document.documentElement;
+
+    try {
+        if (docEl.requestFullscreen) {
+            await docEl.requestFullscreen();
+        } else if (docEl.webkitRequestFullscreen) {
+            await docEl.webkitRequestFullscreen();
+        }
+    } catch (err) {
+        console.log("フルスクリーン拒否");
+    }
+
+    try {
+        if (screen.orientation && screen.orientation.lock) {
+            await screen.orientation.lock("landscape");
+        }
+    } catch (err) {
+        console.log("向きロック拒否");
+    }
+}
+
 async function startFromTitle() {
     initAudioSystem();
     playWebAudio("start");
@@ -1013,35 +1042,12 @@ async function startFromTitle() {
     const stage = document.getElementById("stage");
     const overlay = document.getElementById("start-overlay");
 
-    const isIOS =
-        /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    const isMobileSize = window.innerWidth < 960;
+    
 
     document.body.classList.add("game-started");
     overlay.style.opacity = "0";
 
-    if (!isIOS && isMobileSize) {
-        const docEl = document.documentElement;
-
-        try {
-            if (docEl.requestFullscreen) {
-                await docEl.requestFullscreen();
-            } else if (docEl.webkitRequestFullscreen) {
-                await docEl.webkitRequestFullscreen();
-            }
-        } catch (err) {
-            console.log("フルスクリーン拒否");
-        }
-
-        try {
-            if (screen.orientation && screen.orientation.lock) {
-                await screen.orientation.lock("landscape");
-            }
-        } catch (err) {
-            console.log("向きロック拒否");
-        }
-    }
+    await enterMobileFullscreenIfNeeded();
 
     rotX = 0;
     rotZ = 0;
