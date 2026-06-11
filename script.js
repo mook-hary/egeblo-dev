@@ -964,10 +964,7 @@ function handleRotateYButtonClick() {
 function rotateCubeAroundY() {
     const { dynamicCubeSize, offset } = getDynamicSizes();
 
-    const visibleBlocks = blocks.filter(b =>
-        b.active &&
-        b.element.style.display !== "none"
-    );
+    const visibleBlocks = getVisibleBlocks();
 
     blocks.forEach(b => {
         const oldY = b.y;
@@ -985,6 +982,13 @@ function rotateCubeAroundY() {
             dynamicCubeSize
         );
     });
+}
+
+function getVisibleBlocks() {
+    return blocks.filter(b =>
+        b.active &&
+        b.element.style.display !== "none"
+    );
 }
 
 function setupPauseButtons() {
