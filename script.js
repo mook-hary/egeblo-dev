@@ -454,12 +454,11 @@ function showTimeUpOverlay() {
         scoreEl.innerText = currentScore;
     }
 
-    
-
     if (overlay) {
         overlay.style.display = "flex";
         requestAnimationFrame(() => {
             overlay.style.opacity = "1";
+            fadeFromBlack();
         });
     }
 }
