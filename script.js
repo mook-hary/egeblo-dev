@@ -984,6 +984,27 @@ function setupGameButtons() {
     });
 }
 
+function selectDifficulty(size) {
+    initAudioSystem();
+
+    debugLog(
+        "select=" + !!soundBank.select +
+        " / audio=" + (audioCtx ? audioCtx.state : "none")
+    );
+
+    playWebAudio("select");
+
+    SIZE = size;
+
+    document.getElementById("diff-easy-btn")
+        .classList.toggle("active", size === 5);
+
+    document.getElementById("diff-normal-btn")
+        .classList.toggle("active", size === 6);
+
+    loadHighScore();
+}
+
 function setupTitleButtons() {
 
     document.getElementById("diff-easy-btn").addEventListener("click", () => {
