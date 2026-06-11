@@ -1337,22 +1337,29 @@ function selectDifferentBlock(block, status) {
     status.style.color = "#ff5722";
 }
 
+function validateBlockSelection(block, status) {
+
+    if (!isSelectable(block)) {
+        playWebAudio("error");
+        showNotSelectableMessage(status);
+        return false;
+    }
+
+    if (selected !== block) {
+        playWebAudio("select");
+    }
+
+    return true;
+}
+
 function handleClick(b) {
     if (isGameOver || isPaused || !b.active) return;
     
-    if (isSelectable(b)) {
-        if (selected !== b) {
-            playWebAudio("select"); 
-        }
-    } else {
-        playWebAudio("error"); 
-    }
-
     const status = document.getElementById("status");
-    if (!isSelectable(b)) {
-    showNotSelectableMessage(status);
+
+if (!validateBlockSelection(b, status)) {
     return;
-    }
+}
     
     if (selected === null) {
     selectFirstBlock(b, status);
