@@ -655,6 +655,10 @@ button {
     width: 100%;
 }
 
+.timeup-buttons {
+    margin-top: auto;
+}
+
 .clear-buttons button,
 .timeup-buttons button {
     flex: 1;
