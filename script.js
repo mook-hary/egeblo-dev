@@ -638,7 +638,13 @@ if (clearShareBtn) {
             const clearBonus = SIZE === 5 ? 43750 : 75600;
             const finalScore = currentScore + clearBonus + timeBonus;
     
-            showClearOverlay(finalScore, timeBonus, clearBonus);
+            fadeToBlack(() => {
+                showClearOverlay(
+                    finalScore,
+                    timeBonus,
+                    clearBonus
+                );
+            });
         });
     }
     
@@ -1216,7 +1222,13 @@ function updateCount() {
     
         playWebAudio("clear");
     
-        showClearOverlay(finalScore, timeBonus, clearBonus);
+        fadeToBlack(() => {
+            showClearOverlay(
+                finalScore,
+                timeBonus,
+                clearBonus
+            );
+        });
     }
 }
 
