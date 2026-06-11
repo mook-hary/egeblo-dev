@@ -483,6 +483,7 @@ if (recordEl) recordEl.innerText = "";
         overlay.style.display = "flex";
         requestAnimationFrame(() => {
             overlay.style.opacity = "1";
+            fadeFromBlack();
         });
     }
 }
