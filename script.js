@@ -334,62 +334,90 @@ function isInnerCube(x, y, z) {
     );
 }
 
-function initGame() {
-    const stage = document.getElementById("stage");
-if (!stage) return;
-
-clearStage(stage);
-resetGameState();
-hidePauseOverlay();
-resetGameUI();
-startGameTimer();
-
-    const totalRequired = SIZE * SIZE * SIZE;
-const pool = createTilePool(totalRequired);
-    
-    
-
+function createBlocks(pool, fragment, dynamicCubeSize, offset, halfSize) {
     let index = 0;
-    const { dynamicCubeSize, offset, halfSize } = getDynamicSizes();
 
-    const fragment = document.createDocumentFragment();
-    
     for (let x = 0; x < SIZE; x++) {
         for (let y = 0; y < SIZE; y++) {
             for (let z = 0; z < SIZE; z++) {
+
                 const tile = pool[index++];
-const cube = createCubeElement(dynamicCubeSize);
+                const cube = createCubeElement(dynamicCubeSize);
 
-updateCubePosition(cube, x, y, z, offset, dynamicCubeSize);
+                updateCubePosition(
+                    cube,
+                    x,
+                    y,
+                    z,
+                    offset,
+                    dynamicCubeSize
+                );
 
-const blockData = createBlockData(tile, cube, x, y, z);
+                const blockData =
+                    createBlockData(tile, cube, x, y, z);
 
-cube.addEventListener("click", (e) => {
-    e.stopPropagation();
-    handleClick(blockData);
-});
+                cube.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    handleClick(blockData);
+                });
 
-if (isInnerCube(x, y, z)) {
-    cube.style.display = "none";
-} else {
-    createFacesForCube(blockData, halfSize, dynamicCubeSize);
+                if (isInnerCube(x, y, z)) {
+                    cube.style.display = "none";
+                } else {
+                    createFacesForCube(
+                        blockData,
+                        halfSize,
+                        dynamicCubeSize
+                    );
+                }
+
+                fragment.appendChild(cube);
+                blocks.push(blockData);
+            }
+        }
+    }
 }
 
-fragment.appendChild(cube);
-blocks.push(blockData);
-            }
-        }     
-    }
+function initGame() {
+
+    const stage = document.getElementById("stage");
+    if (!stage) return;
+
+    clearStage(stage);
+    resetGameState();
+    hidePauseOverlay();
+    resetGameUI();
+    startGameTimer();
+
+    const totalRequired = SIZE * SIZE * SIZE;
+    const pool = createTilePool(totalRequired);
+
+    const {
+        dynamicCubeSize,
+        offset,
+        halfSize
+    } = getDynamicSizes();
+
+    const fragment = document.createDocumentFragment();
+
+    createBlocks(
+        pool,
+        fragment,
+        dynamicCubeSize,
+        offset,
+        halfSize
+    );
 
     stage.appendChild(fragment);
+
     updateCount();
-    
+
     if (!skipStageRotationOnce) {
         updateStageRotation();
     }
-    
+
     skipStageRotationOnce = false;
-    }
+}
     
     function createFacesForCube(b, halfSize, dynamicCubeSize) {
         if (b.hasFaces) return; 
