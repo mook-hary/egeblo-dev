@@ -293,6 +293,47 @@ function startGameTimer() {
     timerId = setInterval(countdown, 1000);
 }
 
+function createCubeElement(dynamicCubeSize) {
+    const cube = document.createElement("div");
+    cube.className = "cube";
+
+    cube.style.width = dynamicCubeSize + "px";
+    cube.style.height = dynamicCubeSize + "px";
+
+    return cube;
+}
+
+function createBlockData(tile, cube, x, y, z) {
+    return {
+        txt: tile.txt,
+        color: tile.color,
+        element: cube,
+        active: true,
+        hasFaces: false,
+        x,
+        y,
+        z
+    };
+}
+
+function isInnerCube(x, y, z) {
+    const hasLeft = x > 0;
+    const hasRight = x < SIZE - 1;
+    const hasFront = y > 0;
+    const hasBack = y < SIZE - 1;
+    const hasBottom = z > 0;
+    const hasTop = z < SIZE - 1;
+
+    return (
+        hasLeft &&
+        hasRight &&
+        hasFront &&
+        hasBack &&
+        hasBottom &&
+        hasTop
+    );
+}
+
 function initGame() {
     const stage = document.getElementById("stage");
 if (!stage) return;
@@ -317,32 +358,25 @@ const pool = createTilePool(totalRequired);
         for (let y = 0; y < SIZE; y++) {
             for (let z = 0; z < SIZE; z++) {
                 const tile = pool[index++];
-                const cube = document.createElement("div");
-                cube.className = "cube";
-                
-                cube.style.width = dynamicCubeSize + "px";
-                cube.style.height = dynamicCubeSize + "px";
-                
-                updateCubePosition(cube, x, y, z, offset, dynamicCubeSize);
-                const blockData = { txt: tile.txt, color: tile.color, element: cube, active: true, hasFaces: false, x, y, z };
-                
-                cube.addEventListener("click", (e) => {
-                    e.stopPropagation(); 
-                    handleClick(blockData);
-                });
+const cube = createCubeElement(dynamicCubeSize);
 
-                let hasLeft = x > 0, hasRight = x < SIZE - 1;
-                let hasFront = y > 0, hasBack = y < SIZE - 1;
-                let hasBottom = z > 0, hasTop = z < SIZE - 1;
+updateCubePosition(cube, x, y, z, offset, dynamicCubeSize);
 
-                if (hasLeft && hasRight && hasFront && hasBack && hasBottom && hasTop) {
-                    cube.style.display = "none"; 
-                    fragment.appendChild(cube);
-                } else {
-                    createFacesForCube(blockData, halfSize, dynamicCubeSize);
-                    fragment.appendChild(cube);
-                }
-                blocks.push(blockData);
+const blockData = createBlockData(tile, cube, x, y, z);
+
+cube.addEventListener("click", (e) => {
+    e.stopPropagation();
+    handleClick(blockData);
+});
+
+if (isInnerCube(x, y, z)) {
+    cube.style.display = "none";
+} else {
+    createFacesForCube(blockData, halfSize, dynamicCubeSize);
+}
+
+fragment.appendChild(cube);
+blocks.push(blockData);
             }
         }     
     }
