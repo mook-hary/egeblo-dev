@@ -1034,6 +1034,17 @@ async function enterMobileFullscreenIfNeeded() {
     }
 }
 
+function resetStageRotation(stage) {
+    rotX = 0;
+    rotZ = 0;
+
+    if (!stage) return;
+
+    stage.style.transition = "none";
+    stage.style.transform =
+        "rotateX(0deg) rotateZ(0deg)";
+}
+
 async function startFromTitle() {
     initAudioSystem();
     playWebAudio("start");
@@ -1049,14 +1060,7 @@ async function startFromTitle() {
 
     await enterMobileFullscreenIfNeeded();
 
-    rotX = 0;
-    rotZ = 0;
-
-    if (stage) {
-        stage.style.transition = "none";
-        stage.style.transform =
-            "rotateX(0deg) rotateZ(0deg)";
-    }
+    resetStageRotation(stage);
 
     setTimeout(() => {
         overlay.style.display = "none";
