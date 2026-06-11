@@ -1078,10 +1078,14 @@ function startGameAfterTitleOverlay(overlay) {
     }
 }
 
-async function startFromTitle() {
+function playStartSequence() {
     initAudioSystem();
     playWebAudio("start");
     playRandomBGM();
+}
+
+async function startFromTitle() {
+    playStartSequence();
 
     const stage = document.getElementById("stage");
     const overlay = document.getElementById("start-overlay");
