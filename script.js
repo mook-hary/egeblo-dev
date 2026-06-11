@@ -1265,6 +1265,14 @@ function clearSelection(block, status) {
     status.style.color = "#ffeb3b";
 }
 
+function selectFirstBlock(block, status) {
+    selected = block;
+    block.element.classList.add("selected");
+
+    status.innerText = "2つ目の同じ数字を選んでください";
+    status.style.color = "#ffeb3b";
+}
+
 function handleClick(b) {
     if (isGameOver || isPaused || !b.active) return;
     
@@ -1283,11 +1291,8 @@ function handleClick(b) {
     }
     
     if (selected === null) {
-        selected = b;
-        b.element.classList.add("selected");
-        status.innerText = "2つ目の同じ数字を選んでください";
-        status.style.color = "#ffeb3b";
-    } else {
+    selectFirstBlock(b, status);
+} else {
         if (selected === b) {
     clearSelection(b, status);
 } else if (selected.txt === b.txt) {
