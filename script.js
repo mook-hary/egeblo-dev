@@ -253,33 +253,55 @@ function createTilePool(totalRequired) {
     return pool;
 }
 
-function initGame() {
-    const stage = document.getElementById("stage");
-    if(!stage) return;
-    while (stage.firstChild) {
-    stage.removeChild(stage.firstChild);
-}
+function resetGameState() {
     blocks = [];
     selected = null;
     isGameOver = false;
-    isPaused = false; 
-    
+    isPaused = false;
+}
+
+function clearStage(stage) {
+    while (stage.firstChild) {
+        stage.removeChild(stage.firstChild);
+    }
+}
+
+function hidePauseOverlay() {
     const pauseOverlay = document.getElementById("pause-overlay");
-    if(pauseOverlay) { pauseOverlay.style.display = "none"; pauseOverlay.style.opacity = "0"; }
 
-    updateScoreDisplay(0); 
-    loadHighScore(); 
-    
-    // 🚨【大修正】リセットボタン連動バグを防ぐため、ここで角度（rotX, rotZ）を強制上書きするのを完全に撤廃！
-    // 現在のカメラの向きをそのまま維持して中身だけをリフレッシュします。
-    
-    document.getElementById("status").innerText = "1つ目のブロックを選んでください";
+    if (pauseOverlay) {
+        pauseOverlay.style.display = "none";
+        pauseOverlay.style.opacity = "0";
+    }
+}
+
+function resetGameUI() {
+    updateScoreDisplay(0);
+    loadHighScore();
+
+    document.getElementById("status").innerText =
+        "1つ目のブロックを選んでください";
+
     document.getElementById("status").style.color = "#38bdf8";
+}
 
+function startGameTimer() {
     timeLeft = 120;
     updateTimerUI();
+
     clearInterval(timerId);
     timerId = setInterval(countdown, 1000);
+}
+
+function initGame() {
+    const stage = document.getElementById("stage");
+if (!stage) return;
+
+clearStage(stage);
+resetGameState();
+hidePauseOverlay();
+resetGameUI();
+startGameTimer();
 
     const totalRequired = SIZE * SIZE * SIZE;
 const pool = createTilePool(totalRequired);
