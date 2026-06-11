@@ -612,22 +612,29 @@ async function shareResult(resultType) {
     }
 }
 
+function setupShareButtons() {
+
+    const timeupShareBtn =
+        document.getElementById("timeup-share-btn");
+
+    if (timeupShareBtn) {
+        timeupShareBtn.addEventListener("click", () => {
+            shareResult("timeup");
+        });
+    }
+
+    const clearShareBtn =
+        document.getElementById("clear-share-btn");
+
+    if (clearShareBtn) {
+        clearShareBtn.addEventListener("click", () => {
+            shareResult("clear");
+        });
+    }
+}
+
 function setupEvents() {
-    const timeupShareBtn = document.getElementById("timeup-share-btn");
-
-if (timeupShareBtn) {
-    timeupShareBtn.addEventListener("click", () => {
-        shareResult("timeup");
-    });
-}
-
-const clearShareBtn = document.getElementById("clear-share-btn");
-
-if (clearShareBtn) {
-    clearShareBtn.addEventListener("click", () => {
-        shareResult("clear");
-    });
-}
+    setupShareButtons();
 
     
     const clearTestBtn = document.getElementById("clear-test-btn");
