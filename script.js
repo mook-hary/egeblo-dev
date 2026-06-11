@@ -1045,6 +1045,34 @@ function resetStageRotation(stage) {
         "rotateX(0deg) rotateZ(0deg)";
 }
 
+function startGameAfterTitleOverlay(overlay) {
+    overlay.style.display = "none";
+
+    skipStageRotationOnce = true;
+    initGame();
+
+    const newStage = document.getElementById("stage");
+
+    resetStageRotation(newStage);
+
+    if (newStage) {
+        newStage.offsetWidth;
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                rotX = 60;
+                rotZ = -45;
+
+                newStage.style.transition =
+                    "transform 0.5s ease-out";
+
+                newStage.style.transform =
+                    `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
+            });
+        });
+    }
+}
+
 async function startFromTitle() {
     initAudioSystem();
     playWebAudio("start");
@@ -1052,8 +1080,6 @@ async function startFromTitle() {
 
     const stage = document.getElementById("stage");
     const overlay = document.getElementById("start-overlay");
-
-    
 
     document.body.classList.add("game-started");
     overlay.style.opacity = "0";
@@ -1063,37 +1089,7 @@ async function startFromTitle() {
     resetStageRotation(stage);
 
     setTimeout(() => {
-        overlay.style.display = "none";
-
-        rotX = 0;
-        rotZ = 0;
-
-        skipStageRotationOnce = true;
-        initGame();
-
-        const newStage = document.getElementById("stage");
-
-        if (newStage) {
-            newStage.style.transition = "none";
-            newStage.style.transform =
-                "rotateX(0deg) rotateZ(0deg)";
-
-            newStage.offsetWidth;
-
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    rotX = 60;
-                    rotZ = -45;
-
-                    newStage.style.transition =
-                        "transform 0.5s ease-out";
-
-                    newStage.style.transform =
-                        `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
-                });
-            });
-        }
-
+        startGameAfterTitleOverlay(overlay);
     }, 500);
 }
 
