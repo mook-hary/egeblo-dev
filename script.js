@@ -958,6 +958,10 @@ function handleRotateYButtonClick() {
 
     playWebAudio("select");
 
+    rotateCubeAroundY();
+}
+
+function rotateCubeAroundY() {
     const { dynamicCubeSize, offset } = getDynamicSizes();
 
     const visibleBlocks = blocks.filter(b =>
