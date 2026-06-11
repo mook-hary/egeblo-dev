@@ -633,8 +633,63 @@ function setupShareButtons() {
     }
 }
 
+function setupSoundButtons() {
+
+    const soundBtn =
+        document.getElementById("sound-toggle-btn");
+
+    if (soundBtn) {
+        soundBtn.addEventListener("click", async () => {
+
+            isSoundEnabled = !isSoundEnabled;
+
+            localStorage.setItem(
+                "cube_sound_enabled",
+                isSoundEnabled
+            );
+
+            if (!isSoundEnabled) {
+
+                stopAllSounds();
+
+            } else {
+
+                initAudioSystem();
+
+                try {
+
+                    if (
+                        audioCtx &&
+                        audioCtx.state === "suspended"
+                    ) {
+                        await audioCtx.resume();
+                    }
+
+                    if (
+                        document.body.classList.contains("game-started") &&
+                        !isPaused &&
+                        !isGameOver
+                    ) {
+                        if (currentActiveBGM) {
+                            await currentActiveBGM.play();
+                        } else {
+                            playRandomBGM();
+                        }
+                    }
+
+                } catch (e) {
+                    console.log("BGM再開失敗:", e);
+                }
+            }
+
+            updateSoundButtonUI();
+        });
+    }
+}
+
 function setupEvents() {
     setupShareButtons();
+    setupSoundButtons();
 
     
     const clearTestBtn = document.getElementById("clear-test-btn");
@@ -703,51 +758,7 @@ function setupEvents() {
     if (clearTitleBtn) {
         clearTitleBtn.addEventListener("click", returnToTitle);
     }
-    const soundBtn = document.getElementById("sound-toggle-btn");
     
-    if (soundBtn) {
-        soundBtn.addEventListener("click", async () => {
-    
-            isSoundEnabled = !isSoundEnabled;
-    
-            localStorage.setItem(
-                "cube_sound_enabled",
-                isSoundEnabled
-            );
-    
-            if (!isSoundEnabled) {
-    
-                stopAllSounds();
-    
-            } else {
-    
-                initAudioSystem();
-    
-                try {
-                    if (audioCtx && audioCtx.state === "suspended") {
-                        await audioCtx.resume();
-                    }
-    
-                    if (
-                        document.body.classList.contains("game-started") &&
-                        !isPaused &&
-                        !isGameOver
-                    ) {
-                        if (currentActiveBGM) {
-                            await currentActiveBGM.play();
-                        } else {
-                            playRandomBGM();
-                        }
-                    }
-    
-                } catch (e) {
-                    console.log("BGM再開失敗:", e);
-                }
-            }
-    
-            updateSoundButtonUI();
-        });
-    }
 
     const timeupRetryBtn = document.getElementById("timeup-retry-btn");
 
