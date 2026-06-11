@@ -968,6 +968,18 @@ function rotateCubeAroundY() {
 
     rotateBlockCoordinatesY();
 
+    updateVisibleBlockPositions(
+        visibleBlocks,
+        offset,
+        dynamicCubeSize
+    );
+}
+
+function updateVisibleBlockPositions(
+    visibleBlocks,
+    offset,
+    dynamicCubeSize
+) {
     visibleBlocks.forEach(b => {
         updateCubePosition(
             b.element,
