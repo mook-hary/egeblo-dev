@@ -1062,11 +1062,15 @@ function animateStageToDefaultAngle(stage) {
     });
 }
 
+function initializeGameFromTitle() {
+    skipStageRotationOnce = true;
+    initGame();
+}
+
 function startGameAfterTitleOverlay(overlay) {
     overlay.style.display = "none";
 
-    skipStageRotationOnce = true;
-    initGame();
+    initializeGameFromTitle();
 
     const newStage = document.getElementById("stage");
 
