@@ -567,6 +567,8 @@ button {
 .timeup-card {
     background: rgba(30, 30, 30, 0.96);
     border: 2px solid #ff4444;
+    display: flex;
+    flex-direction: column;
 }
 
 .clear-card {
@@ -655,7 +657,7 @@ button {
     width: 100%;
 }
 
-.timeup-buttons {
+.timeup-card .timeup-buttons {
     margin-top: auto;
 }
 
