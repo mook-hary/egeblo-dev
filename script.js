@@ -1249,6 +1249,22 @@ function isExposed(b) {
     return (openSides > 0); 
 }
 
+function showNotSelectableMessage(status) {
+    status.innerText =
+        "周囲に挟まれています（空きが1面以下なので選べません）";
+
+    status.style.color = "#ff5722";
+}
+
+function clearSelection(block, status) {
+    block.element.classList.remove("selected");
+
+    selected = null;
+
+    status.innerText = "選択を解除しました";
+    status.style.color = "#ffeb3b";
+}
+
 function handleClick(b) {
     if (isGameOver || isPaused || !b.active) return;
     
@@ -1262,9 +1278,8 @@ function handleClick(b) {
 
     const status = document.getElementById("status");
     if (!isSelectable(b)) {
-        status.innerText = "周囲に挟まれています（空きが1面以下なので選べません）";
-        status.style.color = "#ff5722";
-        return;
+    showNotSelectableMessage(status);
+    return;
     }
     
     if (selected === null) {
@@ -1274,11 +1289,8 @@ function handleClick(b) {
         status.style.color = "#ffeb3b";
     } else {
         if (selected === b) {
-            b.element.classList.remove("selected");
-            selected = null;
-            status.innerText = "選択を解除しました";
-            status.style.color = "#ffeb3b";
-        } else if (selected.txt === b.txt) {
+    clearSelection(b, status);
+} else if (selected.txt === b.txt) {
             selected.active = false; b.active = false;
             selected.element.style.display = "none"; b.element.style.display = "none";
             selected = null;
