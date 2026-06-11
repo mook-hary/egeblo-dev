@@ -374,6 +374,12 @@ button {
 
 .pause-card {
     border: 2px solid #ff9f1c;
+
+    width: 540px;
+    height: 290px;
+
+    padding: 25px;
+    box-sizing: border-box;
 }
 
 .start-card h1 {
