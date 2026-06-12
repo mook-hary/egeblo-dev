@@ -167,37 +167,46 @@ function initAudioSystem() {
     if (isAudioLoading) return;
 
     try {
-        window.AudioContext = window.AudioContext || window.webkitAudioContext;
-
-        if (!audioCtx) {
-            audioCtx = new AudioContext();
-        }
+        setupAudioContext();
 
         isAudioLoading = true;
 
-        loadSoundToBuffer("select_1.mp3").then(buf => {
-            if (buf) soundBank.select = buf;
-        });
-
-        loadSoundToBuffer("clear_1.mp3").then(buf => {
-            if (buf) soundBank.clear = buf;
-        });
-
-        loadSoundToBuffer("error_1.mp3").then(buf => {
-            if (buf) soundBank.error = buf;
-        });
-
-        loadSoundToBuffer("timeup_1.mp3").then(buf => {
-            if (buf) soundBank.timeup = buf;
-        });
-
-        loadSoundToBuffer("start_1.mp3").then(buf => {
-            if (buf) soundBank.start = buf;
-        });
+        loadInitialSoundBuffers();
 
     } catch(e) {
         console.log("Web Audio初期化失敗:", e);
     }
+}
+
+function setupAudioContext() {
+    window.AudioContext =
+        window.AudioContext || window.webkitAudioContext;
+
+    if (!audioCtx) {
+        audioCtx = new AudioContext();
+    }
+}
+
+function loadInitialSoundBuffers() {
+    loadSoundToBuffer("select_1.mp3").then(buf => {
+        if (buf) soundBank.select = buf;
+    });
+
+    loadSoundToBuffer("clear_1.mp3").then(buf => {
+        if (buf) soundBank.clear = buf;
+    });
+
+    loadSoundToBuffer("error_1.mp3").then(buf => {
+        if (buf) soundBank.error = buf;
+    });
+
+    loadSoundToBuffer("timeup_1.mp3").then(buf => {
+        if (buf) soundBank.timeup = buf;
+    });
+
+    loadSoundToBuffer("start_1.mp3").then(buf => {
+        if (buf) soundBank.start = buf;
+    });
 }
 
 function getDynamicSizes() {
