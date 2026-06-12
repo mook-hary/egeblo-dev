@@ -341,6 +341,28 @@ function setupCubeClick(cube, blockData) {
     });
 }
 
+function setupCubeVisibilityAndFaces(
+    blockData,
+    x,
+    y,
+    z,
+    halfSize,
+    dynamicCubeSize
+) {
+    const cube = blockData.element;
+
+    if (isInnerCube(x, y, z)) {
+        cube.style.display = "none";
+        return;
+    }
+
+    createFacesForCube(
+        blockData,
+        halfSize,
+        dynamicCubeSize
+    );
+}
+
 function createBlocks(pool, fragment, dynamicCubeSize, offset, halfSize) {
     let index = 0;
 
@@ -365,15 +387,14 @@ function createBlocks(pool, fragment, dynamicCubeSize, offset, halfSize) {
 
                 setupCubeClick(cube, blockData);
 
-                if (isInnerCube(x, y, z)) {
-                    cube.style.display = "none";
-                } else {
-                    createFacesForCube(
-                        blockData,
-                        halfSize,
-                        dynamicCubeSize
-                    );
-                }
+                setupCubeVisibilityAndFaces(
+                    blockData,
+                    x,
+                    y,
+                    z,
+                    halfSize,
+                    dynamicCubeSize
+                );
 
                 fragment.appendChild(cube);
                 blocks.push(blockData);
