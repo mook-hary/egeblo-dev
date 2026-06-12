@@ -1352,23 +1352,55 @@ function setupEvents() {
 
 function togglePause() {
     if (isGameOver) return;
-    const pauseOverlay = document.getElementById("pause-overlay");
+
+    const pauseOverlay =
+        document.getElementById("pause-overlay");
+
     if (!pauseOverlay) return;
 
     if (!isPaused) {
-        isPaused = true;
-        clearInterval(timerId); 
-        pauseOverlay.style.display = "flex";
-        setTimeout(() => pauseOverlay.style.opacity = "1", 10);
-        try { if(currentActiveBGM) currentActiveBGM.pause(); } catch(e){} 
+        pauseGame(pauseOverlay);
     } else {
-        isPaused = false;
-        pauseOverlay.style.opacity = "0";
-        setTimeout(() => pauseOverlay.style.display = "none", 400);
-        clearInterval(timerId);
-        timerId = setInterval(countdown, 1000);
-        try { if(currentActiveBGM) currentActiveBGM.play(); } catch(e){} 
+        resumeGame(pauseOverlay);
     }
+}
+
+function pauseGame(pauseOverlay) {
+    isPaused = true;
+
+    clearInterval(timerId);
+
+    pauseOverlay.style.display = "flex";
+
+    setTimeout(() => {
+        pauseOverlay.style.opacity = "1";
+    }, 10);
+
+    try {
+        if (currentActiveBGM) {
+            currentActiveBGM.pause();
+        }
+    } catch (e) {}
+}
+
+function resumeGame(pauseOverlay) {
+    isPaused = false;
+
+    pauseOverlay.style.opacity = "0";
+
+    setTimeout(() => {
+        pauseOverlay.style.display = "none";
+    }, 400);
+
+    clearInterval(timerId);
+
+    timerId = setInterval(countdown, 1000);
+
+    try {
+        if (currentActiveBGM) {
+            currentActiveBGM.play();
+        }
+    } catch (e) {}
 }
 
 /*gpt提案、左右回転の改善*/
