@@ -952,20 +952,15 @@ function addClickListener(id, handler) {
     }
 }
 
-function setupClearButtons() {
+function setupRotationButtons() {
     addClickListener(
-        "clear-test-btn",
-        handleClearTest
+        "rot-z-btn",
+        handleRotateZButtonClick
     );
 
     addClickListener(
-        "clear-retry-btn",
-        handleClearRetry
-    );
-
-    addClickListener(
-        "clear-title-btn",
-        returnToTitle
+        "rot-y-btn",
+        handleRotateYButtonClick
     );
 }
 
