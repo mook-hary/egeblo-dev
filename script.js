@@ -902,81 +902,79 @@ function prepareStageIntroPosition(stage) {
 }
 
 function setupClearButtons() {
-
     const clearTestBtn =
         document.getElementById("clear-test-btn");
 
     if (clearTestBtn) {
-        clearTestBtn.addEventListener("click", () => {
-            const timeBonus = timeLeft * 2000;
-            const clearBonus = SIZE === 5 ? 43750 : 75600;
-            const finalScore =
-                currentScore + clearBonus + timeBonus;
-
-            fadeToBlack(() => {
-                showClearOverlay(
-                    finalScore,
-                    timeBonus,
-                    clearBonus
-                );
-            });
-        });
+        clearTestBtn.addEventListener(
+            "click",
+            handleClearTest
+        );
     }
 
     const clearRetryBtn =
         document.getElementById("clear-retry-btn");
 
     if (clearRetryBtn) {
-        clearRetryBtn.addEventListener("click", () => {
-            playWebAudio("select");
-
-            fadeToBlack(() => {
-                const overlay =
-                    document.getElementById("clear-overlay");
-
-                if (overlay) {
-                    overlay.style.opacity = "0";
-                    overlay.style.display = "none";
-                }
-
-                rotX = 0;
-                rotZ = 0;
-
-                initGame();
-
-                const stage = document.getElementById("stage");
-
-                if (stage) {
-                    stage.style.transition = "none";
-                    stage.style.transform =
-                        "rotateX(0deg) rotateZ(0deg)";
-                    stage.offsetWidth;
-                }
-
-                fadeFromBlack();
-
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        if (stage) {
-                            rotX = 60;
-                            rotZ = -45;
-                            stage.style.transition =
-                                "transform 0.5s ease-out";
-                            stage.style.transform =
-                                `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
-                        }
-                    });
-                });
-            });
-        });
+        clearRetryBtn.addEventListener(
+            "click",
+            handleClearRetry
+        );
     }
 
     const clearTitleBtn =
         document.getElementById("clear-title-btn");
 
     if (clearTitleBtn) {
-        clearTitleBtn.addEventListener("click", returnToTitle);
+        clearTitleBtn.addEventListener(
+            "click",
+            returnToTitle
+        );
     }
+}
+
+function handleClearTest() {
+    const timeBonus = timeLeft * 2000;
+    const clearBonus = SIZE === 5 ? 43750 : 75600;
+    const finalScore =
+        currentScore + clearBonus + timeBonus;
+
+    fadeToBlack(() => {
+        showClearOverlay(
+            finalScore,
+            timeBonus,
+            clearBonus
+        );
+    });
+}
+
+function handleClearRetry() {
+    playWebAudio("select");
+
+    fadeToBlack(() => {
+        hideClearOverlay();
+        resetStageRotationState();
+
+        initGame();
+
+        const stage = document.getElementById("stage");
+
+        prepareStageIntroPosition(stage);
+
+        fadeFromBlack();
+
+        animateStageToDefaultAngle(stage);
+    });
+}
+
+function hideClearOverlay() {
+    const overlay =
+        document.getElementById("clear-overlay");
+
+    if (!overlay) return;
+
+    overlay.style.opacity = "0";
+    overlay.style.display = "none";
 }
 
 function setupGameButtons() {
