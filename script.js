@@ -795,25 +795,22 @@ async function shareResult(resultType) {
     }
 }
 
+function setupShareButton(id, resultType) {
+    addClickListener(id, () => {
+        shareResult(resultType);
+    });
+}
+
 function setupShareButtons() {
+    setupShareButton(
+        "timeup-share-btn",
+        "timeup"
+    );
 
-    const timeupShareBtn =
-        document.getElementById("timeup-share-btn");
-
-    if (timeupShareBtn) {
-        timeupShareBtn.addEventListener("click", () => {
-            shareResult("timeup");
-        });
-    }
-
-    const clearShareBtn =
-        document.getElementById("clear-share-btn");
-
-    if (clearShareBtn) {
-        clearShareBtn.addEventListener("click", () => {
-            shareResult("clear");
-        });
-    }
+    setupShareButton(
+        "clear-share-btn",
+        "clear"
+    );
 }
 
 function setupSoundButtons() {
