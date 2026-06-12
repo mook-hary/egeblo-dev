@@ -904,7 +904,23 @@ function returnToTitle() {
 async function shareResult(resultType) {
     playWebAudio("select");
 
-    const label = resultType === "clear" ? "CLEAR!" : "TIME UP";
+    const shareData =
+        createShareData(resultType);
+
+    if (navigator.share) {
+        await shareWithWebShareApi(
+            shareData
+        );
+    } else {
+        shareToX(shareData.text);
+    }
+}
+
+function createShareData(resultType) {
+    const label =
+        resultType === "clear"
+            ? "CLEAR!"
+            : "TIME UP";
 
     const shareText =
         `CUBE dev ${label}\n` +
@@ -912,27 +928,30 @@ async function shareResult(resultType) {
         `BEST: ${highScore} pt\n` +
         `#CUBEdev`;
 
-    const shareData = {
+    return {
         title: "CUBE dev",
         text: shareText,
         url: location.href
     };
+}
 
-    if (navigator.share) {
-        try {
-            await navigator.share(shareData);
-        } catch (e) {
-            console.log("共有キャンセル:", e);
-        }
-    } else {
-        const xUrl =
-            "https://twitter.com/intent/tweet?text=" +
-            encodeURIComponent(shareText) +
-            "&url=" +
-            encodeURIComponent(location.href);
+async function shareWithWebShareApi(shareData) {
+    try {
+        await navigator.share(shareData);
 
-        window.open(xUrl, "_blank");
+    } catch (e) {
+        console.log("共有キャンセル:", e);
     }
+}
+
+function shareToX(shareText) {
+    const xUrl =
+        "https://twitter.com/intent/tweet?text=" +
+        encodeURIComponent(shareText) +
+        "&url=" +
+        encodeURIComponent(location.href);
+
+    window.open(xUrl, "_blank");
 }
 
 function setupShareButton(id, resultType) {
