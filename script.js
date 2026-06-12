@@ -720,6 +720,10 @@ function resetGameFlags() {
     isPaused = false;
 }
 
+function resetGameStartedState() {
+    document.body.classList.remove("game-started");
+}
+
 function restoreTitleScreen(stage, startOverlay) {
     resetGameFlags();
 
@@ -729,7 +733,7 @@ function restoreTitleScreen(stage, startOverlay) {
 
     resetStageToTitle(stage);
 
-    document.body.classList.remove("game-started");
+    resetGameStartedState();
 
     showStartOverlay(startOverlay);
 }
