@@ -1472,12 +1472,16 @@ function hasActiveBlockAt(x, y, z) {
 }
 
 function isExposed(b) {
-    const findBlock = (x, y, z) => blocks.find(o => o.active && o.x === x && o.y === y && o.z === z);
     let openSides = 0;
-    if (!findBlock(b.x - 1, b.y, b.z)) openSides++; if (!findBlock(b.x + 1, b.y, b.z)) openSides++;
-    if (!findBlock(b.x, b.y - 1, b.z)) openSides++; if (!findBlock(b.x, b.y + 1, b.z)) openSides++;
-    if (!findBlock(b.x, b.y, b.z - 1)) openSides++; if (!findBlock(b.x, b.y, b.z + 1)) openSides++; 
-    return (openSides > 0); 
+
+    if (!hasActiveBlockAt(b.x - 1, b.y, b.z)) openSides++;
+    if (!hasActiveBlockAt(b.x + 1, b.y, b.z)) openSides++;
+    if (!hasActiveBlockAt(b.x, b.y - 1, b.z)) openSides++;
+    if (!hasActiveBlockAt(b.x, b.y + 1, b.z)) openSides++;
+    if (!hasActiveBlockAt(b.x, b.y, b.z - 1)) openSides++;
+    if (!hasActiveBlockAt(b.x, b.y, b.z + 1)) openSides++;
+
+    return openSides > 0;
 }
 
 function showNotSelectableMessage(status) {
