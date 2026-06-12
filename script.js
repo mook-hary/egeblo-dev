@@ -1480,7 +1480,6 @@ function validateBlockSelection(block, status) {
 }
 
 function handleClick(b) {
-
     if (isGameOver || isPaused || !b.active) return;
 
     const status = document.getElementById("status");
@@ -1489,6 +1488,10 @@ function handleClick(b) {
         return;
     }
 
+    handleBlockSelection(b, status);
+}
+
+function handleBlockSelection(b, status) {
     if (selected === null) {
         selectFirstBlock(b, status);
 
