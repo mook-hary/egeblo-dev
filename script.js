@@ -1094,18 +1094,24 @@ function getVisibleBlocks() {
     );
 }
 
-function setupPauseButtons() {
-    document.getElementById("pause-btn").addEventListener("click", () => {
-        initAudioSystem();
-        playWebAudio("select");
-        togglePause();
-    });
+function handlePauseButtonClick() {
+    initAudioSystem();
+    playWebAudio("select");
+    togglePause();
+}
 
-    document.getElementById("resume-btn").addEventListener("click", () => {
-        initAudioSystem();
-        playWebAudio("select");
-        togglePause();
-    });
+function setupPauseButtons() {
+    document.getElementById("pause-btn")
+        .addEventListener(
+            "click",
+            handlePauseButtonClick
+        );
+
+    document.getElementById("resume-btn")
+        .addEventListener(
+            "click",
+            handlePauseButtonClick
+        );
 }
 
 function selectDifficulty(size) {
