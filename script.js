@@ -723,28 +723,28 @@ function resetGameFlags() {
 function returnToTitle() {
     playWebAudio("select");
 
-    const overlay = document.getElementById("timeup-overlay");
-    const clearOverlay = document.getElementById("clear-overlay");
-    const pauseOverlay = document.getElementById("pause-overlay");
-    const startOverlay = document.getElementById("start-overlay");
-    const stage = document.getElementById("stage");
+    const startOverlay =
+        document.getElementById("start-overlay");
+
+    const stage =
+        document.getElementById("stage");
 
     setTimeout(() => {
         stopCurrentBGM();
-    
+
         fadeToBlack(() => {
             resetGameFlags();
-        
+
             hideGameOverlays();
-        
+
             resetGameSelectionState();
-        
+
             resetStageToTitle(stage);
-        
+
             document.body.classList.remove("game-started");
-        
+
             showStartOverlay(startOverlay);
-        
+
             fadeFromBlack();
         });
     }, 200);
