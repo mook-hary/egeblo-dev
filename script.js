@@ -731,47 +731,49 @@ function stopAllSounds() {
     // iPhoneで復帰が重くなることがあるため
 }
 
+function showClearOverlay(finalScore, timeBonus, clearBonus) {
+    setClearOverlayValues(
+        finalScore,
+        timeBonus,
+        clearBonus
+    );
+
+    showOverlayWithFade("clear-overlay");
+}
+
+function setClearOverlayValues(finalScore, timeBonus, clearBonus) {
+    setElementText("clear-score", finalScore);
+    setElementText("clear-time-bonus", timeBonus);
+    setElementText("clear-clear-bonus", clearBonus);
+    setElementText("clear-rank", "★★★");
+    setElementText("clear-new-record", "");
+}
+
 function showTimeUpOverlay() {
-    const overlay = document.getElementById("timeup-overlay");
-    const scoreEl = document.getElementById("timeup-score");
-    const stage = document.getElementById("stage");
+    setElementText("timeup-score", currentScore);
 
-    if (scoreEl) {
-        scoreEl.innerText = currentScore;
-    }
+    showOverlayWithFade("timeup-overlay");
+}
 
-    if (overlay) {
-        overlay.style.display = "flex";
-        requestAnimationFrame(() => {
-            overlay.style.opacity = "1";
-            fadeFromBlack();
-        });
+function setElementText(id, text) {
+    const element = document.getElementById(id);
+
+    if (element) {
+        element.innerText = text;
     }
 }
 
-function showClearOverlay(finalScore, timeBonus, clearBonus) {
-    const overlay = document.getElementById("clear-overlay");
-    const scoreEl = document.getElementById("clear-score");
-    const timeBonusEl = document.getElementById("clear-time-bonus");
-    const clearBonusEl = document.getElementById("clear-clear-bonus");
-    const rankEl = document.getElementById("clear-rank");
-const recordEl = document.getElementById("clear-new-record");
+function showOverlayWithFade(id) {
+    const overlay = document.getElementById(id);
 
-    if (scoreEl) scoreEl.innerText = finalScore;
-    if (timeBonusEl) timeBonusEl.innerText = timeBonus;
-    if (clearBonusEl) clearBonusEl.innerText = clearBonus;
-    
-    if (rankEl) rankEl.innerText = "★★★";
-if (recordEl) recordEl.innerText = "";
-    
+    if (!overlay) return;
 
-    if (overlay) {
-        overlay.style.display = "flex";
-        requestAnimationFrame(() => {
-            overlay.style.opacity = "1";
-            fadeFromBlack();
-        });
-    }
+    overlay.style.display = "flex";
+
+    requestAnimationFrame(() => {
+        overlay.style.opacity = "1";
+        fadeFromBlack();
+    });
 }
 
 function fadeToBlack(callback) {
