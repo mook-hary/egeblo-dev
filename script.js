@@ -1621,31 +1621,46 @@ function handleBlockSelection(b, status) {
 }
 
 function updateCount() {
-    let count = blocks.filter(b => b.active).length;
+    const count = getActiveBlockCount();
+
     document.getElementById("count").innerText = count;
+
     if (count === 0) {
-        clearInterval(timerId);
-        isGameOver = true;
-    
-        const timeBonus = timeLeft * 2000;
-        const clearBonus = SIZE === 5 ? 43750 : 75600;
-        const finalScore = currentScore + clearBonus + timeBonus;
-    
-        updateScoreDisplay(finalScore);
-    
-        document.getElementById("status").innerText = "🎉 全クリア達成!!";
-        document.getElementById("status").style.color = "#4caf50";
-    
-        playWebAudio("clear");
-    
-        fadeToBlack(() => {
-            showClearOverlay(
-                finalScore,
-                timeBonus,
-                clearBonus
-            );
-        });
+        handleGameClear();
     }
+}
+
+function getActiveBlockCount() {
+    return blocks.filter(b => b.active).length;
+}
+
+function handleGameClear() {
+    clearInterval(timerId);
+
+    isGameOver = true;
+
+    const timeBonus = timeLeft * 2000;
+    const clearBonus = SIZE === 5 ? 43750 : 75600;
+    const finalScore =
+        currentScore + clearBonus + timeBonus;
+
+    updateScoreDisplay(finalScore);
+
+    document.getElementById("status").innerText =
+        "🎉 全クリア達成!!";
+
+    document.getElementById("status").style.color =
+        "#4caf50";
+
+    playWebAudio("clear");
+
+    fadeToBlack(() => {
+        showClearOverlay(
+            finalScore,
+            timeBonus,
+            clearBonus
+        );
+    });
 }
 
 document.addEventListener("visibilitychange", () => {
