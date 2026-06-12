@@ -69,23 +69,36 @@ function debugLog(text) {
 }
 
 function playWebAudio(bufferName) {
-    if (!isSoundEnabled) return;
-
-    if (audioCtx && audioCtx.state === 'suspended') {
-        audioCtx.resume();
-    }
-
-    const bufferObj = soundBank[bufferName];
-    if (!audioCtx || !bufferObj) return;
+    if (!canPlayWebAudio(bufferName)) return;
 
     try {
-        let bufferSource = audioCtx.createBufferSource();
-        bufferSource.buffer = bufferObj;
-        bufferSource.connect(audioCtx.destination); 
-        bufferSource.start(0);
+        playSoundBuffer(bufferName);
+
     } catch (e) {
         console.log("Web Audio再生エラー:", e);
     }
+}
+
+function canPlayWebAudio(bufferName) {
+    if (!isSoundEnabled) return false;
+
+    if (audioCtx && audioCtx.state === "suspended") {
+        audioCtx.resume();
+    }
+
+    return audioCtx && soundBank[bufferName];
+}
+
+function playSoundBuffer(bufferName) {
+    const bufferSource =
+        audioCtx.createBufferSource();
+
+    bufferSource.buffer =
+        soundBank[bufferName];
+
+    bufferSource.connect(audioCtx.destination);
+
+    bufferSource.start(0);
 }
 
 function playCountdownBeep() {
