@@ -915,14 +915,18 @@ function handleTimeupRetry() {
     });
 }
 
-function hideTimeupOverlay() {
+function hideOverlay(id) {
     const overlay =
-        document.getElementById("timeup-overlay");
+        document.getElementById(id);
 
     if (!overlay) return;
 
     overlay.style.opacity = "0";
     overlay.style.display = "none";
+}
+
+function hideTimeupOverlay() {
+    hideOverlay("timeup-overlay");
 }
 
 function resetStageRotationState() {
@@ -992,13 +996,7 @@ function restartGameFromClear() {
 }
 
 function hideClearOverlay() {
-    const overlay =
-        document.getElementById("clear-overlay");
-
-    if (!overlay) return;
-
-    overlay.style.opacity = "0";
-    overlay.style.display = "none";
+    hideOverlay("clear-overlay");
 }
 
 function setupGameButtons() {
