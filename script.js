@@ -709,6 +709,11 @@ function showStartOverlay(startOverlay) {
     }
 }
 
+function resetGameSelectionState() {
+    blocks = [];
+    selected = null;
+}
+
 function returnToTitle() {
     playWebAudio("select");
 
@@ -728,8 +733,7 @@ function returnToTitle() {
     
             hideGameOverlays();
     
-            blocks = [];
-            selected = null;
+            resetGameSelectionState();
             
             resetStageToTitle(stage);
             
