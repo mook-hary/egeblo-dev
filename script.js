@@ -166,13 +166,19 @@ let isAudioLoading = false;
 function initAudioSystem() {
     if (audioInitialized) return;
 
-    audioInitialized = true;
+    try {
+        initWebAudioContext();
 
-    initWebAudioContext();
+        loadGameSounds();
 
-    loadGameSounds();
+        setupBgmAudioElements();
 
-    setupBgmAudioElements();
+        audioInitialized = true;
+
+    } catch (e) {
+        debugLog("initAudioSystem error", e);
+        audioInitialized = false;
+    }
 }
 
 function initWebAudioContext() {
