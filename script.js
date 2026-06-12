@@ -999,22 +999,27 @@ function hideClearOverlay() {
     hideOverlay("clear-overlay");
 }
 
+function handleResetButtonClick() {
+    initAudioSystem();
+    playWebAudio("select");
+
+    initGame();
+
+    requestAnimationFrame(() => {
+        playRandomBGM();
+    });
+}
+
 function setupGameButtons() {
-    document.getElementById("to-title-btn").addEventListener(
-        "click",
+    addClickListener(
+        "to-title-btn",
         returnToTitle
     );
 
-    document.getElementById("reset-btn").addEventListener("click", () => {
-        initAudioSystem();
-        playWebAudio("select");
-
-        initGame();
-
-        requestAnimationFrame(() => {
-            playRandomBGM();
-        });
-    });
+    addClickListener(
+        "reset-btn",
+        handleResetButtonClick
+    );
 }
 
 function setupRotationButtons() {
