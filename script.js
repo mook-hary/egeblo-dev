@@ -1277,24 +1277,39 @@ function setupPauseButtons() {
 }
 
 function selectDifficulty(size) {
+    prepareDifficultySelection();
+
+    SIZE = size;
+
+    updateDifficultyButtons(size);
+
+    loadHighScore();
+}
+
+function prepareDifficultySelection() {
     initAudioSystem();
 
     debugLog(
         "select=" + !!soundBank.select +
-        " / audio=" + (audioCtx ? audioCtx.state : "none")
+        " / audio=" +
+        (audioCtx ? audioCtx.state : "none")
     );
 
     playWebAudio("select");
+}
 
-    SIZE = size;
-
+function updateDifficultyButtons(size) {
     document.getElementById("diff-easy-btn")
-        .classList.toggle("active", size === 5);
+        .classList.toggle(
+            "active",
+            size === 5
+        );
 
     document.getElementById("diff-normal-btn")
-        .classList.toggle("active", size === 6);
-
-    loadHighScore();
+        .classList.toggle(
+            "active",
+            size === 6
+        );
 }
 
 async function enterMobileFullscreenIfNeeded() {
