@@ -1447,15 +1447,28 @@ function updateTimerUI() {
 }
 
 function isSelectable(b) {
-    let hasLeft = false, hasRight = false, hasFront = false, hasBack = false;
-    const findBlock = (x, y, z) => blocks.find(o => o.active && o.x === x && o.y === y && o.z === z);
-    if (findBlock(b.x - 1, b.y, b.z)) hasLeft = true;
-    if (findBlock(b.x + 1, b.y, b.z)) hasRight = true;
-    if (findBlock(b.x, b.y - 1, b.z)) hasFront = true;
-    if (findBlock(b.x, b.y + 1, b.z)) hasBack = true;
+    const hasLeft = hasActiveBlockAt(b.x - 1, b.y, b.z);
+    const hasRight = hasActiveBlockAt(b.x + 1, b.y, b.z);
+    const hasFront = hasActiveBlockAt(b.x, b.y - 1, b.z);
+    const hasBack = hasActiveBlockAt(b.x, b.y + 1, b.z);
+
     let openSides = 0;
-    if (!hasLeft) openSides++; if (!hasRight) openSides++; if (!hasFront) openSides++; if (!hasBack) openSides++;
-    return (openSides >= 2);
+
+    if (!hasLeft) openSides++;
+    if (!hasRight) openSides++;
+    if (!hasFront) openSides++;
+    if (!hasBack) openSides++;
+
+    return openSides >= 2;
+}
+
+function hasActiveBlockAt(x, y, z) {
+    return blocks.some(o =>
+        o.active &&
+        o.x === x &&
+        o.y === y &&
+        o.z === z
+    );
 }
 
 function isExposed(b) {
