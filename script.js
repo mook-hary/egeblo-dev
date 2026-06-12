@@ -836,61 +836,69 @@ function setupSoundButtons() {
 }
 
 function setupTimeupButtons() {
-
     const timeupRetryBtn =
         document.getElementById("timeup-retry-btn");
 
     if (timeupRetryBtn) {
-        timeupRetryBtn.addEventListener("click", () => {
-            playWebAudio("select");
-
-            fadeToBlack(() => {
-                const overlay =
-                    document.getElementById("timeup-overlay");
-
-                if (overlay) {
-                    overlay.style.opacity = "0";
-                    overlay.style.display = "none";
-                }
-
-                rotX = 0;
-                rotZ = 0;
-
-                initGame();
-
-                const stage = document.getElementById("stage");
-
-                if (stage) {
-                    stage.style.transition = "none";
-                    stage.style.transform =
-                        "rotateX(0deg) rotateZ(0deg)";
-                    stage.offsetWidth;
-                }
-
-                fadeFromBlack();
-
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        if (stage) {
-                            rotX = 60;
-                            rotZ = -45;
-                            stage.style.transition =
-                                "transform 0.5s ease-out";
-                            stage.style.transform =
-                                `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
-                        }
-                    });
-                });
-            });
-        });
+        timeupRetryBtn.addEventListener(
+            "click",
+            handleTimeupRetry
+        );
     }
 
     const timeupTitleBtn =
         document.getElementById("timeup-title-btn");
 
     if (timeupTitleBtn) {
-        timeupTitleBtn.addEventListener("click", returnToTitle);
+        timeupTitleBtn.addEventListener(
+            "click",
+            returnToTitle
+        );
     }
+}
+
+function handleTimeupRetry() {
+    playWebAudio("select");
+
+    fadeToBlack(() => {
+        hideTimeupOverlay();
+        resetStageRotationState();
+
+        initGame();
+
+        const stage = document.getElementById("stage");
+
+        prepareStageIntroPosition(stage);
+
+        fadeFromBlack();
+
+        animateStageToDefaultAngle(stage);
+    });
+}
+
+function hideTimeupOverlay() {
+    const overlay =
+        document.getElementById("timeup-overlay");
+
+    if (!overlay) return;
+
+    overlay.style.opacity = "0";
+    overlay.style.display = "none";
+}
+
+function resetStageRotationState() {
+    rotX = 0;
+    rotZ = 0;
+}
+
+function prepareStageIntroPosition(stage) {
+    if (!stage) return;
+
+    stage.style.transition = "none";
+    stage.style.transform =
+        "rotateX(0deg) rotateZ(0deg)";
+
+    stage.offsetWidth;
 }
 
 function setupClearButtons() {
