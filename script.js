@@ -1705,25 +1705,48 @@ function selectFirstBlock(block, status) {
     status.style.color = "#ffeb3b";
 }
 
-function clearMatchedBlocks(firstBlock, secondBlock, status) {
-    firstBlock.active = false;
-    secondBlock.active = false;
-
-    firstBlock.element.style.display = "none";
-    secondBlock.element.style.display = "none";
+function clearMatchedBlocks(
+    firstBlock,
+    secondBlock,
+    status
+) {
+    deactivateMatchedBlocks(
+        firstBlock,
+        secondBlock
+    );
 
     selected = null;
 
-    updateScoreDisplay(currentScore + 700);
+    updateScoreDisplay(
+        currentScore + 700
+    );
 
-    status.innerText = "消去成功！(+700pt)";
-    status.style.color = "#4caf50";
+    showMatchSuccessMessage(status);
 
     playWebAudio("clear");
 
     revealExposedBlocks();
 
     updateCount();
+}
+
+function deactivateMatchedBlocks(
+    firstBlock,
+    secondBlock
+) {
+    firstBlock.active = false;
+    secondBlock.active = false;
+
+    firstBlock.element.style.display = "none";
+    secondBlock.element.style.display = "none";
+}
+
+function showMatchSuccessMessage(status) {
+    status.innerText =
+        "消去成功！(+700pt)";
+
+    status.style.color =
+        "#4caf50";
 }
 
 function revealExposedBlocks() {
