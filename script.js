@@ -363,40 +363,60 @@ function setupCubeVisibilityAndFaces(
     );
 }
 
+function createSingleBlock(
+    tile,
+    x,
+    y,
+    z,
+    dynamicCubeSize,
+    offset,
+    halfSize
+) {
+    const cube = createCubeElement(dynamicCubeSize);
+
+    updateCubePosition(
+        cube,
+        x,
+        y,
+        z,
+        offset,
+        dynamicCubeSize
+    );
+
+    const blockData = createBlockData(tile, cube, x, y, z);
+
+    setupCubeClick(cube, blockData);
+
+    setupCubeVisibilityAndFaces(
+        blockData,
+        x,
+        y,
+        z,
+        halfSize,
+        dynamicCubeSize
+    );
+
+    return blockData;
+}
+
 function createBlocks(pool, fragment, dynamicCubeSize, offset, halfSize) {
     let index = 0;
 
     for (let x = 0; x < SIZE; x++) {
         for (let y = 0; y < SIZE; y++) {
             for (let z = 0; z < SIZE; z++) {
-
                 const tile = pool[index++];
-                const cube = createCubeElement(dynamicCubeSize);
-
-                updateCubePosition(
-                    cube,
+                const blockData = createSingleBlock(
+                    tile,
                     x,
                     y,
                     z,
+                    dynamicCubeSize,
                     offset,
-                    dynamicCubeSize
+                    halfSize
                 );
 
-                const blockData =
-                    createBlockData(tile, cube, x, y, z);
-
-                setupCubeClick(cube, blockData);
-
-                setupCubeVisibilityAndFaces(
-                    blockData,
-                    x,
-                    y,
-                    z,
-                    halfSize,
-                    dynamicCubeSize
-                );
-
-                fragment.appendChild(cube);
+                fragment.appendChild(blockData.element);
                 blocks.push(blockData);
             }
         }
