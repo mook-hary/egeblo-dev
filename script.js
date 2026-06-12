@@ -399,6 +399,11 @@ function createSingleBlock(
     return blockData;
 }
 
+function registerBlock(blockData, fragment) {
+    fragment.appendChild(blockData.element);
+    blocks.push(blockData);
+}
+
 function createBlocks(pool, fragment, dynamicCubeSize, offset, halfSize) {
     let index = 0;
 
@@ -406,6 +411,7 @@ function createBlocks(pool, fragment, dynamicCubeSize, offset, halfSize) {
         for (let y = 0; y < SIZE; y++) {
             for (let z = 0; z < SIZE; z++) {
                 const tile = pool[index++];
+
                 const blockData = createSingleBlock(
                     tile,
                     x,
@@ -416,8 +422,7 @@ function createBlocks(pool, fragment, dynamicCubeSize, offset, halfSize) {
                     halfSize
                 );
 
-                fragment.appendChild(blockData.element);
-                blocks.push(blockData);
+                registerBlock(blockData, fragment);
             }
         }
     }
