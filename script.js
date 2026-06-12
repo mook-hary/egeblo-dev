@@ -164,40 +164,40 @@ async function loadSoundToBuffer(fileName) {
 let isAudioLoading = false;
 
 function initAudioSystem() {
-    if (audioInitialized) return;
+    if (isAudioLoading) return;
 
     try {
-        initWebAudioContext();
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-        loadGameSounds();
+        if (!audioCtx) {
+            audioCtx = new AudioContext();
+        }
 
-        setupBgmAudioElements();
+        isAudioLoading = true;
 
-        audioInitialized = true;
+        loadSoundToBuffer("select_1.mp3").then(buf => {
+            if (buf) soundBank.select = buf;
+        });
 
-    } catch (e) {
-        debugLog("initAudioSystem error", e);
-        audioInitialized = false;
+        loadSoundToBuffer("clear_1.mp3").then(buf => {
+            if (buf) soundBank.clear = buf;
+        });
+
+        loadSoundToBuffer("error_1.mp3").then(buf => {
+            if (buf) soundBank.error = buf;
+        });
+
+        loadSoundToBuffer("timeup_1.mp3").then(buf => {
+            if (buf) soundBank.timeup = buf;
+        });
+
+        loadSoundToBuffer("start_1.mp3").then(buf => {
+            if (buf) soundBank.start = buf;
+        });
+
+    } catch(e) {
+        console.log("Web Audio初期化失敗:", e);
     }
-}
-
-function initWebAudioContext() {
-    audioCtx =
-        new (window.AudioContext || window.webkitAudioContext)();
-}
-
-function loadGameSounds() {
-    loadSoundToBuffer("select");
-    loadSoundToBuffer("match");
-    loadSoundToBuffer("error");
-    loadSoundToBuffer("clear");
-    loadSoundToBuffer("countdown");
-}
-
-function setupBgmAudioElements() {
-    titleBgm = document.getElementById("title-bgm");
-    gameBgm = document.getElementById("game-bgm");
-    clearBgm = document.getElementById("clear-bgm");
 }
 
 function getDynamicSizes() {
