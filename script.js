@@ -979,20 +979,22 @@ function handleClearTest() {
 function handleClearRetry() {
     playWebAudio("select");
 
-    fadeToBlack(() => {
-        hideClearOverlay();
-        resetStageRotationState();
+    fadeToBlack(restartGameFromClear);
+}
 
-        initGame();
+function restartGameFromClear() {
+    hideClearOverlay();
+    resetStageRotationState();
 
-        const stage = document.getElementById("stage");
+    initGame();
 
-        prepareStageIntroPosition(stage);
+    const stage = document.getElementById("stage");
 
-        fadeFromBlack();
+    prepareStageIntroPosition(stage);
 
-        animateStageToDefaultAngle(stage);
-    });
+    fadeFromBlack();
+
+    animateStageToDefaultAngle(stage);
 }
 
 function hideClearOverlay() {
