@@ -133,6 +133,10 @@ function playCountdownFastBeep() {
         audioCtx.resume();
     }
 
+    playFastCountdownTone();
+}
+
+function playFastCountdownTone() {
     const now = audioCtx.currentTime + 0.01;
 
     for (let i = 0; i < 2; i++) {
@@ -145,7 +149,10 @@ function playCountdownFastBeep() {
         osc.frequency.setValueAtTime(1600, t);
 
         gain.gain.setValueAtTime(0.30, t);
-        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.1);
+        gain.gain.exponentialRampToValueAtTime(
+            0.001,
+            t + 0.1
+        );
 
         osc.connect(gain);
         gain.connect(audioCtx.destination);
