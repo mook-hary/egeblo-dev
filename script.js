@@ -720,6 +720,20 @@ function resetGameFlags() {
     isPaused = false;
 }
 
+function restoreTitleScreen(stage, startOverlay) {
+    resetGameFlags();
+
+    hideGameOverlays();
+
+    resetGameSelectionState();
+
+    resetStageToTitle(stage);
+
+    document.body.classList.remove("game-started");
+
+    showStartOverlay(startOverlay);
+}
+
 function returnToTitle() {
     playWebAudio("select");
 
@@ -733,17 +747,10 @@ function returnToTitle() {
         stopCurrentBGM();
 
         fadeToBlack(() => {
-            resetGameFlags();
-
-            hideGameOverlays();
-
-            resetGameSelectionState();
-
-            resetStageToTitle(stage);
-
-            document.body.classList.remove("game-started");
-
-            showStartOverlay(startOverlay);
+            restoreTitleScreen(
+                stage,
+                startOverlay
+            );
 
             fadeFromBlack();
         });
