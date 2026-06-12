@@ -98,6 +98,10 @@ function playCountdownBeep() {
         audioCtx.resume();
     }
 
+    playCountdownTone();
+}
+
+function playCountdownTone() {
     const now = audioCtx.currentTime + 0.01;
 
     const osc = audioCtx.createOscillator();
@@ -107,7 +111,10 @@ function playCountdownBeep() {
     osc.frequency.setValueAtTime(1200, now);
 
     gain.gain.setValueAtTime(0.35, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15);
+    gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        now + 0.15
+    );
 
     osc.connect(gain);
     gain.connect(audioCtx.destination);
