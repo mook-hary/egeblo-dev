@@ -690,6 +690,25 @@ function hideGameOverlays() {
     });
 }
 
+function resetStageToTitle(stage) {
+    rotX = 60;
+    rotZ = -45;
+
+    if (stage) {
+        stage.innerHTML = "";
+        stage.style.transition = "none";
+        stage.style.opacity = "1";
+        stage.style.transform = `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
+    }
+}
+
+function showStartOverlay(startOverlay) {
+    if (startOverlay) {
+        startOverlay.style.display = "flex";
+        startOverlay.style.opacity = "1";
+    }
+}
+
 function returnToTitle() {
     playWebAudio("select");
 
@@ -711,24 +730,13 @@ function returnToTitle() {
     
             blocks = [];
             selected = null;
-    
-            rotX = 60;
-            rotZ = -45;
-    
-            if (stage) {
-                stage.innerHTML = "";
-                stage.style.transition = "none";
-                stage.style.opacity = "1";
-                stage.style.transform = `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
-            }
-    
+            
+            resetStageToTitle(stage);
+            
             document.body.classList.remove("game-started");
-    
-            if (startOverlay) {
-                startOverlay.style.display = "flex";
-                startOverlay.style.opacity = "1";
-            }
-    
+            
+            showStartOverlay(startOverlay);
+            
             fadeFromBlack();
         });
     }, 200);
