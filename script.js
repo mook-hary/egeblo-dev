@@ -1017,18 +1017,6 @@ function setupGameButtons() {
     );
 }
 
-function setupRotationButtons() {
-    document.getElementById("rot-z-btn").addEventListener(
-        "click",
-        handleRotateZButtonClick
-    );
-
-    document.getElementById("rot-y-btn").addEventListener(
-        "click",
-        handleRotateYButtonClick
-    );
-}
-
 function handleRotateZButtonClick() {
     initAudioSystem();
 
