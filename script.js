@@ -635,43 +635,77 @@ function playStageIntroAnimation(stage) {
     const fromTransform = "rotateX(0deg) rotateZ(0deg)";
     const toTransform = "rotateX(60deg) rotateZ(-45deg)";
 
+    prepareStageIntroAnimation(
+        stage,
+        fromTransform
+    );
+
+    if (shouldUseStageAnimate(stage)) {
+        playStageIntroWithAnimate(
+            stage,
+            fromTransform,
+            toTransform
+        );
+    } else {
+        playStageIntroWithStyle(
+            stage,
+            toTransform
+        );
+    }
+}
+
+function prepareStageIntroAnimation(stage, fromTransform) {
     stage.style.transition = "none";
     stage.style.transform = fromTransform;
 
-    // Safari / iPhone Chrome 対策：レイアウト確定
     stage.offsetWidth;
+}
 
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+function shouldUseStageAnimate(stage) {
+    const isIOS =
+        /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    if (isIOS && stage.animate) {
-        const anim = stage.animate(
-            [
-                { transform: fromTransform },
-                { transform: toTransform }
-            ],
-            {
-                duration: 500,
-                easing: "ease-out",
-                fill: "forwards"
-            }
-        );
+    return isIOS && stage.animate;
+}
 
-        anim.onfinish = () => {
-            rotX = 60;
-            rotZ = -45;
-            stage.style.transition = "transform 0.5s ease-out";
-            stage.style.transform = toTransform;
-        };
-    } else {
+function playStageIntroWithAnimate(
+    stage,
+    fromTransform,
+    toTransform
+) {
+    const anim = stage.animate(
+        [
+            { transform: fromTransform },
+            { transform: toTransform }
+        ],
+        {
+            duration: 500,
+            easing: "ease-out",
+            fill: "forwards"
+        }
+    );
+
+    anim.onfinish = () => {
+        setStageDefaultAngle(stage, toTransform);
+    };
+}
+
+function playStageIntroWithStyle(stage, toTransform) {
+    requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                rotX = 60;
-                rotZ = -45;
-                stage.style.transition = "transform 0.5s ease-out";
-                stage.style.transform = toTransform;
-            });
+            setStageDefaultAngle(stage, toTransform);
         });
-    }
+    });
+}
+
+function setStageDefaultAngle(stage, toTransform) {
+    rotX = 60;
+    rotZ = -45;
+
+    stage.style.transition =
+        "transform 0.5s ease-out";
+
+    stage.style.transform = toTransform;
 }
 
 function updateSoundButtonUI() {
