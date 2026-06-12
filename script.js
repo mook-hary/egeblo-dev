@@ -964,6 +964,23 @@ function setupRotationButtons() {
     );
 }
 
+function setupClearButtons() {
+    addClickListener(
+        "clear-test-btn",
+        handleClearTest
+    );
+
+    addClickListener(
+        "clear-retry-btn",
+        handleClearRetry
+    );
+
+    addClickListener(
+        "clear-title-btn",
+        returnToTitle
+    );
+}
+
 function handleClearTest() {
     const timeBonus = timeLeft * 2000;
     const clearBonus = SIZE === 5 ? 43750 : 75600;
