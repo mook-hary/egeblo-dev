@@ -261,13 +261,25 @@ function loadHighScore() {
 
 function updateScoreDisplay(scoreValue) {
     currentScore = scoreValue;
-    document.getElementById("score").innerText = currentScore;
-    
-    if (currentScore > highScore) {
-        highScore = currentScore;
-        document.getElementById("best-score").innerText = highScore;
-        localStorage.setItem(`egebro_highscore_sz${SIZE}`, highScore); 
-    }
+
+    document.getElementById("score").innerText =
+        currentScore;
+
+    updateHighScoreIfNeeded();
+}
+
+function updateHighScoreIfNeeded() {
+    if (currentScore <= highScore) return;
+
+    highScore = currentScore;
+
+    document.getElementById("best-score").innerText =
+        highScore;
+
+    localStorage.setItem(
+        `egebro_highscore_sz${SIZE}`,
+        highScore
+    );
 }
 
 function createTilePool(totalRequired) {
