@@ -543,37 +543,80 @@ function initGame() {
 }
     
 function createFacesForCube(b, halfSize, dynamicCubeSize) {
-        if (b.hasFaces) return; 
-        
-        const faces = [
-            { name: 'top', style: `transform: translateZ(${halfSize}px);` },
-            { name: 'bottom', style: `transform: rotateX(180deg) translateZ(${halfSize}px);` },
-            { name: 'front', style: `transform: rotateX(-90deg) translateZ(${halfSize}px);` },
-            { name: 'back', style: `transform: rotateX(90deg) translateZ(${halfSize}px);` },
-            { name: 'right', style: `transform: rotateY(90deg) translateZ(${halfSize}px);` },
-            { name: 'left', style: `transform: rotateY(-90deg) translateZ(${halfSize}px);` }
-        ];
-    
-        faces.forEach(f => {
-            const face = document.createElement("div");
-            face.className = `face ${f.name}`;
-            face.style.cssText = f.style;
-            
-            face.style.width = dynamicCubeSize + "px";
-            face.style.height = dynamicCubeSize + "px";
-            
-            face.style.backgroundColor = b.color;
-            face.innerText = b.txt;
-            
-            const windowIsPC = window.innerWidth >= 960;
-            face.style.fontSize = windowIsPC ? (SIZE === 5 ? "26px" : "22px") : (SIZE === 5 ? "22px" : "18px");
-            
-            if (b.txt.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]/) || b.txt.length > 2 || b.txt.charCodeAt(0) > 255) {
-                face.style.fontSize = windowIsPC ? "16px" : "14px"; 
-            }
-            b.element.appendChild(face);
-        });
-        b.hasFaces = true;
+    if (b.hasFaces) return;
+
+    const faces = createFaceDefinitions(halfSize);
+
+    faces.forEach(faceData => {
+        const face = createCubeFaceElement(
+            faceData,
+            b,
+            dynamicCubeSize
+        );
+
+        b.element.appendChild(face);
+    });
+
+    b.hasFaces = true;
+}
+
+function createFaceDefinitions(halfSize) {
+    return [
+        {
+            name: "top",
+            style: `transform: translateZ(${halfSize}px);`
+        },
+        {
+            name: "bottom",
+            style: `transform: rotateX(180deg) translateZ(${halfSize}px);`
+        },
+        {
+            name: "front",
+            style: `transform: rotateX(-90deg) translateZ(${halfSize}px);`
+        },
+        {
+            name: "back",
+            style: `transform: rotateX(90deg) translateZ(${halfSize}px);`
+        },
+        {
+            name: "right",
+            style: `transform: rotateY(90deg) translateZ(${halfSize}px);`
+        },
+        {
+            name: "left",
+            style: `transform: rotateY(-90deg) translateZ(${halfSize}px);`
+        }
+    ];
+}
+
+function createCubeFaceElement(faceData, blockData, dynamicCubeSize) {
+    const face = document.createElement("div");
+
+    face.className = `face ${faceData.name}`;
+    face.style.cssText = faceData.style;
+
+    face.style.width = dynamicCubeSize + "px";
+    face.style.height = dynamicCubeSize + "px";
+
+    face.style.backgroundColor = blockData.color;
+    face.innerText = blockData.txt;
+
+    const windowIsPC = window.innerWidth >= 960;
+
+    face.style.fontSize =
+        windowIsPC
+            ? (SIZE === 5 ? "26px" : "22px")
+            : (SIZE === 5 ? "22px" : "18px");
+
+    if (
+        blockData.txt.match(/[\uD800-\uDBFF][\uDC00-\uDFFF]/) ||
+        blockData.txt.length > 2 ||
+        blockData.txt.charCodeAt(0) > 255
+    ) {
+        face.style.fontSize = windowIsPC ? "16px" : "14px";
+    }
+
+    return face;
 }
 
 function updateCubePosition(cube, x, y, z, offset, dynamicCubeSize) {
