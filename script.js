@@ -892,22 +892,26 @@ function setupTimeupButtons() {
     }
 }
 
+function restartGame() {
+    resetStageRotationState();
+
+    initGame();
+
+    const stage = document.getElementById("stage");
+
+    prepareStageIntroPosition(stage);
+
+    fadeFromBlack();
+
+    animateStageToDefaultAngle(stage);
+}
+
 function handleTimeupRetry() {
     playWebAudio("select");
 
     fadeToBlack(() => {
         hideTimeupOverlay();
-        resetStageRotationState();
-
-        initGame();
-
-        const stage = document.getElementById("stage");
-
-        prepareStageIntroPosition(stage);
-
-        fadeFromBlack();
-
-        animateStageToDefaultAngle(stage);
+        restartGame();
     });
 }
 
@@ -984,17 +988,7 @@ function handleClearRetry() {
 
 function restartGameFromClear() {
     hideClearOverlay();
-    resetStageRotationState();
-
-    initGame();
-
-    const stage = document.getElementById("stage");
-
-    prepareStageIntroPosition(stage);
-
-    fadeFromBlack();
-
-    animateStageToDefaultAngle(stage);
+    restartGame();
 }
 
 function hideClearOverlay() {
