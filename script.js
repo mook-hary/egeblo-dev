@@ -224,16 +224,29 @@ function loadInitialSoundBuffers() {
 }
 
 function getDynamicSizes() {
+    const dynamicCubeSize = getCubeSizeByDevice();
+
+    const offset =
+        (SIZE - 1) * dynamicCubeSize / 2;
+
+    const halfSize =
+        dynamicCubeSize / 2;
+
+    return {
+        dynamicCubeSize,
+        offset,
+        halfSize
+    };
+}
+
+function getCubeSizeByDevice() {
     const isPC = window.innerWidth >= 960;
-    let dynamicCubeSize = 35;
+
     if (SIZE === 5) {
-        dynamicCubeSize = isPC ? 48 : 40;
-    } else {
-        dynamicCubeSize = isPC ? 40 : 35;
+        return isPC ? 48 : 40;
     }
-    const offset = (SIZE - 1) * dynamicCubeSize / 2;
-    const halfSize = dynamicCubeSize / 2;
-    return { dynamicCubeSize, offset, halfSize };
+
+    return isPC ? 40 : 35;
 }
 
 function loadHighScore() {
