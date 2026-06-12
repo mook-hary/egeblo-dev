@@ -1262,29 +1262,55 @@ function selectDifficulty(size) {
 }
 
 async function enterMobileFullscreenIfNeeded() {
+    if (!shouldEnterMobileFullscreen()) {
+        return;
+    }
+
+    await requestFullscreenIfAvailable();
+    await lockLandscapeOrientationIfAvailable();
+}
+
+function shouldEnterMobileFullscreen() {
     const isIOS =
-        /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        /iPhone|iPad|iPod/i.test(
+            navigator.userAgent
+        );
 
-    const isMobileSize = window.innerWidth < 960;
+    const isMobileSize =
+        window.innerWidth < 960;
 
-    if (isIOS || !isMobileSize) return;
+    return !isIOS && isMobileSize;
+}
 
+async function requestFullscreenIfAvailable() {
     const docEl = document.documentElement;
 
     try {
         if (docEl.requestFullscreen) {
             await docEl.requestFullscreen();
-        } else if (docEl.webkitRequestFullscreen) {
+
+        } else if (
+            docEl.webkitRequestFullscreen
+        ) {
             await docEl.webkitRequestFullscreen();
         }
+
     } catch (err) {
         console.log("フルスクリーン拒否");
     }
+}
 
+async function lockLandscapeOrientationIfAvailable() {
     try {
-        if (screen.orientation && screen.orientation.lock) {
-            await screen.orientation.lock("landscape");
+        if (
+            screen.orientation &&
+            screen.orientation.lock
+        ) {
+            await screen.orientation.lock(
+                "landscape"
+            );
         }
+
     } catch (err) {
         console.log("向きロック拒否");
     }
