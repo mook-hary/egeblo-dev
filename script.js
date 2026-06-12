@@ -936,36 +936,29 @@ function prepareStageIntroPosition(stage) {
     stage.offsetWidth;
 }
 
+function addClickListener(id, handler) {
+    const element = document.getElementById(id);
+
+    if (element) {
+        element.addEventListener("click", handler);
+    }
+}
+
 function setupClearButtons() {
-    const clearTestBtn =
-        document.getElementById("clear-test-btn");
+    addClickListener(
+        "clear-test-btn",
+        handleClearTest
+    );
 
-    if (clearTestBtn) {
-        clearTestBtn.addEventListener(
-            "click",
-            handleClearTest
-        );
-    }
+    addClickListener(
+        "clear-retry-btn",
+        handleClearRetry
+    );
 
-    const clearRetryBtn =
-        document.getElementById("clear-retry-btn");
-
-    if (clearRetryBtn) {
-        clearRetryBtn.addEventListener(
-            "click",
-            handleClearRetry
-        );
-    }
-
-    const clearTitleBtn =
-        document.getElementById("clear-title-btn");
-
-    if (clearTitleBtn) {
-        clearTitleBtn.addEventListener(
-            "click",
-            returnToTitle
-        );
-    }
+    addClickListener(
+        "clear-title-btn",
+        returnToTitle
+    );
 }
 
 function handleClearTest() {
