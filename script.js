@@ -663,6 +663,33 @@ function fadeFromBlack() {
     });
 }
 
+function stopCurrentBGM() {
+    try {
+        if (currentActiveBGM) {
+            currentActiveBGM.pause();
+            currentActiveBGM.currentTime = 0;
+            currentActiveBGM = null;
+        }
+    } catch(e) {}
+}
+
+function hideGameOverlays() {
+    const overlays = [
+        "timeup-overlay",
+        "clear-overlay",
+        "pause-overlay"
+    ];
+
+    overlays.forEach(id => {
+        const overlay = document.getElementById(id);
+
+        if (overlay) {
+            overlay.style.opacity = "0";
+            overlay.style.display = "none";
+        }
+    });
+}
+
 function returnToTitle() {
     playWebAudio("select");
 
@@ -673,54 +700,35 @@ function returnToTitle() {
     const stage = document.getElementById("stage");
 
     setTimeout(() => {
-        try {
-            if (currentActiveBGM) {
-                currentActiveBGM.pause();
-                currentActiveBGM.currentTime = 0;
-                currentActiveBGM = null;
-            }
-        } catch(e) {}
-
+        stopCurrentBGM();
+    
         fadeToBlack(() => {
             clearInterval(timerId);
             isGameOver = true;
             isPaused = false;
-
-            if (overlay) {
-                overlay.style.opacity = "0";
-                overlay.style.display = "none";
-            }
-
-            if (clearOverlay) {
-                clearOverlay.style.opacity = "0";
-                clearOverlay.style.display = "none";
-            }
-
-            if (pauseOverlay) {
-                pauseOverlay.style.opacity = "0";
-                pauseOverlay.style.display = "none";
-            }
-
+    
+            hideGameOverlays();
+    
             blocks = [];
             selected = null;
-
+    
             rotX = 60;
             rotZ = -45;
-
+    
             if (stage) {
                 stage.innerHTML = "";
                 stage.style.transition = "none";
                 stage.style.opacity = "1";
                 stage.style.transform = `rotateX(${rotX}deg) rotateZ(${rotZ}deg)`;
             }
-
+    
             document.body.classList.remove("game-started");
-
+    
             if (startOverlay) {
                 startOverlay.style.display = "flex";
                 startOverlay.style.opacity = "1";
             }
-
+    
             fadeFromBlack();
         });
     }, 200);
