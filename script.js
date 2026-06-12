@@ -374,14 +374,7 @@ function createSingleBlock(
 ) {
     const cube = createCubeElement(dynamicCubeSize);
 
-    updateCubePosition(
-        cube,
-        x,
-        y,
-        z,
-        offset,
-        dynamicCubeSize
-    );
+    updateCubePosition(cube, x, y, z, offset, dynamicCubeSize);
 
     const blockData = createBlockData(tile, cube, x, y, z);
 
