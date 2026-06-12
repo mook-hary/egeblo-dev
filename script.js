@@ -918,57 +918,77 @@ function setupShareButtons() {
 }
 
 function setupSoundButtons() {
-
     const soundBtn =
         document.getElementById("sound-toggle-btn");
 
-    if (soundBtn) {
-        soundBtn.addEventListener("click", async () => {
+    if (!soundBtn) return;
 
-            isSoundEnabled = !isSoundEnabled;
+    soundBtn.addEventListener(
+        "click",
+        handleSoundButtonClick
+    );
+}
 
-            localStorage.setItem(
-                "cube_sound_enabled",
-                isSoundEnabled
-            );
+async function handleSoundButtonClick() {
+    toggleSoundEnabled();
 
-            if (!isSoundEnabled) {
-
-                stopAllSounds();
-
-            } else {
-
-                initAudioSystem();
-
-                try {
-
-                    if (
-                        audioCtx &&
-                        audioCtx.state === "suspended"
-                    ) {
-                        await audioCtx.resume();
-                    }
-
-                    if (
-                        document.body.classList.contains("game-started") &&
-                        !isPaused &&
-                        !isGameOver
-                    ) {
-                        if (currentActiveBGM) {
-                            await currentActiveBGM.play();
-                        } else {
-                            playRandomBGM();
-                        }
-                    }
-
-                } catch (e) {
-                    console.log("BGM再開失敗:", e);
-                }
-            }
-
-            updateSoundButtonUI();
-        });
+    if (!isSoundEnabled) {
+        stopAllSounds();
+        updateSoundButtonUI();
+        return;
     }
+
+    await resumeSoundSystem();
+
+    updateSoundButtonUI();
+}
+
+function toggleSoundEnabled() {
+    isSoundEnabled = !isSoundEnabled;
+
+    localStorage.setItem(
+        "cube_sound_enabled",
+        isSoundEnabled
+    );
+}
+
+async function resumeSoundSystem() {
+    initAudioSystem();
+
+    try {
+        await resumeAudioContextIfNeeded();
+        await resumeBGMIfGameIsRunning();
+
+    } catch (e) {
+        console.log("BGM再開失敗:", e);
+    }
+}
+
+async function resumeAudioContextIfNeeded() {
+    if (
+        audioCtx &&
+        audioCtx.state === "suspended"
+    ) {
+        await audioCtx.resume();
+    }
+}
+
+async function resumeBGMIfGameIsRunning() {
+    if (!isGameRunning()) return;
+
+    if (currentActiveBGM) {
+        await currentActiveBGM.play();
+    } else {
+        playRandomBGM();
+    }
+}
+
+function isGameRunning() {
+    return (
+        document.body.classList.contains("game-started") &&
+        !isPaused &&
+        !isGameOver
+    );
 }
 
 function setupTimeupButtons() {
