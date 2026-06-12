@@ -1414,7 +1414,6 @@ function countdown() {
     timeLeft--;
     updateTimerUI();
 
-    // 🔔 カウントダウン音
     if (timeLeft <= 5 && timeLeft >= 3) {
         playCountdownBeep();
     }
@@ -1424,19 +1423,26 @@ function countdown() {
     }
 
     if (timeLeft <= 0) {
-        clearInterval(timerId);
-        isGameOver = true;
-
-        document.getElementById("status").innerText = "⏱️ タイムアップ！";
-        document.getElementById("status").style.color = "#ff4444";
-
-        // BGMは止めない
-        playWebAudio("timeup");
-
-        fadeToBlack(() => {
-            showTimeUpOverlay();
-        });
+        handleTimeUp();
     }
+}
+
+function handleTimeUp() {
+    clearInterval(timerId);
+
+    isGameOver = true;
+
+    document.getElementById("status").innerText =
+        "⏱️ タイムアップ！";
+
+    document.getElementById("status").style.color =
+        "#ff4444";
+
+    playWebAudio("timeup");
+
+    fadeToBlack(() => {
+        showTimeUpOverlay();
+    });
 }
 
 function updateTimerUI() {
