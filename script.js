@@ -714,6 +714,12 @@ function resetGameSelectionState() {
     selected = null;
 }
 
+function resetGameFlags() {
+    clearInterval(timerId);
+    isGameOver = true;
+    isPaused = false;
+}
+
 function returnToTitle() {
     playWebAudio("select");
 
@@ -727,20 +733,18 @@ function returnToTitle() {
         stopCurrentBGM();
     
         fadeToBlack(() => {
-            clearInterval(timerId);
-            isGameOver = true;
-            isPaused = false;
-    
+            resetGameFlags();
+        
             hideGameOverlays();
-    
+        
             resetGameSelectionState();
-            
+        
             resetStageToTitle(stage);
-            
+        
             document.body.classList.remove("game-started");
-            
+        
             showStartOverlay(startOverlay);
-            
+        
             fadeFromBlack();
         });
     }, 200);
