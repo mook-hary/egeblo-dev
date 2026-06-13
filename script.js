@@ -303,20 +303,30 @@ function updateHighScoreIfNeeded() {
 function createTilePool(totalRequired) {
     const pool = [];
 
-    for (let i = 0; i < totalRequired; i++) {
-        const t = tileTypes[i % tileTypes.length];
-        pool.push({ ...t });
+    const pairCount = totalRequired / 2;
+
+    for (let i = 0; i < pairCount; i++) {
+        const tile =
+            tileTypes[i % tileTypes.length];
+
+        pool.push({ ...tile });
+        pool.push({ ...tile });
     }
 
-    // Fisher-Yates shuffle
+    shuffleTilePool(pool);
+
+    return pool;
+}
+
+function shuffleTilePool(pool) {
     for (let i = pool.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+        const j =
+            Math.floor(Math.random() * (i + 1));
+
         const temp = pool[i];
         pool[i] = pool[j];
         pool[j] = temp;
     }
-
-    return pool;
 }
 
 function resetGameState() {
