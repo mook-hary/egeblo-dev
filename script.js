@@ -805,29 +805,41 @@ function setClearOverlayValues(
         clearBonus
     );
 
-    setElementText(
-        "clear-rank",
-        isTutorialMode
-            ? "次はNORMALに挑戦！"
-            : "★★★"
-    );
+    const rankEl =
+        document.getElementById("clear-rank");
+
+    const bonusArea =
+        document.getElementById(
+            "clear-bonus-area"
+        );
+
+    if (isTutorialMode) {
+
+        if (bonusArea) {
+            bonusArea.style.display = "none";
+        }
+
+        if (rankEl) {
+            rankEl.style.display = "block";
+            rankEl.innerText =
+                "次はNORMALに挑戦！";
+        }
+
+    } else {
+
+        if (bonusArea) {
+            bonusArea.style.display = "block";
+        }
+
+        if (rankEl) {
+            rankEl.style.display = "none";
+        }
+    }
 
     setElementText(
         "clear-new-record",
         ""
     );
-
-    const bonusArea =
-    document.getElementById(
-        "clear-bonus-area"
-    );
-
-    if (bonusArea) {
-        bonusArea.style.display =
-            isTutorialMode
-                ? "none"
-                : "block";
-    }
 }
 
 function showTimeUpOverlay() {
