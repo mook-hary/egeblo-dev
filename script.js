@@ -977,10 +977,6 @@ function restoreTitleScreen(stage, startOverlay) {
 function resetTutorialModeForTitle() {
     isTutorialMode = false;
 
-    SIZE = selectedDifficulty;
-
-    updateDifficultyButtons(SIZE);
-
     prepareTimerForSelectedMode();
 
     loadHighScore();
@@ -1635,7 +1631,10 @@ async function startFromTitle() {
 }
 
 async function startTutorialFromTitle() {
-    selectDifficulty(4);
+    SIZE = 4;
+    isTutorialMode = true;
+
+    prepareTimerForSelectedMode();
 
     await startFromTitle();
 }
