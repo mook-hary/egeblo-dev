@@ -1888,15 +1888,45 @@ function handleGameClear() {
     });
 }
 
-document.addEventListener("visibilitychange", () => {
+document.addEventListener(
+    "visibilitychange",
+    handleVisibilityChange
+);
+
+function handleVisibilityChange() {
     if (document.hidden) {
-        try { if(currentActiveBGM) currentActiveBGM.pause(); } catch(e){}
+        pauseBGMForHiddenPage();
     } else {
-        if (document.body.classList.contains("game-started") && !isPaused && !isGameOver) {
-            try { if(currentActiveBGM) currentActiveBGM.play().catch(e => console.log(e)); } catch(e){}
-        }
+        resumeBGMForVisiblePage();
     }
-});
+}
+
+function pauseBGMForHiddenPage() {
+    try {
+        if (currentActiveBGM) {
+            currentActiveBGM.pause();
+        }
+    } catch (e) {}
+}
+
+function resumeBGMForVisiblePage() {
+    if (
+        !document.body.classList.contains(
+            "game-started"
+        ) ||
+        isPaused ||
+        isGameOver
+    ) {
+        return;
+    }
+
+    try {
+        if (currentActiveBGM) {
+            currentActiveBGM.play()
+                .catch(e => console.log(e));
+        }
+    } catch (e) {}
+}
 
 initAudioSystem();
 
