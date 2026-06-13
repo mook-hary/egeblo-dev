@@ -1,4 +1,4 @@
-let SIZE = 6; 
+let SIZE = 4; 
 const tileTypes = [
     { txt: "①", color: "#e63946" }, { txt: "②", color: "#3a86ff" }, { txt: "③", color: "#8338ec" },
     { txt: "④", color: "#ff006e" }, { txt: "⑤", color: "#fb5607" }, { txt: "⑥", color: "#ffbe0b" },
@@ -254,6 +254,10 @@ function getDynamicSizes() {
 
 function getCubeSizeByDevice() {
     const isPC = window.innerWidth >= 960;
+
+    if (SIZE === 4) {
+        return isPC ? 56 : 46;
+    }
 
     if (SIZE === 5) {
         return isPC ? 48 : 40;
