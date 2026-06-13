@@ -352,6 +352,12 @@ function resetGameUI() {
 }
 
 function startGameTimer() {
+    if (isTutorialMode) {
+        timeLeft = 999;
+        updateTimerUI();
+        return;
+    }
+
     timeLeft = 120;
     updateTimerUI();
 
@@ -1319,8 +1325,6 @@ function selectDifficulty(size) {
     SIZE = size;
 
     isTutorialMode = (size === 4);
-
-    console.log(isTutorialMode);
 
     updateDifficultyButtons(size);
 
