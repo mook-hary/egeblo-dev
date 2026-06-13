@@ -1335,6 +1335,12 @@ function prepareDifficultySelection() {
 }
 
 function updateDifficultyButtons(size) {
+    document.getElementById("diff-tutorial-btn")
+        .classList.toggle(
+            "active",
+            size === 4
+        );
+
     document.getElementById("diff-easy-btn")
         .classList.toggle(
             "active",
@@ -1490,6 +1496,11 @@ async function startFromTitle() {
 }
 
 function setupDifficultyButtons() {
+    addClickListener(
+        "diff-tutorial-btn",
+        () => selectDifficulty(4)
+    );
+
     addClickListener(
         "diff-easy-btn",
         () => selectDifficulty(5)
