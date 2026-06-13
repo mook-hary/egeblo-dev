@@ -341,7 +341,7 @@ function hidePauseOverlay() {
     }
 }
 
-ffunction resetGameUI() {
+function resetGameUI() {
     updateScoreDisplay(0);
     loadHighScore();
 
