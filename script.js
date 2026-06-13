@@ -1564,31 +1564,40 @@ function resumeGame(pauseOverlay) {
 
 /*gpt提案、左右回転の改善*/
 function triggerResizeAndRefresh() {
+    const sizes = getDynamicSizes();
 
-    const { dynamicCubeSize, offset } = getDynamicSizes();
+    const visibleBlocks = getVisibleBlocks();
 
-    const visibleBlocks = blocks.filter(b =>
-        b.active &&
-        b.element.style.display !== "none"
+    rotateBlockCoordinatesZ();
+
+    updateVisibleBlockPositionsNextFrame(
+        visibleBlocks,
+        sizes
     );
+}
 
-    // まず論理座標だけ更新
-    blocks.forEach(b => {
-        const oldX = b.x;
-        b.x = b.y;
-        b.y = (SIZE - 1) - oldX;
+function rotateBlockCoordinatesZ() {
+    blocks.forEach(block => {
+        const oldX = block.x;
+
+        block.x = block.y;
+        block.y = (SIZE - 1) - oldX;
     });
+}
 
-    // DOM更新は次フレームに回す
+function updateVisibleBlockPositionsNextFrame(
+    visibleBlocks,
+    sizes
+) {
     requestAnimationFrame(() => {
-        visibleBlocks.forEach(b => {
+        visibleBlocks.forEach(block => {
             updateCubePosition(
-                b.element,
-                b.x,
-                b.y,
-                b.z,
-                offset,
-                dynamicCubeSize
+                block.element,
+                block.x,
+                block.y,
+                block.z,
+                sizes.offset,
+                sizes.dynamicCubeSize
             );
         });
     });
