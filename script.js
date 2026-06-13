@@ -1472,21 +1472,21 @@ function updateDifficultyButtons(size) {
         "diff-tutorial-btn"
     ).classList.toggle(
         "active",
-        size === 4
+        size === DIFFICULTY.TUTORIAL
     );
 
     document.getElementById(
         "diff-normal-btn"
     ).classList.toggle(
         "active",
-        size === 6
+        size === DIFFICULTY.NORMAL
     );
 
     document.getElementById(
         "diff-hard-btn"
     ).classList.toggle(
         "active",
-        size === 8
+        size === DIFFICULTY.HARD
     );
 }
 
