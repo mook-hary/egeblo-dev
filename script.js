@@ -1282,17 +1282,15 @@ function handlePauseButtonClick() {
 }
 
 function setupPauseButtons() {
-    document.getElementById("pause-btn")
-        .addEventListener(
-            "click",
-            handlePauseButtonClick
-        );
+    addClickListener(
+        "pause-btn",
+        handlePauseButtonClick
+    );
 
-    document.getElementById("resume-btn")
-        .addEventListener(
-            "click",
-            handlePauseButtonClick
-        );
+    addClickListener(
+        "resume-btn",
+        handlePauseButtonClick
+    );
 }
 
 function selectDifficulty(size) {
@@ -1473,15 +1471,15 @@ async function startFromTitle() {
 }
 
 function setupDifficultyButtons() {
-    document.getElementById("diff-easy-btn")
-        .addEventListener("click", () => {
-            selectDifficulty(5);
-        });
+    addClickListener(
+        "diff-easy-btn",
+        () => selectDifficulty(5)
+    );
 
-    document.getElementById("diff-normal-btn")
-        .addEventListener("click", () => {
-            selectDifficulty(6);
-        });
+    addClickListener(
+        "diff-normal-btn",
+        () => selectDifficulty(6)
+    );
 }
 
 function setupStartButton() {
