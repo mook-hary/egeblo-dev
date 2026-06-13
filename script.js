@@ -1047,25 +1047,15 @@ function isGameRunning() {
 }
 
 function setupTimeupButtons() {
-    const timeupRetryBtn =
-        document.getElementById("timeup-retry-btn");
+    addClickListener(
+        "timeup-retry-btn",
+        handleTimeupRetry
+    );
 
-    if (timeupRetryBtn) {
-        timeupRetryBtn.addEventListener(
-            "click",
-            handleTimeupRetry
-        );
-    }
-
-    const timeupTitleBtn =
-        document.getElementById("timeup-title-btn");
-
-    if (timeupTitleBtn) {
-        timeupTitleBtn.addEventListener(
-            "click",
-            returnToTitle
-        );
-    }
+    addClickListener(
+        "timeup-title-btn",
+        returnToTitle
+    );
 }
 
 function restartGame() {
