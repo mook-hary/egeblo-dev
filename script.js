@@ -1327,9 +1327,21 @@ function selectDifficulty(size) {
 
     isTutorialMode = (size === 4);
 
+    prepareTimerForSelectedMode();
+
     updateDifficultyButtons(size);
 
     loadHighScore();
+}
+
+function prepareTimerForSelectedMode() {
+    if (isTutorialMode) {
+        timeLeft = 999;
+    } else {
+        timeLeft = 120;
+    }
+
+    updateTimerUI();
 }
 
 function prepareDifficultySelection() {
