@@ -371,8 +371,14 @@ button {
 
 .tutorial-btn {
     width: 220px;
-    margin: -8 auto 8px auto;
+    margin: -8px auto 12px auto;
+
     display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #2f2f2f;
+    color: #d0d0d0;
 }
 
 /* ========================================================
