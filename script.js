@@ -341,14 +341,20 @@ function hidePauseOverlay() {
     }
 }
 
-function resetGameUI() {
+ffunction resetGameUI() {
     updateScoreDisplay(0);
     loadHighScore();
 
-    document.getElementById("status").innerText =
-        "1つ目のブロックを選んでください";
+    if (isTutorialMode) {
+        document.getElementById("status").innerText =
+            "チュートリアル：同じ数字を2つ選んで消してみましょう";
+    } else {
+        document.getElementById("status").innerText =
+            "1つ目のブロックを選んでください";
+    }
 
-    document.getElementById("status").style.color = "#38bdf8";
+    document.getElementById("status").style.color =
+        "#38bdf8";
 }
 
 function startGameTimer() {
