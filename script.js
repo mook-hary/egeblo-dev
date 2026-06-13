@@ -20,6 +20,7 @@ let timeLeft = 120;
 let timerId = null;
 let isGameOver = false;
 let isPaused = false; 
+let isTutorialMode = false;
 
 // 🌟 初期のゲーム起動時は定位置でスタンバイ
 let rotX = 60;   
@@ -1316,6 +1317,10 @@ function selectDifficulty(size) {
     prepareDifficultySelection();
 
     SIZE = size;
+
+    isTutorialMode = (size === 4);
+
+    console.log(isTutorialMode);
 
     updateDifficultyButtons(size);
 
