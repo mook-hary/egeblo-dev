@@ -1288,11 +1288,11 @@ function calculateClearResult() {
 
     let clearBonus = 0;
 
-    if (SIZE === 4) {
+    if (SIZE === DIFFICULTY.NORMAL) {
         clearBonus = 20000;
-    } else if (SIZE === 6) {
+    } else if (SIZE === DIFFICULTY.HARD) {
         clearBonus = 75600;
-    } else if (SIZE === 8) {
+    } else if (SIZE === DIFFICULTY.EXTRA) {
         clearBonus = 200000;
     }
 
@@ -2166,6 +2166,8 @@ function initializeApplication() {
     initAudioSystem();
 
     loadHighScore();
+
+    updateDifficultyButtons(selectedDifficulty);
 
     updateSoundButtonUI();
 
