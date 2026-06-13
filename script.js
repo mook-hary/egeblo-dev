@@ -1681,10 +1681,28 @@ function handleTimeUp() {
 }
 
 function updateTimerUI() {
-    document.getElementById("timer-text").innerText = `残り時間 ${timeLeft} 秒`;
+    if (isTutorialMode) {
+        document.getElementById("timer-text").innerText =
+            "チュートリアル";
+
+        const bar = document.getElementById("timer-bar");
+
+        if (bar) {
+            bar.style.width = "100%";
+        }
+
+        return;
+    }
+
+    document.getElementById("timer-text").innerText =
+        `残り時間 ${timeLeft} 秒`;
+
     const percentage = (timeLeft / 120) * 100;
     const bar = document.getElementById("timer-bar");
-    if(bar) bar.style.width = `${percentage}%`;
+
+    if (bar) {
+        bar.style.width = `${percentage}%`;
+    }
 }
 
 function isSelectable(b) {
