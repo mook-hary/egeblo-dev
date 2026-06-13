@@ -1857,7 +1857,7 @@ function clearMatchedBlocks(
 
 function showTutorialFirstMatchMessage(status) {
     status.innerText =
-        "よくできました！同じ数字を2つ選ぶと消せます";
+        "よくできました！次は回転ボタンで視点を変えてみましょう";
 
     status.style.color =
         "#4caf50";
