@@ -21,6 +21,7 @@ let timerId = null;
 let isGameOver = false;
 let isPaused = false; 
 let isTutorialMode = false;
+let tutorialFirstMatchDone = false;
 
 // 🌟 初期のゲーム起動時は定位置でスタンバイ
 let rotX = 60;   
@@ -338,6 +339,7 @@ function resetGameState() {
     selected = null;
     isGameOver = false;
     isPaused = false;
+    tutorialFirstMatchDone = false;
 }
 
 function clearStage(stage) {
@@ -1842,7 +1844,10 @@ function clearMatchedBlocks(
         currentScore + 700
     );
 
-    if (isTutorialMode) {
+    if (
+        isTutorialMode &&
+        !tutorialFirstMatchDone
+    ) {
         showTutorialFirstMatchMessage(status);
     } else {
         showMatchSuccessMessage(status);
@@ -1856,11 +1861,12 @@ function clearMatchedBlocks(
 }
 
 function showTutorialFirstMatchMessage(status) {
+    tutorialFirstMatchDone = true;
+
     status.innerText =
         "よくできました！次は回転ボタンで視点を変えてみましょう";
 
-    status.style.color =
-        "#4caf50";
+    status.style.color = "#4caf50";
 }
 
 function deactivateMatchedBlocks(
