@@ -352,6 +352,8 @@ function resetGameUI() {
 }
 
 function startGameTimer() {
+    clearInterval(timerId);
+
     if (isTutorialMode) {
         timeLeft = 999;
         updateTimerUI();
@@ -361,7 +363,6 @@ function startGameTimer() {
     timeLeft = 120;
     updateTimerUI();
 
-    clearInterval(timerId);
     timerId = setInterval(countdown, 1000);
 }
 
