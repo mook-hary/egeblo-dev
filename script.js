@@ -1877,10 +1877,11 @@ function handleGameClear() {
 
     isGameOver = true;
 
-    const timeBonus = timeLeft * 2000;
-    const clearBonus = SIZE === 5 ? 43750 : 75600;
-    const finalScore =
-        currentScore + clearBonus + timeBonus;
+    const {
+        finalScore,
+        timeBonus,
+        clearBonus
+    } = calculateClearResult();
 
     updateScoreDisplay(finalScore);
 
