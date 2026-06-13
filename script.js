@@ -816,6 +816,18 @@ function setClearOverlayValues(
         "clear-new-record",
         ""
     );
+
+    const bonusArea =
+    document.getElementById(
+        "clear-bonus-area"
+    );
+
+    if (bonusArea) {
+        bonusArea.style.display =
+            isTutorialMode
+                ? "none"
+                : "block";
+    }
 }
 
 function showTimeUpOverlay() {
