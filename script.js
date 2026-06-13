@@ -283,6 +283,11 @@ function loadHighScore() {
 }
 
 function updateScoreDisplay(scoreValue) {
+
+    if (isTutorialMode) {
+        return;
+    }
+
     currentScore = scoreValue;
 
     document.getElementById("score").innerText =
@@ -358,8 +363,13 @@ function hidePauseOverlay() {
 }
 
 function resetGameUI() {
-    updateScoreDisplay(0);
-    loadHighScore();
+    if (isTutorialMode) {
+        setElementText("score", "-");
+        setElementText("best-score", "-");
+    } else {
+        updateScoreDisplay(0);
+        loadHighScore();
+    }
 
     if (isTutorialMode) {
         document.getElementById("status").innerText =
@@ -1223,6 +1233,15 @@ function handleClearTest() {
 }
 
 function calculateClearResult() {
+
+    if (isTutorialMode) {
+        return {
+            finalScore: 0,
+            timeBonus: 0,
+            clearBonus: 0
+        };
+    }
+
     const timeBonus = timeLeft * 2000;
 
     let clearBonus = 0;
