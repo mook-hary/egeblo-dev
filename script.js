@@ -1,4 +1,4 @@
-let SIZE = 4; 
+let SIZE = 6; 
 const tileTypes = [
     { txt: "①", color: "#e63946" }, { txt: "②", color: "#3a86ff" }, { txt: "③", color: "#8338ec" },
     { txt: "④", color: "#ff006e" }, { txt: "⑤", color: "#fb5607" }, { txt: "⑥", color: "#ffbe0b" },
