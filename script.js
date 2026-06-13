@@ -775,12 +775,37 @@ function showClearOverlay(finalScore, timeBonus, clearBonus) {
     showOverlayWithFade("clear-overlay");
 }
 
-function setClearOverlayValues(finalScore, timeBonus, clearBonus) {
-    setElementText("clear-score", finalScore);
-    setElementText("clear-time-bonus", timeBonus);
-    setElementText("clear-clear-bonus", clearBonus);
-    setElementText("clear-rank", "★★★");
-    setElementText("clear-new-record", "");
+function setClearOverlayValues(
+    finalScore,
+    timeBonus,
+    clearBonus
+) {
+    setElementText(
+        "clear-score",
+        finalScore
+    );
+
+    setElementText(
+        "clear-time-bonus",
+        timeBonus
+    );
+
+    setElementText(
+        "clear-clear-bonus",
+        clearBonus
+    );
+
+    setElementText(
+        "clear-rank",
+        isTutorialMode
+            ? "次はNORMALに挑戦！"
+            : "★★★"
+    );
+
+    setElementText(
+        "clear-new-record",
+        ""
+    );
 }
 
 function showTimeUpOverlay() {
@@ -2004,10 +2029,16 @@ function handleGameClear() {
 
     updateScoreDisplay(finalScore);
 
-    document.getElementById("status").innerText =
-        "🎉 全クリア達成!!";
-
-    document.getElementById("status").style.color =
+    if (isTutorialMode) {
+        document.getElementById("status").innerText =
+            "🎉 チュートリアルクリア！";
+    
+    } else {
+        document.getElementById("status").innerText =
+            "🎉 全クリア達成!!";
+    }
+    
+        document.getElementById("status").style.color =
         "#4caf50";
 
     playWebAudio("clear");
