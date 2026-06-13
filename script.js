@@ -1198,10 +1198,15 @@ function handleClearTest() {
 function calculateClearResult() {
     const timeBonus = timeLeft * 2000;
 
-    const clearBonus =
-        SIZE === 5
-            ? 43750
-            : 75600;
+    let clearBonus = 0;
+
+    if (SIZE === 4) {
+        clearBonus = 20000;
+    } else if (SIZE === 6) {
+        clearBonus = 75600;
+    } else if (SIZE === 8) {
+        clearBonus = 200000;
+    }
 
     const finalScore =
         currentScore +
