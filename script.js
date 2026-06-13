@@ -1815,7 +1815,14 @@ function selectFirstBlock(block, status) {
     selected = block;
     block.element.classList.add("selected");
 
-    status.innerText = "2つ目の同じ数字を選んでください";
+    if (isTutorialMode) {
+        status.innerText =
+            "いいですね。同じ数字をもう1つ探して選びましょう";
+    } else {
+        status.innerText =
+            "2つ目の同じ数字を選んでください";
+    }
+
     status.style.color = "#ffeb3b";
 }
 
