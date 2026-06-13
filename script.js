@@ -1750,36 +1750,40 @@ function showMatchSuccessMessage(status) {
 }
 
 function revealExposedBlocks() {
-    const {
-        halfSize,
-        dynamicCubeSize,
-        offset
-    } = getDynamicSizes();
+    const sizes = getDynamicSizes();
 
-    blocks.forEach(o => {
-        if (
-            o.active &&
-            o.element.style.display === "none" &&
-            isExposed(o)
-        ) {
-            updateCubePosition(
-                o.element,
-                o.x,
-                o.y,
-                o.z,
-                offset,
-                dynamicCubeSize
-            );
-
-            createFacesForCube(
-                o,
-                halfSize,
-                dynamicCubeSize
-            );
-
-            o.element.style.display = "block";
+    blocks.forEach(block => {
+        if (shouldRevealBlock(block)) {
+            revealBlock(block, sizes);
         }
     });
+}
+
+function shouldRevealBlock(block) {
+    return (
+        block.active &&
+        block.element.style.display === "none" &&
+        isExposed(block)
+    );
+}
+
+function revealBlock(block, sizes) {
+    updateCubePosition(
+        block.element,
+        block.x,
+        block.y,
+        block.z,
+        sizes.offset,
+        sizes.dynamicCubeSize
+    );
+
+    createFacesForCube(
+        block,
+        sizes.halfSize,
+        sizes.dynamicCubeSize
+    );
+
+    block.element.style.display = "block";
 }
 
 function selectDifferentBlock(block, status) {
