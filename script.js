@@ -1802,13 +1802,25 @@ function clearMatchedBlocks(
         currentScore + 700
     );
 
-    showMatchSuccessMessage(status);
+    if (isTutorialMode) {
+        showTutorialFirstMatchMessage(status);
+    } else {
+        showMatchSuccessMessage(status);
+    }
 
     playWebAudio("clear");
 
     revealExposedBlocks();
 
     updateCount();
+}
+
+function showTutorialFirstMatchMessage(status) {
+    status.innerText =
+        "よくできました！同じ数字を2つ選ぶと消せます";
+
+    status.style.color =
+        "#4caf50";
 }
 
 function deactivateMatchedBlocks(
