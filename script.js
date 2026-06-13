@@ -1763,10 +1763,21 @@ function isExposed(b) {
 }
 
 function showNotSelectableMessage(status) {
+    if (isTutorialMode) {
+        status.innerText =
+            "このブロックはまだ選べません。左右前後のうち、2方向以上が空いているブロックを選びましょう";
+
+        status.style.color =
+            "#ffb703";
+
+        return;
+    }
+
     status.innerText =
         "周囲に挟まれています（空きが1面以下なので選べません）";
 
-    status.style.color = "#ff5722";
+    status.style.color =
+        "#ff5722";
 }
 
 function clearSelection(block, status) {
