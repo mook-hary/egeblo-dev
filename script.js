@@ -1648,12 +1648,12 @@ function setupDifficultyButtons() {
 
     addClickListener(
         "diff-normal-btn",
-        () => selectDifficulty(6)
+        () => selectDifficulty(DIFFICULTY.NORMAL)
     );
 
     addClickListener(
         "diff-hard-btn",
-        () => selectDifficulty(8)
+        () => selectDifficulty(DIFFICULTY.HARD)
     );
 }
 
