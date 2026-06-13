@@ -1615,10 +1615,16 @@ async function startFromTitle() {
     startGameAfterTitleFade(overlay);
 }
 
+async function startTutorialFromTitle() {
+    selectDifficulty(4);
+
+    await startFromTitle();
+}
+
 function setupDifficultyButtons() {
     addClickListener(
         "diff-tutorial-btn",
-        () => selectDifficulty(4)
+        startTutorialFromTitle
     );
 
     addClickListener(
