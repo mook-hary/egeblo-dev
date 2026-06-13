@@ -977,6 +977,8 @@ function restoreTitleScreen(stage, startOverlay) {
 function resetTutorialModeForTitle() {
     isTutorialMode = false;
 
+    SIZE = selectedDifficulty;
+
     prepareTimerForSelectedMode();
 
     loadHighScore();
