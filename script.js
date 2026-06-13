@@ -1455,15 +1455,13 @@ function startGameAfterTitleFade(overlay) {
 }
 
 async function startFromTitle() {
-    console.log("start clicked");
-
     playStartSequence();
 
-    const stage = document.getElementById("stage");
-    const overlay = document.getElementById("start-overlay");
+    const stage =
+        document.getElementById("stage");
 
-    console.log("stage", stage);
-    console.log("overlay", overlay);
+    const overlay =
+        document.getElementById("start-overlay");
 
     hideTitleOverlay(overlay);
 
