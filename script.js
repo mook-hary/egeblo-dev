@@ -22,6 +22,7 @@ let isGameOver = false;
 let isPaused = false; 
 let isTutorialMode = false;
 let tutorialFirstMatchDone = false;
+let selectedDifficulty = 6;
 
 // 🌟 初期のゲーム起動時は定位置でスタンバイ
 let rotX = 60;   
@@ -975,10 +976,13 @@ function restoreTitleScreen(stage, startOverlay) {
 
 function resetTutorialModeForTitle() {
     isTutorialMode = false;
-    SIZE = 6;
+
+    SIZE = selectedDifficulty;
 
     updateDifficultyButtons(SIZE);
+
     prepareTimerForSelectedMode();
+
     loadHighScore();
 }
 
@@ -1432,6 +1436,10 @@ function selectDifficulty(size) {
     SIZE = size;
 
     isTutorialMode = (size === 4);
+
+    if (size !== 4) {
+        selectedDifficulty = size;
+    }
 
     prepareTimerForSelectedMode();
 
