@@ -1,4 +1,3 @@
-let SIZE = 6; 
 const DIFFICULTY = {
     TUTORIAL: 2,
     NORMAL: 4,
@@ -30,9 +29,7 @@ let timeLeft = 120;
 let timerId = null;
 let isGameOver = false;
 let isPaused = false; 
-let isTutorialMode = false;
 let tutorialFirstMatchDone = false;
-let selectedDifficulty = 6;
 
 // 🌟 初期のゲーム起動時は定位置でスタンバイ
 let rotX = 60;   
