@@ -372,7 +372,7 @@ button {
 .tutorial-btn {
     width: 220px;
     margin: -8 auto 8px auto;
-    display: block;
+    display: flex;
 }
 
 /* ========================================================
