@@ -968,7 +968,18 @@ function restoreTitleScreen(stage, startOverlay) {
 
     resetGameStartedState();
 
+    resetTutorialModeForTitle();
+
     showStartOverlay(startOverlay);
+}
+
+function resetTutorialModeForTitle() {
+    isTutorialMode = false;
+    SIZE = 6;
+
+    updateDifficultyButtons(SIZE);
+    prepareTimerForSelectedMode();
+    loadHighScore();
 }
 
 function returnToTitle() {
