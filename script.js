@@ -1431,11 +1431,9 @@ function selectDifficulty(size) {
 
     SIZE = size;
 
-    isTutorialMode = (size === 4);
+    isTutorialMode = false;
 
-    if (size !== 4) {
-        selectedDifficulty = size;
-    }
+    selectedDifficulty = size;
 
     prepareTimerForSelectedMode();
 
