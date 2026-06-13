@@ -1928,11 +1928,16 @@ function resumeBGMForVisiblePage() {
     } catch (e) {}
 }
 
-initAudioSystem();
+initializeApplication();
 
-loadHighScore();
-updateSoundButtonUI();
+function initializeApplication() {
+    initAudioSystem();
 
-setTimeout(() => {
-    setupEvents();
-}, 300);
+    loadHighScore();
+
+    updateSoundButtonUI();
+
+    setTimeout(() => {
+        setupEvents();
+    }, 300);
+}
