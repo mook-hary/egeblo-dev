@@ -1,4 +1,14 @@
 let SIZE = 6; 
+const DIFFICULTY = {
+    TUTORIAL: 2,
+    NORMAL: 4,
+    HARD: 6,
+    EXTRA: 8
+};
+let selectedDifficulty = DIFFICULTY.NORMAL;
+let SIZE = selectedDifficulty;
+let isTutorialMode = false;
+
 const tileTypes = [
     { txt: "①", color: "#e63946" }, { txt: "②", color: "#3a86ff" }, { txt: "③", color: "#8338ec" },
     { txt: "④", color: "#ff006e" }, { txt: "⑤", color: "#fb5607" }, { txt: "⑥", color: "#ffbe0b" },
@@ -976,11 +986,9 @@ function restoreTitleScreen(stage, startOverlay) {
 
 function resetTutorialModeForTitle() {
     isTutorialMode = false;
-
     SIZE = selectedDifficulty;
 
     prepareTimerForSelectedMode();
-
     loadHighScore();
 }
 
@@ -1432,15 +1440,11 @@ function selectDifficulty(size) {
     prepareDifficultySelection();
 
     SIZE = size;
-
     isTutorialMode = false;
-
     selectedDifficulty = size;
 
     prepareTimerForSelectedMode();
-
     updateDifficultyButtons(size);
-
     loadHighScore();
 }
 
@@ -1631,7 +1635,7 @@ async function startFromTitle() {
 }
 
 async function startTutorialFromTitle() {
-    SIZE = 4;
+    SIZE = DIFFICULTY.TUTORIAL;
     isTutorialMode = true;
 
     prepareTimerForSelectedMode();
