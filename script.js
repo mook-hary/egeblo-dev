@@ -1148,10 +1148,11 @@ function setupClearButtons() {
 }
 
 function handleClearTest() {
-    const timeBonus = timeLeft * 2000;
-    const clearBonus = SIZE === 5 ? 43750 : 75600;
-    const finalScore =
-        currentScore + clearBonus + timeBonus;
+    const {
+        finalScore,
+        timeBonus,
+        clearBonus
+    } = calculateClearResult();
 
     fadeToBlack(() => {
         showClearOverlay(
@@ -1160,6 +1161,26 @@ function handleClearTest() {
             clearBonus
         );
     });
+}
+
+function calculateClearResult() {
+    const timeBonus = timeLeft * 2000;
+
+    const clearBonus =
+        SIZE === 5
+            ? 43750
+            : 75600;
+
+    const finalScore =
+        currentScore +
+        clearBonus +
+        timeBonus;
+
+    return {
+        finalScore,
+        timeBonus,
+        clearBonus
+    };
 }
 
 function handleClearRetry() {
@@ -1181,6 +1202,10 @@ function handleResetButtonClick() {
     initAudioSystem();
     playWebAudio("select");
 
+    restartGameFromReset();
+}
+
+function restartGameFromReset() {
     initGame();
 
     requestAnimationFrame(() => {
