@@ -1377,23 +1377,26 @@ function prepareDifficultySelection() {
 }
 
 function updateDifficultyButtons(size) {
-    document.getElementById("diff-tutorial-btn")
-        .classList.toggle(
-            "active",
-            size === 4
-        );
+    document.getElementById(
+        "diff-tutorial-btn"
+    ).classList.toggle(
+        "active",
+        size === 4
+    );
 
-    document.getElementById("diff-easy-btn")
-        .classList.toggle(
-            "active",
-            size === 5
-        );
+    document.getElementById(
+        "diff-normal-btn"
+    ).classList.toggle(
+        "active",
+        size === 6
+    );
 
-    document.getElementById("diff-normal-btn")
-        .classList.toggle(
-            "active",
-            size === 6
-        );
+    document.getElementById(
+        "diff-hard-btn"
+    ).classList.toggle(
+        "active",
+        size === 8
+    );
 }
 
 async function enterMobileFullscreenIfNeeded() {
@@ -1544,13 +1547,13 @@ function setupDifficultyButtons() {
     );
 
     addClickListener(
-        "diff-easy-btn",
-        () => selectDifficulty(5)
+        "diff-normal-btn",
+        () => selectDifficulty(6)
     );
 
     addClickListener(
-        "diff-normal-btn",
-        () => selectDifficulty(6)
+        "diff-hard-btn",
+        () => selectDifficulty(8)
     );
 }
 
