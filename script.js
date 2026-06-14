@@ -1492,6 +1492,13 @@ function updateDifficultyButtons(size) {
         "active",
         size === DIFFICULTY.HARD
     );
+
+    document.getElementById(
+        "diff-extra-btn"
+    ).classList.toggle(
+        "active",
+        size === DIFFICULTY.EXTRA
+    );
 }
 
 async function enterMobileFullscreenIfNeeded() {
@@ -1658,6 +1665,11 @@ function setupDifficultyButtons() {
     addClickListener(
         "diff-hard-btn",
         () => selectDifficulty(DIFFICULTY.HARD)
+    );
+
+    addClickListener(
+        "diff-extra-btn",
+        () => selectDifficulty(DIFFICULTY.EXTRA)
     );
 }
 
