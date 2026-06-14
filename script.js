@@ -2209,6 +2209,17 @@ function updateExtraButtonVisibility() {
         isExtraUnlocked ? "" : "none";
 }
 
+function resetTutorialModeForTitle() {
+    isTutorialMode = false;
+    SIZE = selectedDifficulty;
+
+    prepareTimerForSelectedMode();
+
+    loadHighScore();
+
+    updateExtraButtonVisibility();
+}
+
 initializeApplication();
 
 function initializeApplication() {
