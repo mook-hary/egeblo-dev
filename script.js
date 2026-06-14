@@ -4,12 +4,15 @@ const DIFFICULTY = {
     HARD: 6,
     EXTRA: 8
 };
-let selectedDifficulty = DIFFICULTY.NORMAL;
 let SIZE = selectedDifficulty;
 let isTutorialMode = false;
 let isExtraUnlocked =
     localStorage.getItem("cube_extra_unlocked")
     === "true";
+let selectedDifficulty =
+    Number(
+        localStorage.getItem("cube_difficulty")
+    ) || DIFFICULTY.NORMAL;
 
 const tileTypes = [
     { txt: "①", color: "#e63946" }, { txt: "②", color: "#3a86ff" }, { txt: "③", color: "#8338ec" },
@@ -1447,6 +1450,11 @@ function selectDifficulty(size) {
     isTutorialMode = false;
     selectedDifficulty = size;
 
+    localStorage.setItem(
+        "cube_difficulty",
+        size
+    );
+
     prepareTimerForSelectedMode();
     updateDifficultyButtons(size);
     loadHighScore();
@@ -2224,6 +2232,8 @@ initializeApplication();
 
 function initializeApplication() {
     initAudioSystem();
+
+    SIZE = selectedDifficulty;
 
     loadHighScore();
 
