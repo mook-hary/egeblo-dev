@@ -1270,19 +1270,7 @@ function setupClearButtons() {
 }
 
 function handleClearTest() {
-    const {
-        finalScore,
-        timeBonus,
-        clearBonus
-    } = calculateClearResult();
-
-    fadeToBlack(() => {
-        showClearOverlay(
-            finalScore,
-            timeBonus,
-            clearBonus
-        );
-    });
+    handleGameClear();
 }
 
 function calculateClearResult() {
