@@ -265,6 +265,10 @@ function getDynamicSizes() {
 function getCubeSizeByDevice() {
     const isPC = window.innerWidth >= 960;
 
+    if (SIZE === 2) {
+        return isPC ? 80 : 65;
+    }
+
     if (SIZE === 4) {
         return isPC ? 56 : 46;
     }
