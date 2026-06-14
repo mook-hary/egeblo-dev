@@ -2206,7 +2206,7 @@ function updateExtraButtonVisibility() {
     if (!btn) return;
 
     btn.style.display =
-        isExtraUnlocked ? "block" : "none";
+        isExtraUnlocked ? "" : "none";
 }
 
 initializeApplication();
