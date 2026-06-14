@@ -7,6 +7,9 @@ const DIFFICULTY = {
 let selectedDifficulty = DIFFICULTY.NORMAL;
 let SIZE = selectedDifficulty;
 let isTutorialMode = false;
+let isExtraUnlocked =
+    localStorage.getItem("cube_extra_unlocked")
+    === "true";
 
 const tileTypes = [
     { txt: "①", color: "#e63946" }, { txt: "②", color: "#3a86ff" }, { txt: "③", color: "#8338ec" },
@@ -2113,6 +2116,13 @@ function handleGameClear() {
 
     updateScoreDisplay(finalScore);
 
+    if (
+    !isTutorialMode &&
+    SIZE === DIFFICULTY.HARD
+    ) {
+        unlockExtraMode();
+    }
+
     if (isTutorialMode) {
         document.getElementById("status").innerText =
             "🎉 チュートリアルクリア！";
@@ -2140,6 +2150,19 @@ document.addEventListener(
     "visibilitychange",
     handleVisibilityChange
 );
+
+function unlockExtraMode() {
+    if (isExtraUnlocked) return;
+
+    isExtraUnlocked = true;
+
+    localStorage.setItem(
+        "cube_extra_unlocked",
+        "true"
+    );
+
+    updateExtraButtonVisibility();
+}
 
 function handleVisibilityChange() {
     if (document.hidden) {
@@ -2176,6 +2199,16 @@ function resumeBGMForVisiblePage() {
     } catch (e) {}
 }
 
+function updateExtraButtonVisibility() {
+    const btn =
+        document.getElementById("diff-extra-btn");
+
+    if (!btn) return;
+
+    btn.style.display =
+        isExtraUnlocked ? "block" : "none";
+}
+
 initializeApplication();
 
 function initializeApplication() {
@@ -2184,6 +2217,8 @@ function initializeApplication() {
     loadHighScore();
 
     updateDifficultyButtons(selectedDifficulty);
+
+    updateExtraButtonVisibility();
 
     updateSoundButtonUI();
 
