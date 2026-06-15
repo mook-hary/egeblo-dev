@@ -1386,7 +1386,12 @@ function handleClearRetry() {
 
 function restartGameFromClear() {
     hideClearOverlay();
+
     restartGame();
+
+    requestAnimationFrame(() => {
+        playRandomBGM();
+    });
 }
 
 function hideClearOverlay() {
