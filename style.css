@@ -736,6 +736,11 @@ button {
     background: #38bdf8 !important;
 }
 
+/* ========================================================
+   extra unlock overlay
+======================================================== */
+
+
 #extra-unlock-overlay {
     position: absolute;
     inset: 0;
