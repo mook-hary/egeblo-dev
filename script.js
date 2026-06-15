@@ -937,16 +937,21 @@ function stopCurrentBGM() {
 }
 
 function duckBGMForFanfare(duration = 4000) {
-    console.log("duck start");
+    console.log("duck start", currentActiveBGM);
 
-    if (!currentActiveBGM) return;
+    if (!currentActiveBGM) {
+        console.log("BGMなし");
+        return;
+    }
 
-    const originalVolume = currentActiveBGM.volume;
+    console.log("volume before", currentActiveBGM.volume);
 
     currentActiveBGM.volume = 0;
 
+    console.log("volume after", currentActiveBGM.volume);
+
     setTimeout(() => {
-        fadeInBGMVolume(originalVolume);
+        fadeInBGMVolume(0.20);
     }, duration);
 }
 
