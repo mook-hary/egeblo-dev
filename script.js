@@ -937,18 +937,17 @@ function stopCurrentBGM() {
 }
 
 function duckBGMForFanfare(duration = 4000) {
-    console.log("duck start", currentActiveBGM);
+    alert(
+        currentActiveBGM
+            ? "BGMあり volume=" + currentActiveBGM.volume
+            : "BGMなし"
+    );
 
-    if (!currentActiveBGM) {
-        console.log("BGMなし");
-        return;
-    }
-
-    console.log("volume before", currentActiveBGM.volume);
+    if (!currentActiveBGM) return;
 
     currentActiveBGM.volume = 0;
 
-    console.log("volume after", currentActiveBGM.volume);
+    alert("変更後 volume=" + currentActiveBGM.volume);
 
     setTimeout(() => {
         fadeInBGMVolume(0.20);
