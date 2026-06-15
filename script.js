@@ -2146,6 +2146,7 @@ function getActiveBlockCount() {
 }
 
 function handleGameClear() {
+    isExtraUnlocked = false;
     clearInterval(timerId);
 
     isGameOver = true;
