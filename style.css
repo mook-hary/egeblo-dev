@@ -778,10 +778,11 @@ button {
 .extra-unlock-text {
     color: #ffbe0b;
 
-    font-size: 28px;
+    font-size: 26px;
     font-weight: bold;
 
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
 
     margin: 8px 0;
 }
