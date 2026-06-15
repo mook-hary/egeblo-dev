@@ -1533,12 +1533,6 @@ function prepareTimerForSelectedMode() {
 function prepareDifficultySelection() {
     initAudioSystem();
 
-    debugLog(
-        "select=" + !!soundBank.select +
-        " / audio=" +
-        (audioCtx ? audioCtx.state : "none")
-    );
-
     playWebAudio("select");
 }
 
