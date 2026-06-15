@@ -936,6 +936,40 @@ function stopCurrentBGM() {
     } catch(e) {}
 }
 
+function duckBGMForFanfare(duration = 4000) {
+    if (!currentActiveBGM) return;
+
+    const originalVolume = currentActiveBGM.volume;
+
+    currentActiveBGM.volume = 0;
+
+    setTimeout(() => {
+        fadeInBGMVolume(originalVolume);
+    }, duration);
+}
+
+function fadeInBGMVolume(targetVolume = 0.20) {
+    if (!currentActiveBGM) return;
+
+    currentActiveBGM.volume = 0;
+
+    const step = targetVolume / 20;
+
+    const fadeTimer = setInterval(() => {
+        if (!currentActiveBGM) {
+            clearInterval(fadeTimer);
+            return;
+        }
+
+        currentActiveBGM.volume += step;
+
+        if (currentActiveBGM.volume >= targetVolume) {
+            currentActiveBGM.volume = targetVolume;
+            clearInterval(fadeTimer);
+        }
+    }, 50);
+}
+
 function hideGameOverlays() {
     const overlays = [
         "timeup-overlay",
