@@ -2178,6 +2178,8 @@ function handleGameClear() {
         "#4caf50";
 
     playWebAudio("clear");
+
+    duckBGMForFanfare(4000);
     playWebAudio("clearFanfare");
 
     fadeToBlack(() => {
