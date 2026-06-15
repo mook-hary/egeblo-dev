@@ -2233,26 +2233,18 @@ function handleGameClear() {
 
    playWebAudio("clear");
 
-if (isFirstExtraUnlock) {
-    duckBGMForFanfare(15000);
+if (currentActiveBGM) {
+    currentActiveBGM.pause();
+}
 
+if (isFirstExtraUnlock) {
     setTimeout(() => {
-        playWebAudioWithFadeOut(
-            "extraUnlockFanfare",
-            13000,
-            2000
-        );
+        playWebAudio("extraUnlockFanfare");
     }, 500);
 
 } else {
-    duckBGMForFanfare(10000);
-
     setTimeout(() => {
-        playWebAudioWithFadeOut(
-            "clearFanfare",
-            8000,
-            2000
-        );
+        playWebAudio("clearFanfare");
     }, 500);
 }
 
