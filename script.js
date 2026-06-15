@@ -2158,30 +2158,40 @@ function handleGameClear() {
 
     updateScoreDisplay(finalScore);
 
-    if (
-    !isTutorialMode &&
-    SIZE === DIFFICULTY.HARD
-    ) {
+    const isFirstExtraUnlock =
+        !isTutorialMode &&
+        SIZE === DIFFICULTY.HARD &&
+        !isExtraUnlocked;
+
+    if (isFirstExtraUnlock) {
         unlockExtraMode();
     }
 
     if (isTutorialMode) {
         document.getElementById("status").innerText =
             "🎉 チュートリアルクリア！";
-    
+
+    } else if (isFirstExtraUnlock) {
+        document.getElementById("status").innerText =
+            "🎉 全クリア達成!! EXTRA解放！";
+
     } else {
         document.getElementById("status").innerText =
             "🎉 全クリア達成!!";
     }
-    
-        document.getElementById("status").style.color =
+
+    document.getElementById("status").style.color =
         "#4caf50";
 
     playWebAudio("clear");
 
-duckBGMForFanfare(10000);
-
-playWebAudio("clearFanfare");
+    if (isFirstExtraUnlock) {
+        duckBGMForFanfare(10000);
+        playWebAudio("extraUnlockFanfare");
+    } else {
+        duckBGMForFanfare(10000);
+        playWebAudio("clearFanfare");
+    }
 
     fadeToBlack(() => {
         showClearOverlay(
