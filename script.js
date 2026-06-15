@@ -983,17 +983,6 @@ function stopCurrentBGM() {
     } catch(e) {}
 }
 
-function duckBGMForFanfare(duration = 4000) {
-    if (!currentActiveBGM) return;
-
-    currentActiveBGM.pause();
-
-    setTimeout(() => {
-        currentActiveBGM.play();
-        fadeInBGMVolume(0.20);
-    }, duration);
-}
-
 function fadeInBGMVolume(targetVolume = 0.20) {
     if (!currentActiveBGM) return;
 
