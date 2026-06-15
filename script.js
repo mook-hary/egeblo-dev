@@ -85,11 +85,6 @@ function playRandomBGM() {
     }
 }
 
-function debugLog(text) {
-    const el = document.getElementById("debug-text");
-    if (el) el.innerText = text;
-}
-
 function playFanfare(bufferName) {
     if (!canPlayWebAudio(bufferName)) return;
 
