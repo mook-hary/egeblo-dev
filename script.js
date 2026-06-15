@@ -1377,6 +1377,7 @@ function calculateClearResult() {
 }
 
 function handleClearRetry() {
+    stopCurrentFanfare();
     playWebAudio("select");
 
     fadeToBlack(restartGameFromClear);
