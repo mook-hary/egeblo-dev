@@ -2232,11 +2232,9 @@ function handleGameClear() {
 
    playWebAudio("clear");
 
-if (currentActiveBGM) {
-    currentActiveBGM.pause();
-}
-
 if (isFirstExtraUnlock) {
+    duckBGMForFanfare(15000);
+
     setTimeout(() => {
         playWebAudioWithFadeOut(
             "extraUnlockFanfare",
@@ -2246,6 +2244,8 @@ if (isFirstExtraUnlock) {
     }, 500);
 
 } else {
+    duckBGMForFanfare(10000);
+
     setTimeout(() => {
         playWebAudioWithFadeOut(
             "clearFanfare",
