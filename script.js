@@ -2231,22 +2231,30 @@ function handleGameClear() {
     document.getElementById("status").style.color =
         "#4caf50";
 
-    playWebAudio("clear");
+   playWebAudio("clear");
 
-    if (isFirstExtraUnlock) {
-        duckBGMForFanfare(10000);
+if (isFirstExtraUnlock) {
+    duckBGMForFanfare(10000);
 
-        setTimeout(() => {
-            playWebAudio("extraUnlockFanfare");
-        }, 500);
+    setTimeout(() => {
+        playWebAudioWithFadeOut(
+            "extraUnlockFanfare",
+            8000,
+            2000
+        );
+    }, 500);
 
-    } else {
-        duckBGMForFanfare(10000);
+} else {
+    duckBGMForFanfare(10000);
 
-        setTimeout(() => {
-            playWebAudio("clearFanfare");
-        }, 500);
-    }
+    setTimeout(() => {
+        playWebAudioWithFadeOut(
+            "clearFanfare",
+            8000,
+            2000
+        );
+    }, 500);
+}
 
     fadeToBlack(() => {
         showClearOverlay(
