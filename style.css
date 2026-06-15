@@ -736,6 +736,56 @@ button {
     background: #38bdf8 !important;
 }
 
+#extra-unlock-overlay {
+    position: absolute;
+    inset: 0;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 9500;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.extra-unlock-card {
+    width: 78%;
+
+    padding: 24px 20px;
+
+    text-align: center;
+
+    border-radius: 18px;
+
+    background: rgba(25, 20, 45, 0.96);
+
+    border: 2px solid #ffbe0b;
+
+    box-shadow:
+        0 0 35px
+        rgba(255, 190, 11, 0.65);
+}
+
+.extra-unlock-text {
+    color: #ffbe0b;
+
+    font-size: 28px;
+    font-weight: bold;
+
+    letter-spacing: 0.08em;
+
+    margin: 8px 0;
+}
+
+.extra-unlock-line {
+    color: #ffbe0b;
+
+    font-size: 18px;
+}
 /* ========================================================
    フェード / デバッグ
 ======================================================== */
