@@ -776,6 +776,7 @@ button {
 }
 
 .extra-unlock-text {
+    animation: unlockPulse 2s ease-in-out infinite;
     color: #ffbe0b;
 
     font-size: 26px;
@@ -792,6 +793,21 @@ button {
 
     font-size: 18px;
 }
+
+@keyframes unlockPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
 /* ========================================================
    フェード / デバッグ
 ======================================================== */
