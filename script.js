@@ -2154,6 +2154,7 @@ function getActiveBlockCount() {
 
 function handleGameClear() {
     alert("GAME CLEAR");
+    alert(typeof duckBGMForFanfare);
     clearInterval(timerId);
 
     isGameOver = true;
