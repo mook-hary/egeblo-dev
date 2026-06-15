@@ -1,3 +1,4 @@
+console.log("script version 20260615-1301");
 const DIFFICULTY = {
     TUTORIAL: 2,
     NORMAL: 4,
