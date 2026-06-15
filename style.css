@@ -796,15 +796,15 @@ button {
 
 @keyframes unlockPulse {
     0% {
-        transform: scale(1);
+        transform: scale(1, 1);
     }
 
     50% {
-        transform: scale(1.08);
+        transform: scale(1.02, 1.12);
     }
 
     100% {
-        transform: scale(1);
+        transform: scale(1, 1);
     }
 }
 
