@@ -2228,6 +2228,15 @@ function handleGameClear() {
 
     if (isFirstExtraUnlock) {
         unlockExtraMode();
+        const extraUnlockEl =
+    document.getElementById(
+        "clear-extra-unlock"
+    );
+
+if (extraUnlockEl) {
+    extraUnlockEl.innerText =
+        "✨ EXTRA MODE UNLOCKED ✨";
+}
     }
 
     if (isTutorialMode) {
