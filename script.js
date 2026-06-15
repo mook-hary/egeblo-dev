@@ -2181,8 +2181,9 @@ function handleGameClear() {
 
     playWebAudio("clear");
 
-    duckBGMForFanfare(4000);
-    playWebAudio("clearFanfare");
+stopCurrentBGM();
+
+playWebAudio("clearFanfare");
 
     fadeToBlack(() => {
         showClearOverlay(
