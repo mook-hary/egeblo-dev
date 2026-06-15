@@ -937,17 +937,9 @@ function stopCurrentBGM() {
 }
 
 function duckBGMForFanfare(duration = 4000) {
-    alert(
-        currentActiveBGM
-            ? "BGMあり volume=" + currentActiveBGM.volume
-            : "BGMなし"
-    );
-
     if (!currentActiveBGM) return;
 
     currentActiveBGM.volume = 0;
-
-    alert("変更後 volume=" + currentActiveBGM.volume);
 
     setTimeout(() => {
         fadeInBGMVolume(0.20);
