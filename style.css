@@ -733,6 +733,15 @@ button {
     font-weight: bold;
 }
 
+.clear-detail-grid .clear-bonus {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    margin-bottom: 0;
+}
+
 /* ========================================================
    結果画面ボタン
 ======================================================== */
