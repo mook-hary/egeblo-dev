@@ -740,6 +740,8 @@ button {
     align-items: flex-end;
 
     margin-bottom: 0;
+
+    transform: translateX(30px);
 }
 
 /* ========================================================
