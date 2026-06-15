@@ -1480,7 +1480,7 @@ function setupPauseButtons() {
 }
 
 function selectDifficulty(size) {
-    prepareDifficultySelection();
+    await prepareDifficultySelection();
 
     SIZE = size;
     isTutorialMode = false;
