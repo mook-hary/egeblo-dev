@@ -852,6 +852,14 @@ button {
     }
 }
 
+.clear-detail-grid .clear-bonus {
+    display: block;
+
+    text-align: center;
+
+    margin-bottom: 0;
+}
+
 
 /* ========================================================
    フェード / デバッグ
