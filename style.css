@@ -753,16 +753,5 @@ button {
     transition: opacity 0.35s ease;
 }
 
-#debug-text {
-    position: absolute;
-    left: 8px;
-    bottom: 8px;
-    z-index: 999999;
-    color: #00ff99;
-    background: rgba(0,0,0,0.7);
-    font-size: 11px;
-    padding: 4px 6px;
-    border-radius: 4px;
-    pointer-events: none;
-}
+
 
