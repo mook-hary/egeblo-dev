@@ -1070,6 +1070,7 @@ function resetTutorialModeForTitle() {
 }
 
 function returnToTitle() {
+    stopCurrentFanfare();
     playWebAudio("select");
 
     const startOverlay =
