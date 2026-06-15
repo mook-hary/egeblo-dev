@@ -903,6 +903,38 @@ function setClearOverlayValues(
     );
 }
 
+function showExtraUnlockOverlay(callback) {
+    const overlay =
+        document.getElementById(
+            "extra-unlock-overlay"
+        );
+
+    if (!overlay) {
+        if (callback) callback();
+        return;
+    }
+
+    overlay.style.display = "flex";
+
+    requestAnimationFrame(() => {
+        overlay.style.opacity = "1";
+    });
+
+    setTimeout(() => {
+        overlay.style.opacity = "0";
+
+        setTimeout(() => {
+            overlay.style.display = "none";
+
+            if (callback) {
+                callback();
+            }
+
+        }, 800);
+
+    }, 10000);
+}
+
 function showTimeUpOverlay() {
     setElementText("timeup-score", currentScore);
 
@@ -2222,6 +2254,22 @@ if (isFirstExtraUnlock) {
     }, 500);
 }
 
+    if (isFirstExtraUnlock) {
+
+    showExtraUnlockOverlay(() => {
+
+        fadeToBlack(() => {
+            showClearOverlay(
+                finalScore,
+                timeBonus,
+                clearBonus
+            );
+        });
+
+    });
+
+} else {
+
     fadeToBlack(() => {
         showClearOverlay(
             finalScore,
@@ -2229,6 +2277,8 @@ if (isFirstExtraUnlock) {
             clearBonus
         );
     });
+
+}
 }
 
 document.addEventListener(
