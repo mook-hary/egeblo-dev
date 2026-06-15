@@ -53,6 +53,9 @@ const soundBank = {
     timeup: null,
     start: null,
     countdown: null,
+
+    clearFanfare: null,
+    extraUnlockFanfare: null
 };
 
 // 🎵 【BGMシステム】
@@ -250,6 +253,14 @@ function loadInitialSoundBuffers() {
 
     loadSoundToBuffer("start_1.mp3").then(buf => {
         if (buf) soundBank.start = buf;
+    });
+
+    loadSoundToBuffer("clear_fanfare.mp3").then(buf => {
+        if (buf) soundBank.clearFanfare = buf;
+    });
+
+    loadSoundToBuffer("extra_unlock_fanfare.mp3").then(buf => {
+        if (buf) soundBank.extraUnlockFanfare = buf;
     });
 }
 
