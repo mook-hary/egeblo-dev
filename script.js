@@ -15,6 +15,7 @@ let isTutorialMode = false;
 let isExtraUnlocked =
     localStorage.getItem("cube_extra_unlocked")
     === "true";
+let currentFanfareSource = null;
 
 const tileTypes = [
     { txt: "①", color: "#e63946" }, { txt: "②", color: "#3a86ff" }, { txt: "③", color: "#8338ec" },
@@ -87,6 +88,40 @@ function playRandomBGM() {
 function debugLog(text) {
     const el = document.getElementById("debug-text");
     if (el) el.innerText = text;
+}
+
+function playFanfare(bufferName) {
+    if (!canPlayWebAudio(bufferName)) return;
+
+    stopCurrentFanfare();
+
+    const bufferSource =
+        audioCtx.createBufferSource();
+
+    bufferSource.buffer =
+        soundBank[bufferName];
+
+    bufferSource.connect(audioCtx.destination);
+
+    currentFanfareSource = bufferSource;
+
+    bufferSource.onended = () => {
+        if (currentFanfareSource === bufferSource) {
+            currentFanfareSource = null;
+        }
+    };
+
+    bufferSource.start(0);
+}
+
+function stopCurrentFanfare() {
+    if (!currentFanfareSource) return;
+
+    try {
+        currentFanfareSource.stop();
+    } catch (e) {}
+
+    currentFanfareSource = null;
 }
 
 function playWebAudio(bufferName) {
