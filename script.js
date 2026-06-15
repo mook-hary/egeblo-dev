@@ -2153,6 +2153,7 @@ function getActiveBlockCount() {
 }
 
 function handleGameClear() {
+    alert("GAME CLEAR");
     clearInterval(timerId);
 
     isGameOver = true;
