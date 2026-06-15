@@ -2181,7 +2181,7 @@ function handleGameClear() {
 
     playWebAudio("clear");
 
-stopCurrentBGM();
+duckBGMForFanfare(3500);
 
 playWebAudio("clearFanfare");
 
