@@ -937,6 +937,8 @@ function stopCurrentBGM() {
 }
 
 function duckBGMForFanfare(duration = 4000) {
+    console.log("duck start");
+
     if (!currentActiveBGM) return;
 
     const originalVolume = currentActiveBGM.volume;
