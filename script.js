@@ -953,7 +953,7 @@ function fadeInBGMVolume(targetVolume = 0.20) {
 
     currentActiveBGM.volume = 0;
 
-    const step = targetVolume / 20;
+    const step = targetVolume / 80;
 
     const fadeTimer = setInterval(() => {
         if (!currentActiveBGM) {
