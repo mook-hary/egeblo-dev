@@ -122,52 +122,6 @@ function playSoundBuffer(bufferName) {
     bufferSource.start(0);
 }
 
-function playWebAudioWithFadeOut(
-    bufferName,
-    fadeStartMs = 8000,
-    fadeDurationMs = 2000
-) {
-    if (!canPlayWebAudio(bufferName)) return;
-
-    const bufferSource =
-        audioCtx.createBufferSource();
-
-    const gainNode =
-        audioCtx.createGain();
-
-    bufferSource.buffer =
-        soundBank[bufferName];
-
-    bufferSource.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-
-    const now = audioCtx.currentTime;
-
-    const fadeStartTime =
-        now + fadeStartMs / 1000;
-
-    const fadeEndTime =
-        fadeStartTime +
-        fadeDurationMs / 1000;
-
-    gainNode.gain.setValueAtTime(
-        1,
-        now
-    );
-
-    gainNode.gain.setValueAtTime(
-        1,
-        fadeStartTime
-    );
-
-    gainNode.gain.linearRampToValueAtTime(
-        0.001,
-        fadeEndTime
-    );
-
-    bufferSource.start(now);
-}
-
 function playCountdownBeep() {
     if (!isSoundEnabled) return;
 
