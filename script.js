@@ -1506,8 +1506,10 @@ function prepareTimerForSelectedMode() {
     updateTimerUI();
 }
 
-function prepareDifficultySelection() {
+async function prepareDifficultySelection() {
     initAudioSystem();
+
+    await resumeAudioContextIfNeeded();
 
     debugLog(
         "select=" + !!soundBank.select +
