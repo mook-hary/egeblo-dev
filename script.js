@@ -901,6 +901,15 @@ function setClearOverlayValues(
         "clear-new-record",
         ""
     );
+
+    const extraUnlockEl =
+    document.getElementById(
+        "clear-extra-unlock"
+    );
+
+if (extraUnlockEl) {
+    extraUnlockEl.innerText = "";
+}
 }
 
 function showExtraUnlockOverlay(callback) {
