@@ -860,6 +860,12 @@ button {
     margin-bottom: 0;
 }
 
+.clear-bonus {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 
 /* ========================================================
    フェード / デバッグ
