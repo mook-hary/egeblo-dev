@@ -2144,6 +2144,7 @@ function handleGameClear() {
         "#4caf50";
 
     playWebAudio("clear");
+    playWebAudio("clearFanfare");
 
     fadeToBlack(() => {
         showClearOverlay(
