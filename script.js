@@ -2217,12 +2217,12 @@ if (currentActiveBGM) {
 
 if (isFirstExtraUnlock) {
     setTimeout(() => {
-        playWebAudio("extraUnlockFanfare");
+        playFanfare("extraUnlockFanfare");
     }, 500);
 
 } else {
     setTimeout(() => {
-        playWebAudio("clearFanfare");
+        playFanfare("clearFanfare");
     }, 500);
 }
 
