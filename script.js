@@ -2145,21 +2145,70 @@ function getActiveBlockCount() {
     return blocks.filter(b => b.active).length;
 }
 
-playWebAudio("clear");
+function handleGameClear() {
+    isExtraUnlocked = false;
 
-if (isFirstExtraUnlock) {
-    duckBGMForFanfare(10000);
+    clearInterval(timerId);
 
-    setTimeout(() => {
-        playWebAudio("extraUnlockFanfare");
-    }, 500);
+    isGameOver = true;
 
-} else {
-    duckBGMForFanfare(10000);
+    const {
+        finalScore,
+        timeBonus,
+        clearBonus
+    } = calculateClearResult();
 
-    setTimeout(() => {
-        playWebAudio("clearFanfare");
-    }, 500);
+    updateScoreDisplay(finalScore);
+
+    const isFirstExtraUnlock =
+        !isTutorialMode &&
+        SIZE === DIFFICULTY.HARD &&
+        !isExtraUnlocked;
+
+    if (isFirstExtraUnlock) {
+        unlockExtraMode();
+    }
+
+    if (isTutorialMode) {
+        document.getElementById("status").innerText =
+            "🎉 チュートリアルクリア！";
+
+    } else if (isFirstExtraUnlock) {
+        document.getElementById("status").innerText =
+            "🎉 全クリア達成!! EXTRA解放！";
+
+    } else {
+        document.getElementById("status").innerText =
+            "🎉 全クリア達成!!";
+    }
+
+    document.getElementById("status").style.color =
+        "#4caf50";
+
+    playWebAudio("clear");
+
+    if (isFirstExtraUnlock) {
+        duckBGMForFanfare(10000);
+
+        setTimeout(() => {
+            playWebAudio("extraUnlockFanfare");
+        }, 500);
+
+    } else {
+        duckBGMForFanfare(10000);
+
+        setTimeout(() => {
+            playWebAudio("clearFanfare");
+        }, 500);
+    }
+
+    fadeToBlack(() => {
+        showClearOverlay(
+            finalScore,
+            timeBonus,
+            clearBonus
+        );
+    });
 }
 
 document.addEventListener(
