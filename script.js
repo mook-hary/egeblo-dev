@@ -2234,12 +2234,12 @@ function handleGameClear() {
    playWebAudio("clear");
 
 if (isFirstExtraUnlock) {
-    duckBGMForFanfare(10000);
+    duckBGMForFanfare(15000);
 
     setTimeout(() => {
         playWebAudioWithFadeOut(
             "extraUnlockFanfare",
-            8000,
+            13000,
             2000
         );
     }, 500);
