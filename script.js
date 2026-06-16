@@ -2282,6 +2282,16 @@ if (isFirstExtraUnlock) {
                 timeBonus,
                 clearBonus
             );
+
+            const extraUnlockEl =
+                document.getElementById(
+                    "clear-extra-unlock"
+                );
+
+            if (extraUnlockEl) {
+                extraUnlockEl.innerHTML =
+                    "EXTRA<br>UNLOCKED";
+            }
         });
 
     });
