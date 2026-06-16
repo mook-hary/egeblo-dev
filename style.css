@@ -715,6 +715,8 @@ button {
     gap: 4px;
 
     min-height: 40px;
+
+    padding-left: 12px;
 }
 
 #clear-rank,
@@ -728,12 +730,19 @@ button {
 #clear-extra-unlock {
     color: #ffbe0b;
 
-    font-size: 14px;
-    letter-spacing: 0.02em;
+    font-size: 13px;
+
+    letter-spacing: 0.05em;
 
     font-weight: bold;
 
     white-space: nowrap;
+
+    padding: 2px 8px;
+
+    border: 1px solid rgba(255,190,11,0.4);
+
+    border-radius: 999px;
 }
 
 .clear-detail-grid .clear-bonus {
