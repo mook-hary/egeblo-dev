@@ -731,6 +731,8 @@ button {
     font-size: 16px;
 
     font-weight: bold;
+
+    white-space: nowrap;
 }
 
 .clear-detail-grid .clear-bonus {
@@ -861,14 +863,6 @@ button {
     100% {
         transform: scale(1, 1);
     }
-}
-
-.clear-detail-grid .clear-bonus {
-    display: block;
-
-    text-align: center;
-
-    margin-bottom: 0;
 }
 
 .clear-bonus {
