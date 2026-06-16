@@ -720,7 +720,7 @@ button {
 #clear-rank,
 #clear-new-record,
 #clear-extra-unlock {
-    min-height: 20px;
+    min-height: 16px;
 
     text-align: center;
 }
