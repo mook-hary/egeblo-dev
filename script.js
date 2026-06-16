@@ -2279,7 +2279,7 @@ function handleGameClear() {
 
                 if (extraUnlockEl) {
                     extraUnlockEl.innerHTML =
-                        "EXTRA<br>UNLOCKED";
+                        "EXTRA UNLOCKED";
                 }
             });
         });
