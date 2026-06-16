@@ -728,7 +728,8 @@ button {
 #clear-extra-unlock {
     color: #ffbe0b;
 
-    font-size: 10px;
+    font-size: 14px;
+    letter-spacing: 0.02em;
 
     font-weight: bold;
 
