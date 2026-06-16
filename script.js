@@ -2228,15 +2228,6 @@ function handleGameClear() {
 
     if (isFirstExtraUnlock) {
         unlockExtraMode();
-        const extraUnlockEl =
-    document.getElementById(
-        "clear-extra-unlock"
-    );
-
-if (extraUnlockEl) {
-    extraUnlockEl.innerText =
-        "✨ EXTRA MODE UNLOCKED ✨";
-}
     }
 
     if (isTutorialMode) {
@@ -2255,58 +2246,53 @@ if (extraUnlockEl) {
     document.getElementById("status").style.color =
         "#4caf50";
 
-   playWebAudio("clear");
+    playWebAudio("clear");
 
-if (currentActiveBGM) {
-    currentActiveBGM.pause();
-}
-
-if (isFirstExtraUnlock) {
-    setTimeout(() => {
-        playFanfare("extraUnlockFanfare");
-    }, 500);
-
-} else {
-    setTimeout(() => {
-        playFanfare("clearFanfare");
-    }, 500);
-}
+    if (currentActiveBGM) {
+        currentActiveBGM.pause();
+    }
 
     if (isFirstExtraUnlock) {
+        setTimeout(() => {
+            playFanfare("extraUnlockFanfare");
+        }, 500);
 
-    showExtraUnlockOverlay(() => {
+    } else {
+        setTimeout(() => {
+            playFanfare("clearFanfare");
+        }, 500);
+    }
 
+    if (isFirstExtraUnlock) {
+        showExtraUnlockOverlay(() => {
+            fadeToBlack(() => {
+                showClearOverlay(
+                    finalScore,
+                    timeBonus,
+                    clearBonus
+                );
+
+                const extraUnlockEl =
+                    document.getElementById(
+                        "clear-extra-unlock"
+                    );
+
+                if (extraUnlockEl) {
+                    extraUnlockEl.innerHTML =
+                        "EXTRA<br>UNLOCKED";
+                }
+            });
+        });
+
+    } else {
         fadeToBlack(() => {
             showClearOverlay(
                 finalScore,
                 timeBonus,
                 clearBonus
             );
-
-            const extraUnlockEl =
-                document.getElementById(
-                    "clear-extra-unlock"
-                );
-
-            if (extraUnlockEl) {
-                extraUnlockEl.innerHTML =
-                    "EXTRA<br>UNLOCKED";
-            }
         });
-
-    });
-
-} else {
-
-    fadeToBlack(() => {
-        showClearOverlay(
-            finalScore,
-            timeBonus,
-            clearBonus
-        );
-    });
-
-}
+    }
 }
 
 document.addEventListener(
