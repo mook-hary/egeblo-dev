@@ -1464,6 +1464,26 @@ function calculateClearResult() {
     };
 }
 
+function getClearRankStars(finalScore) {
+    if (finalScore >= 250000) {
+        return "★★★★★";
+    }
+
+    if (finalScore >= 180000) {
+        return "★★★★";
+    }
+
+    if (finalScore >= 120000) {
+        return "★★★";
+    }
+
+    if (finalScore >= 70000) {
+        return "★★";
+    }
+
+    return "★";
+}
+
 function handleClearRetry() {
     stopCurrentFanfare();
 
