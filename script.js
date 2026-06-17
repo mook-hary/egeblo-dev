@@ -2260,6 +2260,7 @@ function handleGameClear() {
         clearBonus
     } = calculateClearResult();
 
+    const isNewRecord =
     updateScoreDisplay(finalScore);
 
     const isFirstExtraUnlock =
