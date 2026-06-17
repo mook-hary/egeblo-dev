@@ -2323,6 +2323,14 @@ if (isFirstExtraUnlock) {
     extraUnlockEl.style.display =
         "inline-block";
 }
+
+                const clearMessage =
+    document.getElementById("clear-message");
+
+if (clearMessage) {
+    clearMessage.innerText =
+        "EXTRAモードが解放されました！";
+}
             });
         });
 
