@@ -918,6 +918,14 @@ if (extraUnlockEl) {
     extraUnlockEl.innerText = "";
     extraUnlockEl.style.display = "none";
 }
+
+    const clearMessage =
+    document.getElementById("clear-message");
+
+if (clearMessage) {
+    clearMessage.innerText =
+        "全ブロック消去達成！";
+}
 }
 
 function showExtraUnlockOverlay(callback) {
