@@ -1390,6 +1390,16 @@ function setupClearButtons() {
 }
 
 function handleClearTest() {
+    SIZE = DIFFICULTY.HARD;
+
+    isExtraUnlocked = false;
+
+    localStorage.removeItem(
+        "cube_extra_unlocked"
+    );
+
+    updateExtraButtonVisibility();
+
     handleGameClear();
 }
 
