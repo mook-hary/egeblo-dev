@@ -885,68 +885,65 @@ function setClearOverlayValues(
             "clear-bonus-area"
         );
 
-    if (isTutorialMode) {
+    if (bonusArea) {
+        bonusArea.style.display =
+            isTutorialMode ? "none" : "block";
+    }
 
-        if (bonusArea) {
-            bonusArea.style.display = "none";
-        }
+    if (rankEl) {
+        rankEl.style.display = "block";
 
-        if (rankEl) {
-            rankEl.style.display = "block";
+        if (isTutorialMode) {
+            rankEl.innerText = "★";
+        } else {
             rankEl.innerText =
-                "次はNORMALに挑戦！";
-        }
-
-    } else {
-
-        if (bonusArea) {
-            bonusArea.style.display = "block";
-        }
-
-        if (rankEl) {
-            rankEl.style.display = "none";
+                getClearRankStars(finalScore);
         }
     }
 
     const newRecordEl =
-    document.getElementById(
-        "clear-new-record"
-    );
+        document.getElementById(
+            "clear-new-record"
+        );
 
-if (newRecordEl) {
-    if (window.lastClearWasNewRecord) {
-        newRecordEl.innerText =
-            "🏆 NEW RECORD!";
+    if (newRecordEl) {
+        if (window.lastClearWasNewRecord) {
+            newRecordEl.innerText =
+                "🏆 NEW RECORD!";
 
-        newRecordEl.style.display =
-            "block";
-    } else {
-        newRecordEl.innerText = "";
+            newRecordEl.style.display =
+                "block";
+        } else {
+            newRecordEl.innerText = "";
 
-        newRecordEl.style.display =
-            "none";
+            newRecordEl.style.display =
+                "none";
+        }
     }
-}
 
     const extraUnlockEl =
-    document.getElementById(
-        "clear-extra-unlock"
-    );
+        document.getElementById(
+            "clear-extra-unlock"
+        );
 
-if (extraUnlockEl) {
-    extraUnlockEl.innerText = "";
-    extraUnlockEl.style.display = "none";
-}
+    if (extraUnlockEl) {
+        extraUnlockEl.innerText = "";
+        extraUnlockEl.style.display = "none";
+    }
 
     const clearMessage =
-    document.getElementById("clear-message");
+        document.getElementById("clear-message");
 
-if (clearMessage) {
-    clearMessage.innerText =
-        "全ブロック消去達成！";
+    if (clearMessage) {
+        if (isTutorialMode) {
+            clearMessage.innerText =
+                "次はNORMALに挑戦！";
+        } else {
+            clearMessage.innerText =
+                "全ブロック消去達成！";
+        }
+    }
 }
-}
-
 function showExtraUnlockOverlay(callback) {
     const overlay =
         document.getElementById(
