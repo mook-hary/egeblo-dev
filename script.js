@@ -910,6 +910,7 @@ function setClearOverlayValues(
 
 if (extraUnlockEl) {
     extraUnlockEl.innerText = "";
+    extraUnlockEl.style.display = "none";
 }
 }
 
