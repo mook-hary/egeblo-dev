@@ -2296,7 +2296,7 @@ function handleGameClear() {
     updateScoreDisplay(finalScore);
 
     window.lastClearWasNewRecord =
-    isNewRecord;
+    true;
 
     const isFirstExtraUnlock =
         !isTutorialMode &&
