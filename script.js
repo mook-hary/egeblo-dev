@@ -353,7 +353,7 @@ function loadHighScore() {
 function updateScoreDisplay(scoreValue) {
 
     if (isTutorialMode) {
-        return;
+        return false;
     }
 
     currentScore = scoreValue;
@@ -361,11 +361,13 @@ function updateScoreDisplay(scoreValue) {
     document.getElementById("score").innerText =
         currentScore;
 
-    updateHighScoreIfNeeded();
+    return updateHighScoreIfNeeded();
 }
 
 function updateHighScoreIfNeeded() {
-    if (currentScore <= highScore) return;
+    if (currentScore <= highScore) {
+        return false;
+    }
 
     highScore = currentScore;
 
@@ -376,6 +378,8 @@ function updateHighScoreIfNeeded() {
         `egebro_highscore_sz${SIZE}`,
         highScore
     );
+
+    return true;
 }
 
 function createTilePool(totalRequired) {
