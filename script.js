@@ -59,7 +59,7 @@ const soundBank = {
     countdown: null,
 
     clearFanfare: null,
-    extraUnlockFanfare: null
+    extraUnlockFanfare: null,
     keyUnlock: null,
 };
 
