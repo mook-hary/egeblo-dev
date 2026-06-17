@@ -908,10 +908,25 @@ function setClearOverlayValues(
         }
     }
 
-    setElementText(
-        "clear-new-record",
-        ""
+    const newRecordEl =
+    document.getElementById(
+        "clear-new-record"
     );
+
+if (newRecordEl) {
+    if (window.lastClearWasNewRecord) {
+        newRecordEl.innerText =
+            "🏆 NEW RECORD!";
+
+        newRecordEl.style.display =
+            "block";
+    } else {
+        newRecordEl.innerText = "";
+
+        newRecordEl.style.display =
+            "none";
+    }
+}
 
     const extraUnlockEl =
     document.getElementById(
