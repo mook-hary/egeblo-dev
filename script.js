@@ -2291,9 +2291,12 @@ function handleGameClear() {
                     );
 
                 if (extraUnlockEl) {
-                    extraUnlockEl.innerHTML =
-                        "EXTRA";
-                }
+    extraUnlockEl.innerHTML =
+        "✨ Extra unlocked ✨";
+
+    extraUnlockEl.style.display =
+        "inline-block";
+}
             });
         });
 
