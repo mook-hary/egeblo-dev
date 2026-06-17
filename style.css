@@ -652,20 +652,20 @@ button {
 
 .score-label {
     color: #4CAF50;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
 }
 
 .score-value {
     color: #ffb703;
-    font-size: 42px;
+    font-size: 34px;
     font-weight: bold;
     line-height: 1;
 }
 
 .score-unit {
     color: #4CAF50;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
 }
 
