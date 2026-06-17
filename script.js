@@ -17,6 +17,7 @@ let isExtraUnlocked =
     === "true";
 let resetExtraOnNextClearTest = true;
 let currentFanfareSource = null;
+let isExtraUnlockResult = false;
 
 const tileTypes = [
     { txt: "①", color: "#e63946" }, { txt: "②", color: "#3a86ff" }, { txt: "③", color: "#8338ec" },
@@ -59,6 +60,7 @@ const soundBank = {
 
     clearFanfare: null,
     extraUnlockFanfare: null
+    keyUnlock: null,
 };
 
 // 🎵 【BGMシステム】
@@ -294,6 +296,10 @@ function loadInitialSoundBuffers() {
     loadSoundToBuffer("extra_unlock_fanfare.mp3").then(buf => {
         if (buf) soundBank.extraUnlockFanfare = buf;
     });
+
+    loadSoundToBuffer("unlock_key.mp3").then(buf => {
+    if (buf) soundBank.keyUnlock = buf;
+});
 }
 
 function getDynamicSizes() {
