@@ -15,6 +15,7 @@ let isTutorialMode = false;
 let isExtraUnlocked =
     localStorage.getItem("cube_extra_unlocked")
     === "true";
+let resetExtraOnNextClearTest = true;
 let currentFanfareSource = null;
 
 const tileTypes = [
