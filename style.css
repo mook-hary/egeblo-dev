@@ -686,6 +686,10 @@ button {
     line-height: 1;
 }
 
+#clear-rank {
+    color: #ffbe0b;
+}
+
 #clear-new-record {
     min-height: 0;
     font-size: 12px;
