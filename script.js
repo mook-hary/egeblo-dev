@@ -2233,9 +2233,11 @@ function handleGameClear() {
         SIZE === DIFFICULTY.HARD &&
         !isExtraUnlocked;
 
-    if (isFirstExtraUnlock) {
-        unlockExtraMode();
-    }
+    isExtraUnlockResult = isFirstExtraUnlock;
+
+if (isFirstExtraUnlock) {
+    unlockExtraMode();
+}
 
     if (isTutorialMode) {
         document.getElementById("status").innerText =
