@@ -1115,7 +1115,13 @@ function resetTutorialModeForTitle() {
 
 function returnToTitle() {
     stopCurrentFanfare();
+
+if (isExtraUnlockResult) {
+    playWebAudio("keyUnlock");
+    isExtraUnlockResult = false;
+} else {
     playWebAudio("select");
+}
 
     const startOverlay =
         document.getElementById("start-overlay");
