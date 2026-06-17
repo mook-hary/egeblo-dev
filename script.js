@@ -1377,6 +1377,18 @@ function setupClearButtons() {
 }
 
 function handleClearTest() {
+    if (resetExtraOnNextClearTest) {
+        localStorage.removeItem(
+            "cube_extra_unlocked"
+        );
+
+        isExtraUnlocked = false;
+
+        updateExtraButtonVisibility();
+
+        resetExtraOnNextClearTest = false;
+    }
+
     handleGameClear();
 }
 
