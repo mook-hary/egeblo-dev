@@ -2278,6 +2278,9 @@ function handleGameClear() {
     const isNewRecord =
     updateScoreDisplay(finalScore);
 
+    window.lastClearWasNewRecord =
+    isNewRecord;
+
     const isFirstExtraUnlock =
         !isTutorialMode &&
         SIZE === DIFFICULTY.HARD &&
