@@ -1423,7 +1423,13 @@ function calculateClearResult() {
 
 function handleClearRetry() {
     stopCurrentFanfare();
-    playWebAudio("select");
+
+    if (isExtraUnlockResult) {
+        playWebAudio("keyUnlock");
+        isExtraUnlockResult = false;
+    } else {
+        playWebAudio("select");
+    }
 
     fadeToBlack(restartGameFromClear);
 }
