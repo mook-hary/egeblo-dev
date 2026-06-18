@@ -897,7 +897,7 @@ function setClearOverlayValues(
             rankEl.innerText = "★";
         } else {
             rankEl.innerText =
-                getClearRankStars(finalScore);
+                getClearRankStars();
         }
     }
 
@@ -1461,21 +1461,22 @@ function calculateClearResult() {
     };
 }
 
-function getClearRankStars(finalScore) {
-    if (finalScore >= 250000) {
-        return "★★★★★";
+function getClearRankStars() {
+
+    if (isTutorialMode) {
+        return "★";
     }
 
-    if (finalScore >= 180000) {
+    if (SIZE === DIFFICULTY.NORMAL) {
+        return "★★";
+    }
+
+    if (SIZE === DIFFICULTY.HARD) {
         return "★★★★";
     }
 
-    if (finalScore >= 120000) {
-        return "★★★";
-    }
-
-    if (finalScore >= 70000) {
-        return "★★";
+    if (SIZE === DIFFICULTY.EXTRA) {
+        return "★★★★★";
     }
 
     return "★";
