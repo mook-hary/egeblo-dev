@@ -908,17 +908,17 @@ function setClearOverlayValues(
             "clear-detail-grid"
         );
 
-    if (detailGrid) {
-        detailGrid.style.display =
-            isTutorialMode ? "none" : "grid";
-
-         detailGrid.style.marginBottom =
-        isTutorialMode ? "30px" : "10px";
+   if (detailGrid) {
+        detailGrid.style.display = "grid";
+    
+        detailGrid.style.visibility =
+            isTutorialMode ? "hidden" : "visible";
+    
+        detailGrid.style.marginBottom = "10px";
     }
 
     if (bonusArea) {
-        bonusArea.style.display =
-            isTutorialMode ? "none" : "block";
+        bonusArea.style.display = "block";
     }
 
     if (rankEl) {
@@ -978,6 +978,7 @@ function setClearOverlayValues(
         }
     }
 }
+
 function showExtraUnlockOverlay(callback) {
     const overlay =
         document.getElementById(
