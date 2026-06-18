@@ -862,6 +862,16 @@ function setClearOverlayValues(
     timeBonus,
     clearBonus
 ) {
+    const clearCard =
+    document.querySelector(".clear-card");
+
+    if (clearCard) {
+        clearCard.classList.toggle(
+            "tutorial-clear",
+            isTutorialMode
+        );
+    }
+    
     if (isTutorialMode) {
         setElementText(
             "clear-score",
