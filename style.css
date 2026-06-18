@@ -673,7 +673,7 @@ button {
     color: #ffb703;
     font-size: 14px;
     font-weight: bold;
-    line-height: 1.2;
+    line-height: 1.1;
     margin-bottom: 14px;
 }
 
@@ -714,7 +714,7 @@ button {
 
     gap: 12px;
 
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
 
 .clear-side-info {
