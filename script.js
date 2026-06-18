@@ -862,10 +862,37 @@ function setClearOverlayValues(
     timeBonus,
     clearBonus
 ) {
+    if (isTutorialMode) {
+    setElementText(
+        "clear-score",
+        "★"
+    );
+
+    setElementText(
+        "clear-time-bonus",
+        ""
+    );
+
+    setElementText(
+        "clear-clear-bonus",
+        ""
+    );
+} else {
     setElementText(
         "clear-score",
         finalScore
     );
+
+    setElementText(
+        "clear-time-bonus",
+        timeBonus
+    );
+
+    setElementText(
+        "clear-clear-bonus",
+        clearBonus
+    );
+}
 
     setElementText(
         "clear-time-bonus",
