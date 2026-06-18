@@ -919,12 +919,13 @@ function setClearOverlayValues(
         );
 
    if (detailGrid) {
-        detailGrid.style.display = "grid";
+        detailGrid.style.display =
+            isTutorialMode ? "none" : "grid";
     
         detailGrid.style.visibility =
-            isTutorialMode ? "hidden" : "visible";
+            "visible";
     
-        detailGrid.style.marginBottom = "10px";
+        detailGrid.style.marginBottom = "";
     }
 
     if (bonusArea) {
