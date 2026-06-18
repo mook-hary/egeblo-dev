@@ -863,46 +863,37 @@ function setClearOverlayValues(
     clearBonus
 ) {
     if (isTutorialMode) {
-    setElementText(
-        "clear-score",
-        "★"
-    );
+        setElementText(
+            "clear-score",
+            "★"
+        );
 
-    setElementText(
-        "clear-time-bonus",
-        ""
-    );
+        setElementText(
+            "clear-time-bonus",
+            ""
+        );
 
-    setElementText(
-        "clear-clear-bonus",
-        ""
-    );
-} else {
-    setElementText(
-        "clear-score",
-        finalScore
-    );
+        setElementText(
+            "clear-clear-bonus",
+            ""
+        );
 
-    setElementText(
-        "clear-time-bonus",
-        timeBonus
-    );
+    } else {
+        setElementText(
+            "clear-score",
+            finalScore
+        );
 
-    setElementText(
-        "clear-clear-bonus",
-        clearBonus
-    );
-}
+        setElementText(
+            "clear-time-bonus",
+            timeBonus
+        );
 
-    setElementText(
-        "clear-time-bonus",
-        timeBonus
-    );
-
-    setElementText(
-        "clear-clear-bonus",
-        clearBonus
-    );
+        setElementText(
+            "clear-clear-bonus",
+            clearBonus
+        );
+    }
 
     const rankEl =
         document.getElementById("clear-rank");
@@ -911,6 +902,16 @@ function setClearOverlayValues(
         document.getElementById(
             "clear-bonus-area"
         );
+
+    const detailGrid =
+        document.getElementById(
+            "clear-detail-grid"
+        );
+
+    if (detailGrid) {
+        detailGrid.style.display =
+            isTutorialMode ? "none" : "grid";
+    }
 
     if (bonusArea) {
         bonusArea.style.display =
@@ -924,7 +925,7 @@ function setClearOverlayValues(
             rankEl.innerText = "★";
         } else {
             rankEl.innerText =
-                getClearRankStars();
+                getClearRankStars(finalScore);
         }
     }
 
@@ -934,7 +935,10 @@ function setClearOverlayValues(
         );
 
     if (newRecordEl) {
-        if (window.lastClearWasNewRecord) {
+        if (
+            !isTutorialMode &&
+            window.lastClearWasNewRecord
+        ) {
             newRecordEl.innerText =
                 "🏆 NEW RECORD!";
 
