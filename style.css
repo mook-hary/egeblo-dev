@@ -771,6 +771,11 @@ button {
     transform: translateX(75px);
 }
 
+.clear-card.tutorial-clear {
+    display: flex;
+    flex-direction: column;
+}
+
 /* ========================================================
    結果画面ボタン
 ======================================================== */
@@ -816,6 +821,10 @@ button {
 #clear-share-btn,
 #timeup-share-btn {
     background: #38bdf8 !important;
+}
+
+.clear-card.tutorial-clear .clear-buttons {
+    margin-top: auto;
 }
 
 /* ========================================================
