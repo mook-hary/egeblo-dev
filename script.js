@@ -1222,22 +1222,65 @@ async function shareResult(resultType) {
 }
 
 function createShareData(resultType) {
+    const modeName = getCurrentModeName();
+
     const label =
         resultType === "clear"
-            ? "CLEAR!"
+            ? `${modeName} CLEAR!`
             : "TIME UP";
 
-    const shareText =
-        `CUBE dev ${label}\n` +
-        `SCORE: ${currentScore} pt\n` +
-        `BEST: ${highScore} pt\n` +
-        `#CUBEdev`;
+    let shareText =
+        `🧩 CUBE dev\n\n` +
+        `${label}\n` +
+        `SCORE: ${currentScore} pt\n`;
+
+    if (resultType === "clear") {
+        const finalScore =
+            calculateClearResult().finalScore;
+
+        const rank =
+            getClearRankStars(finalScore);
+
+        shareText +=
+            `RANK: ${rank}\n`;
+    }
+
+    shareText +=
+        `BEST: ${highScore} pt\n`;
+
+    if (isExtraUnlockResult) {
+        shareText +=
+            `\n✨ EXTRA MODE UNLOCKED ✨\n`;
+    }
+
+    shareText +=
+        `\n#CUBEdev`;
 
     return {
         title: "CUBE dev",
         text: shareText,
         url: location.href
     };
+}
+
+function getCurrentModeName() {
+    if (isTutorialMode) {
+        return "TUTORIAL";
+    }
+
+    if (SIZE === DIFFICULTY.NORMAL) {
+        return "NORMAL";
+    }
+
+    if (SIZE === DIFFICULTY.HARD) {
+        return "HARD";
+    }
+
+    if (SIZE === DIFFICULTY.EXTRA) {
+        return "EXTRA";
+    }
+
+    return "UNKNOWN";
 }
 
 async function shareWithWebShareApi(shareData) {
