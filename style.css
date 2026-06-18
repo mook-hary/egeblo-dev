@@ -707,8 +707,8 @@ button {
     display: grid;
 
     grid-template-columns:
-        1.7fr
-        1.3fr;
+        1.6fr
+        1.4fr;
 
     align-items: center;
 
@@ -768,7 +768,7 @@ button {
 
     margin-bottom: 0;
 
-    transform: translateX(75px);
+    transform: translateX(50px);
 }
 
 /* ========================================================
