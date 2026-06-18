@@ -1176,14 +1176,6 @@ function restoreTitleScreen(stage, startOverlay) {
     showStartOverlay(startOverlay);
 }
 
-function resetTutorialModeForTitle() {
-    isTutorialMode = false;
-    SIZE = selectedDifficulty;
-
-    prepareTimerForSelectedMode();
-    loadHighScore();
-}
-
 function returnToTitle() {
     stopCurrentFanfare();
 
