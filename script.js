@@ -841,6 +841,7 @@ function stopAllSounds() {
             currentActiveBGM.pause();
             // nullにしない。ミュート解除時に続きから再生するため
         }
+        stopCurrentFanfare();
     } catch (e) {}
 
     // WebAudioは止めたいが、AudioContextはsuspendしない
