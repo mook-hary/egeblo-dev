@@ -911,6 +911,9 @@ function setClearOverlayValues(
     if (detailGrid) {
         detailGrid.style.display =
             isTutorialMode ? "none" : "grid";
+
+         detailGrid.style.marginBottom =
+        isTutorialMode ? "30px" : "10px";
     }
 
     if (bonusArea) {
