@@ -1461,7 +1461,7 @@ function calculateClearResult() {
     };
 }
 
-function getClearRankStars() {
+function getClearRankStars(finalScore) {
 
     if (isTutorialMode) {
         return "★";
@@ -1472,7 +1472,16 @@ function getClearRankStars() {
     }
 
     if (SIZE === DIFFICULTY.HARD) {
-        return "★★★★";
+
+        if (finalScore >= 151200) {
+            return "★★★★";
+        }
+
+        if (finalScore >= 30000) {
+            return "★★★";
+        }
+
+        return "★★";
     }
 
     if (SIZE === DIFFICULTY.EXTRA) {
