@@ -1076,6 +1076,15 @@ function showTimeUpResultOverlay() {
         "おつかれさまでした"
     );
 
+    const rankEl =
+        document.getElementById("clear-rank");
+
+    if (rankEl) {
+        rankEl.style.display = "block";
+        rankEl.innerText =
+            getClearRankStars(currentScore);
+    }
+
     showOverlayWithFade("clear-overlay");
 }
 
