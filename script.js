@@ -860,6 +860,22 @@ function showClearOverlay(finalScore, timeBonus, clearBonus) {
     showOverlayWithFade("clear-overlay");
 }
 
+function resetResultOverlayTheme() {
+    const clearCard =
+        document.querySelector(".clear-card");
+
+    const title =
+        document.querySelector(".clear-card h2");
+
+    if (clearCard) {
+        clearCard.classList.remove("timeup-result");
+    }
+
+    if (title) {
+        title.innerText = "CLEAR!";
+    }
+}
+
 function setClearOverlayValues(
     finalScore,
     timeBonus,
@@ -1026,9 +1042,36 @@ function showExtraUnlockOverlay(callback) {
 }
 
 function showTimeUpOverlay() {
-    setElementText("timeup-score", currentScore);
+    showTimeUpResultOverlay();
+}
 
-    showOverlayWithFade("timeup-overlay");
+function showTimeUpResultOverlay() {
+    const clearCard =
+        document.querySelector(".clear-card");
+
+    const title =
+        document.querySelector(".clear-card h2");
+
+    if (clearCard) {
+        clearCard.classList.add("timeup-result");
+    }
+
+    if (title) {
+        title.innerText = "TIME UP";
+    }
+
+    setClearOverlayValues(
+        currentScore,
+        0,
+        0
+    );
+
+    setElementText(
+        "clear-message",
+        "おつかれさまでした"
+    );
+
+    showOverlayWithFade("clear-overlay");
 }
 
 function setElementText(id, text) {
