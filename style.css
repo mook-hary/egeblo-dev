@@ -606,6 +606,9 @@ button {
 .clear-card {
     background: rgba(28, 36, 30, 0.96);
     border: 2px solid #4CAF50;
+
+    display: flex;
+    flex-direction: column;
 }
 
 .timeup-card h2,
