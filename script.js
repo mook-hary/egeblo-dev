@@ -1352,6 +1352,10 @@ function shareToX(shareText) {
     window.open(xUrl, "_blank");
 }
 
+function shareCurrentResult() {
+    shareResult(currentResultType);
+}
+
 function setupShareButton(id, resultType) {
     addClickListener(id, () => {
         shareResult(resultType);
@@ -1364,9 +1368,9 @@ function setupShareButtons() {
         "timeup"
     );
 
-    setupShareButton(
+    addClickListener(
         "clear-share-btn",
-        "clear"
+        shareCurrentResult
     );
 }
 
