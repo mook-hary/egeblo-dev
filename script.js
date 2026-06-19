@@ -41,6 +41,7 @@ let timerId = null;
 let isGameOver = false;
 let isPaused = false; 
 let tutorialFirstMatchDone = false;
+let currentResultType = "clear";
 
 // 🌟 初期のゲーム起動時は定位置でスタンバイ
 let rotX = 60;   
@@ -849,6 +850,8 @@ function stopAllSounds() {
 }
 
 function showClearOverlay(finalScore, timeBonus, clearBonus) {
+    currentResultType = "clear";
+
     resetResultOverlayTheme();
 
     setClearOverlayValues(
@@ -1046,6 +1049,8 @@ function showTimeUpOverlay() {
 }
 
 function showTimeUpResultOverlay() {
+    currentResultType = "timeup";
+    
     const clearCard =
         document.querySelector(".clear-card");
 
@@ -1531,13 +1536,22 @@ function setupClearButtons() {
 
     addClickListener(
         "clear-retry-btn",
-        handleClearRetry
+        handleResultRetry
     );
 
     addClickListener(
         "clear-title-btn",
         returnToTitle
     );
+}
+
+function handleResultRetry() {
+    if (currentResultType === "timeup") {
+        handleTimeupRetry();
+        return;
+    }
+
+    handleClearRetry();
 }
 
 function handleClearTest() {
