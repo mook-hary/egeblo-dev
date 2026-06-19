@@ -776,6 +776,15 @@ button {
     flex-direction: column;
 }
 
+.clear-card.timeup-result {
+    background: rgba(30, 30, 30, 0.96);
+    border-color: #ff4444;
+}
+
+.clear-card.timeup-result h2 {
+    color: #ff4444;
+}
+
 /* ========================================================
    結果画面ボタン
 ======================================================== */
