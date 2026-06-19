@@ -849,6 +849,8 @@ function stopAllSounds() {
 }
 
 function showClearOverlay(finalScore, timeBonus, clearBonus) {
+    resetResultOverlayTheme();
+
     setClearOverlayValues(
         finalScore,
         timeBonus,
