@@ -1469,7 +1469,7 @@ function handleTimeupRetry() {
     playWebAudio("select");
 
     fadeToBlack(() => {
-        hideTimeupOverlay();
+        hideClearOverlay();
         restartGame();
     });
 }
