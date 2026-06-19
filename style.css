@@ -800,6 +800,10 @@ button {
     width: 100%;
 }
 
+.clear-buttons {
+    margin-top: auto;
+}
+
 .timeup-card .timeup-buttons {
     margin-top: auto;
 }
