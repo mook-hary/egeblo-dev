@@ -794,18 +794,15 @@ button {
     letter-spacing: -0.05em;
 }
 
-#clear-retry-btn,
-#timeup-retry-btn {
+#clear-retry-btn {
     background: #4CAF50 !important;
 }
 
-#clear-title-btn,
-#timeup-title-btn {
+#clear-title-btn {
     background: #ef4444 !important;
 }
 
-#clear-share-btn,
-#timeup-share-btn {
+#clear-share-btn {
     background: #38bdf8 !important;
 }
 
