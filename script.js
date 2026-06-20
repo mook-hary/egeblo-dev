@@ -42,6 +42,7 @@ let isGameOver = false;
 let isPaused = false; 
 let tutorialFirstMatchDone = false;
 let currentResultType = "clear";
+let currentResultWasNewRecord = false;
 
 // 🌟 初期のゲーム起動時は定位置でスタンバイ
 let rotX = 60;   
@@ -849,8 +850,14 @@ function stopAllSounds() {
     // iPhoneで復帰が重くなることがあるため
 }
 
-function showClearOverlay(finalScore, timeBonus, clearBonus) {
+function showClearOverlay(
+    finalScore,
+    timeBonus,
+    clearBonus,
+    isNewRecord = false
+) {
     currentResultType = "clear";
+    currentResultWasNewRecord = isNewRecord;
 
     resetResultOverlayTheme();
 
@@ -973,7 +980,7 @@ function setClearOverlayValues(
     if (newRecordEl) {
         if (
             !isTutorialMode &&
-            window.lastClearWasNewRecord
+            currentResultWasNewRecord
         ) {
             newRecordEl.innerText =
                 "🏆 NEW RECORD!";
@@ -2440,9 +2447,6 @@ function handleGameClear() {
 
     const isNewRecord =
         updateScoreDisplay(finalScore);
-    
-    window.lastClearWasNewRecord =
-        isNewRecord;
 
     const isFirstExtraUnlock =
         !isTutorialMode &&
@@ -2494,7 +2498,8 @@ if (isFirstExtraUnlock) {
                 showClearOverlay(
                     finalScore,
                     timeBonus,
-                    clearBonus
+                    clearBonus,
+                    isNewRecord
                 );
 
                 const extraUnlockEl =
@@ -2525,7 +2530,8 @@ if (clearMessage) {
             showClearOverlay(
                 finalScore,
                 timeBonus,
-                clearBonus
+                clearBonus,
+                isNewRecord
             );
         });
     }
