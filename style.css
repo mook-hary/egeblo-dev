@@ -750,11 +750,6 @@ button {
     transform: translateX(75px);
 }
 
-.clear-card.tutorial-clear {
-    display: flex;
-    flex-direction: column;
-}
-
 .clear-card.timeup-result {
     background: rgba(30, 30, 30, 0.96);
     border-color: #ff4444;
