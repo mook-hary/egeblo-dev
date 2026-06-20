@@ -1170,7 +1170,6 @@ function fadeInBGMVolume(targetVolume = 0.20) {
 
 function hideGameOverlays() {
     const overlays = [
-        "timeup-overlay",
         "clear-overlay",
         "pause-overlay"
     ];
