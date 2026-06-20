@@ -2439,10 +2439,10 @@ function handleGameClear() {
     } = calculateClearResult();
 
     const isNewRecord =
-    updateScoreDisplay(finalScore);
-
+        updateScoreDisplay(finalScore);
+    
     window.lastClearWasNewRecord =
-    true;
+        isNewRecord;
 
     const isFirstExtraUnlock =
         !isTutorialMode &&
