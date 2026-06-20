@@ -2018,7 +2018,6 @@ function setupTitleButtons() {
 function setupEvents() {
     setupShareButtons();
     setupSoundButtons();
-    setupTimeupButtons();
     setupClearButtons();
 
     setupRotationButtons();
