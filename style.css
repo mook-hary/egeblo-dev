@@ -780,10 +780,6 @@ button {
     margin-top: auto;
 }
 
-.timeup-card .timeup-buttons {
-    margin-top: auto;
-}
-
 .clear-buttons button,
 .timeup-buttons button {
     flex: 1;
