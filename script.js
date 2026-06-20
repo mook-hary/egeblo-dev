@@ -1490,10 +1490,6 @@ function hideOverlay(id) {
     overlay.style.display = "none";
 }
 
-function hideTimeupOverlay() {
-    hideOverlay("timeup-overlay");
-}
-
 function resetStageRotationState() {
     rotX = 0;
     rotZ = 0;
