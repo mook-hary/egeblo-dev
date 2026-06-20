@@ -1457,18 +1457,6 @@ function isGameRunning() {
     );
 }
 
-function setupTimeupButtons() {
-    addClickListener(
-        "timeup-retry-btn",
-        handleTimeupRetry
-    );
-
-    addClickListener(
-        "timeup-title-btn",
-        returnToTitle
-    );
-}
-
 function restartGame() {
     resetStageRotationState();
 
