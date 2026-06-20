@@ -1293,16 +1293,16 @@ function createShareData(resultType) {
         `${label}\n` +
         `SCORE: ${currentScore} pt\n`;
 
-    if (resultType === "clear") {
-        const finalScore =
-            calculateClearResult().finalScore;
-
-        const rank =
-            getClearRankStars(finalScore);
-
-        shareText +=
-            `RANK: ${rank}\n`;
-    }
+    const rankScore =
+        resultType === "clear"
+            ? calculateClearResult().finalScore
+            : currentScore;
+    
+    const rank =
+        getClearRankStars(rankScore);
+    
+    shareText +=
+        `RANK: ${rank}\n`;
 
     shareText +=
         `BEST: ${highScore} pt\n`;
