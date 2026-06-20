@@ -768,8 +768,7 @@ button {
    結果画面ボタン
 ======================================================== */
 
-.clear-buttons,
-.timeup-buttons {
+.clear-buttons {
     display: flex;
     gap: 10px;
     justify-content: center;
@@ -780,8 +779,7 @@ button {
     margin-top: auto;
 }
 
-.clear-buttons button,
-.timeup-buttons button {
+.clear-buttons button {
     flex: 1;
     height: 52px;
 
