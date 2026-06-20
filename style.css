@@ -568,7 +568,6 @@ button {
    TIME UP / CLEAR overlay
 ======================================================== */
 
-#timeup-overlay,
 #clear-overlay {
     position: absolute;
     inset: 0;
@@ -583,7 +582,6 @@ button {
     transition: opacity 0.35s ease;
 }
 
-.timeup-card,
 .clear-card {
     text-align: center;
 
@@ -596,13 +594,6 @@ button {
     box-sizing: border-box;
 }
 
-.timeup-card {
-    background: rgba(30, 30, 30, 0.96);
-    border: 2px solid #ff4444;
-    display: flex;
-    flex-direction: column;
-}
-
 .clear-card {
     background: rgba(28, 36, 30, 0.96);
     border: 2px solid #4CAF50;
@@ -611,7 +602,6 @@ button {
     flex-direction: column;
 }
 
-.timeup-card h2,
 .clear-card h2 {
     margin: 0 0 8px;
     font-size: 32px;
@@ -619,24 +609,15 @@ button {
     letter-spacing: 0.06em;
 }
 
-.timeup-card h2 {
-    color: #ff4444;
-}
-
 .clear-card h2 {
     color: #4CAF50;
 }
 
-.timeup-card p,
 .clear-card p {
     margin: 0 0 8px;
     color: #aaa;
     font-size: 16px;
     line-height: 1.3;
-}
-
-.timeup-card p {
-    margin-bottom: 24px;
 }
 
 .result-score {
@@ -646,11 +627,6 @@ button {
     gap: 10px;
 
     margin-bottom: 6px;
-}
-
-/* TIME UP専用 */
-.timeup-card .result-score {
-    margin-bottom: 28px;
 }
 
 .score-label {
